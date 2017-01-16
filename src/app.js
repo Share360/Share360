@@ -5,10 +5,17 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
+import LandingPage from './components/LandingPage';
+import Container from './components/Container/Container';
+
 class App extends React.Component {
 	render() {
 		return (
-			<h1>Test</h1>
+			<Router history={hashHistory}>
+				<Route path='/' component={Container}>
+					<IndexRoute component={LandingPage} />
+				</Route>
+			</Router>
 		);
 	}
 }
