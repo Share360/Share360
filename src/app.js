@@ -4,6 +4,11 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import allReducers from './reducers/index';
+import Profile from './components/Profile';
+
+//created the store so that I can access fake data for profile template.
+const store = createStore(allReducers);
 
 import LandingPage from './components/LandingPage';
 import Container from './components/Container/Container';
@@ -20,4 +25,7 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>, document.getElementById('root'));

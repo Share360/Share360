@@ -47,7 +47,7 @@
 	'use strict';
 
 	__webpack_require__(1);
-	__webpack_require__(271);
+	__webpack_require__(305);
 
 /***/ },
 /* 1 */
@@ -75,11 +75,19 @@
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _LandingPage = __webpack_require__(272);
+	var _index = __webpack_require__(271);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	var _Profile = __webpack_require__(274);
+
+	var _Profile2 = _interopRequireDefault(_Profile);
+
+	var _LandingPage = __webpack_require__(275);
 
 	var _LandingPage2 = _interopRequireDefault(_LandingPage);
 
-	var _Container = __webpack_require__(273);
+	var _Container = __webpack_require__(276);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
@@ -90,6 +98,9 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	//created the store so that I can access fake data for profile template.
+	var store = (0, _redux.createStore)(_index2.default);
 
 	var App = function (_React$Component) {
 		_inherits(App, _React$Component);
@@ -118,7 +129,11 @@
 		return App;
 	}(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(
+		_reactRedux.Provider,
+		{ store: store },
+		_react2.default.createElement(App, null)
+	), document.getElementById('root'));
 
 /***/ },
 /* 2 */
@@ -28721,12 +28736,489 @@
 
 /***/ },
 /* 271 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	// removed by extract-text-webpack-plugin
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _redux = __webpack_require__(234);
+
+	var _fakeUsers = __webpack_require__(272);
+
+	var _fakeUsers2 = _interopRequireDefault(_fakeUsers);
+
+	var _fakeVideos = __webpack_require__(273);
+
+	var _fakeVideos2 = _interopRequireDefault(_fakeVideos);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var allReducers = (0, _redux.combineReducers)({
+	    users: _fakeUsers2.default,
+	    videos: _fakeVideos2.default
+	});
+
+	exports.default = allReducers;
 
 /***/ },
 /* 272 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	exports.default = function () {
+	    return [{
+	        "id": 1,
+	        "username": "slynch0",
+	        "f_name": "Samuel",
+	        "l_name": "Lynch",
+	        "email": "slynch0@ucsd.edu",
+	        "profile_url": "https://robohash.org/doloreimpeditin.png?size=200x200&set=set1",
+	        "birthday": "5/29/2016",
+	        "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit."
+	    }, {
+	        "id": 2,
+	        "username": "gstephens1",
+	        "f_name": "Gregory",
+	        "l_name": "Stephens",
+	        "email": "gstephens1@elegantthemes.com",
+	        "profile_url": "https://robohash.org/officiisdelectusa.png?size=200x200&set=set1",
+	        "birthday": "3/6/2016",
+	        "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat."
+	    }, {
+	        "id": 3,
+	        "username": "rbrown2",
+	        "f_name": "Roger",
+	        "l_name": "Brown",
+	        "email": "rbrown2@shutterfly.com",
+	        "profile_url": "https://robohash.org/aliasdolorrepellat.png?size=200x200&set=set1",
+	        "birthday": "8/16/2016",
+	        "description": "Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius."
+	    }, {
+	        "id": 4,
+	        "username": "sstewart3",
+	        "f_name": "Shawn",
+	        "l_name": "Stewart",
+	        "email": "sstewart3@creativecommons.org",
+	        "profile_url": "https://robohash.org/quodveldolorum.png?size=200x200&set=set1",
+	        "birthday": "2/12/2016",
+	        "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis."
+	    }, {
+	        "id": 5,
+	        "username": "jfields4",
+	        "f_name": "Jonathan",
+	        "l_name": "Fields",
+	        "email": "jfields4@networksolutions.com",
+	        "profile_url": "https://robohash.org/nihilestea.png?size=200x200&set=set1",
+	        "birthday": "1/17/2016",
+	        "description": "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh."
+	    }, {
+	        "id": 6,
+	        "username": "mspencer5",
+	        "f_name": "Michael",
+	        "l_name": "Spencer",
+	        "email": "mspencer5@pcworld.com",
+	        "profile_url": "https://robohash.org/perferendiserroromnis.png?size=200x200&set=set1",
+	        "birthday": "3/11/2016",
+	        "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros."
+	    }, {
+	        "id": 7,
+	        "username": "akelley6",
+	        "f_name": "Amy",
+	        "l_name": "Kelley",
+	        "email": "akelley6@netlog.com",
+	        "profile_url": "https://robohash.org/beataeducimusat.png?size=200x200&set=set1",
+	        "birthday": "3/5/2016",
+	        "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat."
+	    }, {
+	        "id": 8,
+	        "username": "jallen7",
+	        "f_name": "Jesse",
+	        "l_name": "Allen",
+	        "email": "jallen7@tinypic.com",
+	        "profile_url": "https://robohash.org/fugaquoenim.png?size=200x200&set=set1",
+	        "birthday": "3/7/2016",
+	        "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
+	    }, {
+	        "id": 9,
+	        "username": "jberry8",
+	        "f_name": "Jean",
+	        "l_name": "Berry",
+	        "email": "jberry8@liveinternet.ru",
+	        "profile_url": "https://robohash.org/aperiameiusqui.png?size=200x200&set=set1",
+	        "birthday": "10/29/2016",
+	        "description": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus."
+	    }, {
+	        "id": 10,
+	        "username": "sbanks9",
+	        "f_name": "Samuel",
+	        "l_name": "Banks",
+	        "email": "sbanks9@ehow.com",
+	        "profile_url": "https://robohash.org/nullaquinecessitatibus.png?size=200x200&set=set1",
+	        "birthday": "4/6/2016",
+	        "description": "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
+	    }];
+	};
+
+	;
+
+/***/ },
+/* 273 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	exports.default = function () {
+	    return [{
+	        "id": 1,
+	        "title": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl.",
+	        "url": "https://php.net/felis/sed/interdum/venenatis/turpis.jsp?vestibulum=elementum&eget=nullam&vulputate=varius&ut=nulla&ultrices=facilisi&vel=cras&augue=non&vestibulum=velit&ante=nec&ipsum=nisi&primis=vulputate&in=nonummy&faucibus=maecenas&orci=tincidunt&luctus=lacus&et=at&ultrices=velit&posuere=vivamus&cubilia=vel&curae=nulla&donec=eget&pharetra=eros&magna=elementum&vestibulum=pellentesque&aliquet=quisque&ultrices=porta&erat=volutpat&tortor=erat&sollicitudin=quisque&mi=erat&sit=eros&amet=viverra&lobortis=eget&sapien=congue&sapien=eget&non=semper&mi=rutrum&integer=nulla&ac=nunc&neque=purus&duis=phasellus&bibendum=in&morbi=felis&non=donec&quam=semper&nec=sapien&dui=a&luctus=libero&rutrum=nam&nulla=dui&tellus=proin&in=leo&sagittis=odio&dui=porttitor&vel=id&nisl=consequat&duis=in&ac=consequat&nibh=ut&fusce=nulla&lacus=sed&purus=accumsan&aliquet=felis&at=ut&feugiat=at&non=dolor&pretium=quis&quis=odio&lectus=consequat&suspendisse=varius&potenti=integer&in=ac&eleifend=leo&quam=pellentesque&a=ultrices&odio=mattis&in=odio&hac=donec&habitasse=vitae&platea=nisi&dictumst=nam&maecenas=ultrices&ut=libero&massa=non&quis=mattis&augue=pulvinar&luctus=nulla&tincidunt=pede",
+	        "thumbnail": "http://dummyimage.com/101x120.png/dddddd/000000",
+	        "description": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
+	        "timestamp": "11/22/2016",
+	        "cat1": "gaming",
+	        "cat2": "travel",
+	        "cat3": "gaming",
+	        "user_id": 4
+	    }, {
+	        "id": 2,
+	        "title": "Star Wars 360 Experience",
+	        "url": "https://buzzfeed.com/natoque/penatibus.html?cubilia=justo&curae=lacinia&donec=eget&pharetra=tincidunt&magna=eget&vestibulum=tempus&aliquet=vel&ultrices=pede&erat=morbi&tortor=porttitor&sollicitudin=lorem&mi=id&sit=ligula&amet=suspendisse&lobortis=ornare&sapien=consequat&sapien=lectus&non=in&mi=est&integer=risus&ac=auctor&neque=sed&duis=tristique&bibendum=in&morbi=tempus&non=sit&quam=amet&nec=sem&dui=fusce&luctus=consequat&rutrum=nulla&nulla=nisl&tellus=nunc&in=nisl&sagittis=duis&dui=bibendum&vel=felis&nisl=sed&duis=interdum&ac=venenatis&nibh=turpis&fusce=enim&lacus=blandit&purus=mi&aliquet=in&at=porttitor&feugiat=pede&non=justo&pretium=eu&quis=massa&lectus=donec&suspendisse=dapibus&potenti=duis&in=at&eleifend=velit&quam=eu&a=est&odio=congue&in=elementum&hac=in&habitasse=hac&platea=habitasse&dictumst=platea&maecenas=dictumst&ut=morbi&massa=vestibulum&quis=velit&augue=id&luctus=pretium&tincidunt=iaculis&nulla=diam&mollis=erat&molestie=fermentum&lorem=justo&quisque=nec&ut=condimentum&erat=neque&curabitur=sapien&gravida=placerat&nisi=ante&at=nulla&nibh=justo&in=aliquam&hac=quis&habitasse=turpis&platea=eget&dictumst=elit&aliquam=sodales&augue=scelerisque",
+	        "thumbnail": "https://i.ytimg.com/vi/6uG9vtckp1U/maxresdefault.jpg",
+	        "description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
+	        "timestamp": "8/29/2016",
+	        "cat1": "news",
+	        "cat2": "entertainment",
+	        "cat3": "sports",
+	        "user_id": 5
+	    }, {
+	        "id": 3,
+	        "title": "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",
+	        "url": "http://google.co.uk/condimentum/id/luctus/nec/molestie/sed/justo.jpg?nibh=pede&ligula=morbi&nec=porttitor&sem=lorem&duis=id&aliquam=ligula&convallis=suspendisse&nunc=ornare&proin=consequat&at=lectus&turpis=in&a=est&pede=risus&posuere=auctor&nonummy=sed&integer=tristique&non=in&velit=tempus&donec=sit&diam=amet&neque=sem&vestibulum=fusce&eget=consequat&vulputate=nulla&ut=nisl&ultrices=nunc&vel=nisl&augue=duis&vestibulum=bibendum&ante=felis&ipsum=sed&primis=interdum&in=venenatis&faucibus=turpis&orci=enim&luctus=blandit&et=mi&ultrices=in&posuere=porttitor&cubilia=pede&curae=justo&donec=eu&pharetra=massa&magna=donec&vestibulum=dapibus&aliquet=duis&ultrices=at&erat=velit&tortor=eu&sollicitudin=est&mi=congue&sit=elementum&amet=in&lobortis=hac&sapien=habitasse&sapien=platea&non=dictumst&mi=morbi&integer=vestibulum&ac=velit&neque=id&duis=pretium",
+	        "thumbnail": "http://dummyimage.com/154x215.png/dddddd/000000",
+	        "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
+	        "timestamp": "2/6/2016",
+	        "cat1": "entertainment",
+	        "cat2": "gaming",
+	        "cat3": "sports",
+	        "user_id": 4
+	    }, {
+	        "id": 4,
+	        "title": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique.",
+	        "url": "http://psu.edu/leo/odio/condimentum/id/luctus/nec/molestie.js?lectus=consequat&in=nulla&est=nisl&risus=nunc&auctor=nisl&sed=duis&tristique=bibendum&in=felis&tempus=sed&sit=interdum&amet=venenatis&sem=turpis&fusce=enim&consequat=blandit&nulla=mi&nisl=in&nunc=porttitor&nisl=pede&duis=justo&bibendum=eu&felis=massa&sed=donec&interdum=dapibus&venenatis=duis&turpis=at&enim=velit&blandit=eu&mi=est&in=congue&porttitor=elementum&pede=in&justo=hac&eu=habitasse&massa=platea&donec=dictumst&dapibus=morbi&duis=vestibulum&at=velit&velit=id&eu=pretium&est=iaculis&congue=diam&elementum=erat&in=fermentum&hac=justo&habitasse=nec",
+	        "thumbnail": "http://dummyimage.com/180x116.png/5fa2dd/ffffff",
+	        "description": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
+	        "timestamp": "8/7/2016",
+	        "cat1": "sports",
+	        "cat2": "sports",
+	        "cat3": "entertainment",
+	        "user_id": 3
+	    }, {
+	        "id": 5,
+	        "title": "Paragliding 360",
+	        "url": "https://multiply.com/tortor.js?velit=interdum&vivamus=mauris&vel=ullamcorper",
+	        "thumbnail": "https://i.ytimg.com/vi/iTRwpgLRpEE/maxresdefault.jpg",
+	        "description": "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+	        "timestamp": "9/6/2016",
+	        "cat1": "news",
+	        "cat2": "gaming",
+	        "cat3": "sports",
+	        "user_id": 5
+	    }, {
+	        "id": 6,
+	        "title": "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
+	        "url": "https://webmd.com/in/lacus.js?pretium=lacinia&iaculis=nisi&justo=venenatis&in=tristique&hac=fusce&habitasse=congue&platea=diam&dictumst=id&etiam=ornare&faucibus=imperdiet&cursus=sapien&urna=urna&ut=pretium&tellus=nisl&nulla=ut&ut=volutpat&erat=sapien&id=arcu&mauris=sed&vulputate=augue&elementum=aliquam&nullam=erat&varius=volutpat&nulla=in&facilisi=congue&cras=etiam&non=justo&velit=etiam&nec=pretium&nisi=iaculis&vulputate=justo&nonummy=in&maecenas=hac&tincidunt=habitasse&lacus=platea&at=dictumst",
+	        "thumbnail": "http://dummyimage.com/211x150.png/ff4444/ffffff",
+	        "description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
+	        "timestamp": "3/7/2016",
+	        "cat1": "entertainment",
+	        "cat2": "entertainment",
+	        "cat3": "gaming",
+	        "user_id": 6
+	    }, {
+	        "id": 7,
+	        "title": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
+	        "url": "https://princeton.edu/posuere/cubilia/curae/nulla/dapibus/dolor.png?ante=proin&nulla=risus&justo=praesent&aliquam=lectus&quis=vestibulum&turpis=quam&eget=sapien&elit=varius&sodales=ut&scelerisque=blandit&mauris=non&sit=interdum&amet=in&eros=ante&suspendisse=vestibulum&accumsan=ante&tortor=ipsum&quis=primis&turpis=in&sed=faucibus&ante=orci&vivamus=luctus&tortor=et&duis=ultrices&mattis=posuere&egestas=cubilia&metus=curae&aenean=duis&fermentum=faucibus&donec=accumsan&ut=odio&mauris=curabitur",
+	        "thumbnail": "http://dummyimage.com/146x120.png/dddddd/000000",
+	        "description": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
+	        "timestamp": "4/13/2016",
+	        "cat1": "sports",
+	        "cat2": "travel",
+	        "cat3": "gaming",
+	        "user_id": 2
+	    }, {
+	        "id": 8,
+	        "title": "Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
+	        "url": "https://newsvine.com/a/feugiat.json?in=et&faucibus=tempus&orci=semper&luctus=est&et=quam&ultrices=pharetra&posuere=magna&cubilia=ac&curae=consequat&mauris=metus&viverra=sapien&diam=ut&vitae=nunc&quam=vestibulum&suspendisse=ante&potenti=ipsum&nullam=primis&porttitor=in&lacus=faucibus&at=orci&turpis=luctus&donec=et&posuere=ultrices&metus=posuere&vitae=cubilia&ipsum=curae&aliquam=mauris&non=viverra&mauris=diam&morbi=vitae&non=quam&lectus=suspendisse&aliquam=potenti&sit=nullam&amet=porttitor&diam=lacus&in=at&magna=turpis&bibendum=donec&imperdiet=posuere&nullam=metus&orci=vitae&pede=ipsum&venenatis=aliquam&non=non&sodales=mauris&sed=morbi&tincidunt=non&eu=lectus&felis=aliquam&fusce=sit&posuere=amet&felis=diam&sed=in&lacus=magna&morbi=bibendum&sem=imperdiet&mauris=nullam&laoreet=orci&ut=pede&rhoncus=venenatis&aliquet=non&pulvinar=sodales&sed=sed&nisl=tincidunt&nunc=eu",
+	        "thumbnail": "http://dummyimage.com/113x166.png/dddddd/000000",
+	        "description": "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.",
+	        "timestamp": "7/29/2016",
+	        "cat1": "news",
+	        "cat2": "news",
+	        "cat3": "entertainment",
+	        "user_id": 10
+	    }, {
+	        "id": 9,
+	        "title": "Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
+	        "url": "http://issuu.com/primis/in/faucibus/orci/luctus/et.json?lobortis=donec&est=ut&phasellus=mauris&sit=eget&amet=massa&erat=tempor&nulla=convallis&tempus=nulla&vivamus=neque&in=libero&felis=convallis&eu=eget&sapien=eleifend&cursus=luctus&vestibulum=ultricies&proin=eu&eu=nibh&mi=quisque&nulla=id&ac=justo&enim=sit&in=amet&tempor=sapien&turpis=dignissim&nec=vestibulum&euismod=vestibulum&scelerisque=ante&quam=ipsum&turpis=primis&adipiscing=in&lorem=faucibus&vitae=orci&mattis=luctus&nibh=et&ligula=ultrices&nec=posuere&sem=cubilia&duis=curae&aliquam=nulla&convallis=dapibus&nunc=dolor&proin=vel&at=est&turpis=donec&a=odio&pede=justo&posuere=sollicitudin&nonummy=ut&integer=suscipit&non=a&velit=feugiat&donec=et&diam=eros&neque=vestibulum&vestibulum=ac&eget=est&vulputate=lacinia&ut=nisi&ultrices=venenatis&vel=tristique&augue=fusce&vestibulum=congue&ante=diam&ipsum=id&primis=ornare&in=imperdiet&faucibus=sapien&orci=urna&luctus=pretium&et=nisl&ultrices=ut&posuere=volutpat&cubilia=sapien&curae=arcu&donec=sed&pharetra=augue&magna=aliquam&vestibulum=erat&aliquet=volutpat&ultrices=in",
+	        "thumbnail": "http://dummyimage.com/104x103.png/5fa2dd/ffffff",
+	        "description": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
+	        "timestamp": "9/11/2016",
+	        "cat1": "gaming",
+	        "cat2": "travel",
+	        "cat3": "entertainment",
+	        "user_id": 7
+	    }, {
+	        "id": 10,
+	        "title": "Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.",
+	        "url": "https://cbsnews.com/elit/proin/risus/praesent.xml?neque=libero&duis=nam&bibendum=dui&morbi=proin&non=leo&quam=odio&nec=porttitor&dui=id&luctus=consequat&rutrum=in",
+	        "thumbnail": "http://dummyimage.com/222x182.png/ff4444/ffffff",
+	        "description": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
+	        "timestamp": "1/22/2016",
+	        "cat1": "travel",
+	        "cat2": "travel",
+	        "cat3": "entertainment",
+	        "user_id": 2
+	    }];
+	};
+
+	;
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(234);
+
+	var _reactRedux = __webpack_require__(255);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Profile = function (_Component) {
+	    _inherits(Profile, _Component);
+
+	    function Profile() {
+	        _classCallCheck(this, Profile);
+
+	        return _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).apply(this, arguments));
+	    }
+
+	    _createClass(Profile, [{
+	        key: 'showVideos',
+	        value: function showVideos() {
+	            return this.props.videos.map(function (video) {
+	                if (video.user_id === 5) return _react2.default.createElement(
+	                    'div',
+	                    { key: video.id, className: 'col-md-12' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-md-2' },
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: '#', className: 'thumbnail' },
+	                                _react2.default.createElement('img', { src: video.thumbnail, className: 'img-responsive' })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-md-2' },
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: '#', className: 'prof-title prof-head-tag' },
+	                                video.title
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-md-7' },
+	                            video.description
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-md-1' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'text-container' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'text-middle' },
+	                                    _react2.default.createElement(
+	                                        'button',
+	                                        { className: 'btn btn-lg video-btn-remove' },
+	                                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove', 'aria-hidden': 'true' })
+	                                    )
+	                                )
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement('hr', null)
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'showProfile',
+	        value: function showProfile() {
+	            var _this2 = this;
+
+	            return this.props.users.map(function (user) {
+	                if (user.id === 1) return _react2.default.createElement(
+	                    'div',
+	                    { key: user.id, className: 'container-fluid' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'row' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'col-md-12' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'panel panel-default' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'panel-heading' },
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        { className: 'row' },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-1' },
+	                                            _react2.default.createElement('img', { src: user.profile_url, className: 'img-circle prof-img' })
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-10' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'text-container' },
+	                                                _react2.default.createElement(
+	                                                    'div',
+	                                                    { className: 'text-bottom' },
+	                                                    _react2.default.createElement(
+	                                                        'p',
+	                                                        { className: 'prof-head-tag' },
+	                                                        'Username: ',
+	                                                        _react2.default.createElement(
+	                                                            'a',
+	                                                            { href: '#', className: 'prof-title' },
+	                                                            user.username
+	                                                        )
+	                                                    )
+	                                                )
+	                                            )
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col-md-1' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'text-container' },
+	                                                _react2.default.createElement(
+	                                                    'div',
+	                                                    { className: 'text-middle' },
+	                                                    _react2.default.createElement(
+	                                                        'button',
+	                                                        { className: 'btn btn-lg prof-upload-btn' },
+	                                                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-upload', 'aria-hidden': 'true' })
+	                                                    )
+	                                                )
+	                                            )
+	                                        )
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'panel-body' },
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        { className: 'prof-head-tag' },
+	                                        'E-Mail: ',
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: '#', className: 'prof-link' },
+	                                            user.email
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        { className: 'prof-head-tag' },
+	                                        'Description:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'p',
+	                                        { className: 'span' },
+	                                        user.description
+	                                    ),
+	                                    _react2.default.createElement('hr', null),
+	                                    _react2.default.createElement(
+	                                        'h4',
+	                                        null,
+	                                        'Uploaded Videos'
+	                                    ),
+	                                    _this2.showVideos()
+	                                )
+	                            )
+	                        )
+	                    )
+	                );
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                this.showProfile()
+	            );
+	        }
+	    }]);
+
+	    return Profile;
+	}(_react.Component);
+
+	function mapStateToProps(state) {
+	    return {
+	        users: state.users,
+	        videos: state.videos
+	    };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Profile);
+
+/***/ },
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28779,7 +29271,7 @@
 	exports.default = LandingPage;
 
 /***/ },
-/* 273 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28794,19 +29286,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _axios = __webpack_require__(276);
+	var _axios = __webpack_require__(277);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
-	var _Navbar = __webpack_require__(274);
+	var _Navbar = __webpack_require__(302);
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _Footer = __webpack_require__(275);
+	var _Footer = __webpack_require__(303);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
-	var _Sidebar = __webpack_require__(301);
+	var _Sidebar = __webpack_require__(304);
 
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
@@ -28855,211 +29347,21 @@
 	exports.default = Container;
 
 /***/ },
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(179);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var NavBar = function (_React$Component) {
-		_inherits(NavBar, _React$Component);
-
-		function NavBar(props) {
-			_classCallCheck(this, NavBar);
-
-			var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
-
-			_this.state = {
-				searchText: ""
-			};
-			return _this;
-		}
-
-		_createClass(NavBar, [{
-			key: 'handleSearchChange',
-			value: function handleSearchChange(e) {
-				this.setState({
-					searchText: e.target.value
-				});
-			}
-		}, {
-			key: 'handleSubmit',
-			value: function handleSubmit(e) {
-				e.preventDefault();
-				window.location = "#";
-			}
-		}, {
-			key: 'renderNavItems',
-			value: function renderNavItems() {
-				return _react2.default.createElement(
-					'ul',
-					{ className: 'nav navbar-nav navbar-right' },
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.IndexLink,
-							{ activeClassName: 'navlink-active', to: '/' },
-							'Log In'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.IndexLink,
-							{ activeClassName: 'navlink-active', to: '/' },
-							'Sign Up'
-						)
-					)
-				);
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'nav',
-					{ className: 'navbar navbar-default' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'container-fluid' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'navbar-header' },
-							_react2.default.createElement(
-								'button',
-								{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar-data' },
-								_react2.default.createElement('span', { className: 'icon-bar' }),
-								_react2.default.createElement('span', { className: 'icon-bar' }),
-								_react2.default.createElement('span', { className: 'icon-bar' })
-							),
-							_react2.default.createElement(
-								_reactRouter.IndexLink,
-								{ className: 'navbar-brand', to: '/' },
-								'Share360'
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'collapse navbar-collapse', id: 'navbar-data' },
-							this.renderNavItems.bind(this)(),
-							_react2.default.createElement(
-								'form',
-								{ className: 'navbar-form navbar-right', onSubmit: this.handleSubmit.bind(this) },
-								_react2.default.createElement(
-									'div',
-									{ className: 'input-group' },
-									_react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleSearchChange.bind(this), placeholder: 'Search' }),
-									_react2.default.createElement(
-										'div',
-										{ className: 'input-group-btn' },
-										_react2.default.createElement(
-											'button',
-											{ className: 'btn btn-default', type: 'submit' },
-											_react2.default.createElement('i', { className: 'glyphicon glyphicon-search' })
-										)
-									)
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-
-		return NavBar;
-	}(_react2.default.Component);
-
-	exports.default = NavBar;
-
-/***/ },
-/* 275 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Footer = function (_React$Component) {
-		_inherits(Footer, _React$Component);
-
-		function Footer() {
-			_classCallCheck(this, Footer);
-
-			return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
-		}
-
-		_createClass(Footer, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"footer",
-					null,
-					_react2.default.createElement(
-						"p",
-						{ className: "text-center" },
-						"\xA9 Rob Del Valle, Scott Schermerhorn, Kyle Cheney, Kyle VanDeRiet 2017"
-					)
-				);
-			}
-		}]);
-
-		return Footer;
-	}(_react2.default.Component);
-
-	exports.default = Footer;
-
-/***/ },
-/* 276 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(277);
-
-/***/ },
 /* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = __webpack_require__(278);
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
-	var utils = __webpack_require__(278);
-	var bind = __webpack_require__(279);
-	var Axios = __webpack_require__(280);
-	var defaults = __webpack_require__(281);
+	var utils = __webpack_require__(279);
+	var bind = __webpack_require__(280);
+	var Axios = __webpack_require__(281);
+	var defaults = __webpack_require__(282);
 
 	/**
 	 * Create an instance of Axios
@@ -29092,15 +29394,15 @@
 	};
 
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(298);
-	axios.CancelToken = __webpack_require__(299);
-	axios.isCancel = __webpack_require__(295);
+	axios.Cancel = __webpack_require__(299);
+	axios.CancelToken = __webpack_require__(300);
+	axios.isCancel = __webpack_require__(296);
 
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(300);
+	axios.spread = __webpack_require__(301);
 
 	module.exports = axios;
 
@@ -29109,12 +29411,12 @@
 
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var bind = __webpack_require__(279);
+	var bind = __webpack_require__(280);
 
 	/*global toString:true*/
 
@@ -29414,7 +29716,7 @@
 
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29431,17 +29733,17 @@
 
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var defaults = __webpack_require__(281);
-	var utils = __webpack_require__(278);
-	var InterceptorManager = __webpack_require__(292);
-	var dispatchRequest = __webpack_require__(293);
-	var isAbsoluteURL = __webpack_require__(296);
-	var combineURLs = __webpack_require__(297);
+	var defaults = __webpack_require__(282);
+	var utils = __webpack_require__(279);
+	var InterceptorManager = __webpack_require__(293);
+	var dispatchRequest = __webpack_require__(294);
+	var isAbsoluteURL = __webpack_require__(297);
+	var combineURLs = __webpack_require__(298);
 
 	/**
 	 * Create a new instance of Axios
@@ -29522,13 +29824,13 @@
 
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(278);
-	var normalizeHeaderName = __webpack_require__(282);
+	var utils = __webpack_require__(279);
+	var normalizeHeaderName = __webpack_require__(283);
 
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -29545,10 +29847,10 @@
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(283);
+	    adapter = __webpack_require__(284);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(283);
+	    adapter = __webpack_require__(284);
 	  }
 	  return adapter;
 	}
@@ -29622,12 +29924,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(278);
+	var utils = __webpack_require__(279);
 
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -29640,18 +29942,18 @@
 
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(278);
-	var settle = __webpack_require__(284);
-	var buildURL = __webpack_require__(287);
-	var parseHeaders = __webpack_require__(288);
-	var isURLSameOrigin = __webpack_require__(289);
-	var createError = __webpack_require__(285);
-	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(290);
+	var utils = __webpack_require__(279);
+	var settle = __webpack_require__(285);
+	var buildURL = __webpack_require__(288);
+	var parseHeaders = __webpack_require__(289);
+	var isURLSameOrigin = __webpack_require__(290);
+	var createError = __webpack_require__(286);
+	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(291);
 
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -29747,7 +30049,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(291);
+	      var cookies = __webpack_require__(292);
 
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -29824,12 +30126,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var createError = __webpack_require__(285);
+	var createError = __webpack_require__(286);
 
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -29855,12 +30157,12 @@
 
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var enhanceError = __webpack_require__(286);
+	var enhanceError = __webpack_require__(287);
 
 	/**
 	 * Create an Error with the specified message, config, error code, and response.
@@ -29878,7 +30180,7 @@
 
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29903,12 +30205,12 @@
 
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(278);
+	var utils = __webpack_require__(279);
 
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -29977,12 +30279,12 @@
 
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(278);
+	var utils = __webpack_require__(279);
 
 	/**
 	 * Parse headers into an object
@@ -30020,12 +30322,12 @@
 
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(278);
+	var utils = __webpack_require__(279);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -30094,7 +30396,7 @@
 
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30136,12 +30438,12 @@
 
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(278);
+	var utils = __webpack_require__(279);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -30195,12 +30497,12 @@
 
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(278);
+	var utils = __webpack_require__(279);
 
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -30253,15 +30555,15 @@
 
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(278);
-	var transformData = __webpack_require__(294);
-	var isCancel = __webpack_require__(295);
-	var defaults = __webpack_require__(281);
+	var utils = __webpack_require__(279);
+	var transformData = __webpack_require__(295);
+	var isCancel = __webpack_require__(296);
+	var defaults = __webpack_require__(282);
 
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -30338,12 +30640,12 @@
 
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(278);
+	var utils = __webpack_require__(279);
 
 	/**
 	 * Transform the data for a request or a response
@@ -30364,7 +30666,7 @@
 
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30375,7 +30677,7 @@
 
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30395,7 +30697,7 @@
 
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30413,7 +30715,7 @@
 
 
 /***/ },
-/* 298 */
+/* 299 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30438,12 +30740,12 @@
 
 
 /***/ },
-/* 299 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Cancel = __webpack_require__(298);
+	var Cancel = __webpack_require__(299);
 
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -30501,7 +30803,7 @@
 
 
 /***/ },
-/* 300 */
+/* 301 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30534,7 +30836,197 @@
 
 
 /***/ },
-/* 301 */
+/* 302 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NavBar = function (_React$Component) {
+		_inherits(NavBar, _React$Component);
+
+		function NavBar(props) {
+			_classCallCheck(this, NavBar);
+
+			var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
+
+			_this.state = {
+				searchText: ""
+			};
+			return _this;
+		}
+
+		_createClass(NavBar, [{
+			key: 'handleSearchChange',
+			value: function handleSearchChange(e) {
+				this.setState({
+					searchText: e.target.value
+				});
+			}
+		}, {
+			key: 'handleSubmit',
+			value: function handleSubmit(e) {
+				e.preventDefault();
+				window.location = "#";
+			}
+		}, {
+			key: 'renderNavItems',
+			value: function renderNavItems() {
+				return _react2.default.createElement(
+					'ul',
+					{ className: 'nav navbar-nav navbar-right' },
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.IndexLink,
+							{ activeClassName: 'navlink-active', to: '/' },
+							'Log In'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.IndexLink,
+							{ activeClassName: 'navlink-active', to: '/' },
+							'Sign Up'
+						)
+					)
+				);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'nav',
+					{ className: 'navbar navbar-default' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'container-fluid' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'navbar-header' },
+							_react2.default.createElement(
+								'button',
+								{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar-data' },
+								_react2.default.createElement('span', { className: 'icon-bar' }),
+								_react2.default.createElement('span', { className: 'icon-bar' }),
+								_react2.default.createElement('span', { className: 'icon-bar' })
+							),
+							_react2.default.createElement(
+								_reactRouter.IndexLink,
+								{ className: 'navbar-brand', to: '/' },
+								'Share360'
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'collapse navbar-collapse', id: 'navbar-data' },
+							this.renderNavItems.bind(this)(),
+							_react2.default.createElement(
+								'form',
+								{ className: 'navbar-form navbar-right', onSubmit: this.handleSubmit.bind(this) },
+								_react2.default.createElement(
+									'div',
+									{ className: 'input-group' },
+									_react2.default.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleSearchChange.bind(this), placeholder: 'Search' }),
+									_react2.default.createElement(
+										'div',
+										{ className: 'input-group-btn' },
+										_react2.default.createElement(
+											'button',
+											{ className: 'btn btn-default', type: 'submit' },
+											_react2.default.createElement('i', { className: 'glyphicon glyphicon-search' })
+										)
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return NavBar;
+	}(_react2.default.Component);
+
+	exports.default = NavBar;
+
+/***/ },
+/* 303 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Footer = function (_React$Component) {
+		_inherits(Footer, _React$Component);
+
+		function Footer() {
+			_classCallCheck(this, Footer);
+
+			return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+		}
+
+		_createClass(Footer, [{
+			key: "render",
+			value: function render() {
+				return _react2.default.createElement(
+					"footer",
+					null,
+					_react2.default.createElement(
+						"p",
+						{ className: "text-center" },
+						"\xA9 Rob Del Valle, Scott Schermerhorn, Kyle Cheney, Kyle VanDeRiet 2017"
+					)
+				);
+			}
+		}]);
+
+		return Footer;
+	}(_react2.default.Component);
+
+	exports.default = Footer;
+
+/***/ },
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30685,6 +31177,12 @@
 	}(_react2.default.Component);
 
 	exports.default = Sidebar;
+
+/***/ },
+/* 305 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
