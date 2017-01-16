@@ -1,6 +1,27 @@
 @import 'variables';
 @import 'mixins';
 
+@import 'container';
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+  // space for footer
+  padding-bottom: 60px;
+}
+
+a {
+  color: $link-color;
+
+  &:focus, &:hover {
+    color: darken($link-color, 25%);
+  }
+}
+
 .prof-title,
 .prof-title:hover {
   color: $primary-color;
@@ -58,6 +79,3 @@
 .text-middle {
   @include centerer;
 }
-
-
-
