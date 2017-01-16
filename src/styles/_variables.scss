@@ -1,3 +1,19 @@
-$link-color: hotpink;
-$primary-color: #FF8C00;
-$secondary-color: #525251;
+$primary-color: #1CC1D7; // blue
+$primary-dark: #1698AA;
+$primary-light: #40D2E6;
+
+$secondary-color: #FFAD00; // orange
+$secondary-dark: #FF8200;
+$secondary-light: #FFD700;
+
+$tertiary-color: #D71C63; // pink
+$tertiary-dark: #AA164E;
+$tertiary-light: #E6407F;
+
+$dark-gray: #43484C;
+$medium-gray: #979FA7;
+$light-gray: #FAFBFC;
+
+$text-color: $dark-gray;
+$button-color: $secondary-color;
+$link-color: $secondary-color;
