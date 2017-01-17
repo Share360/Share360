@@ -47,7 +47,7 @@
 	'use strict';
 
 	__webpack_require__(1);
-	__webpack_require__(305);
+	__webpack_require__(306);
 
 /***/ },
 /* 1 */
@@ -91,6 +91,14 @@
 
 	var _Container2 = _interopRequireDefault(_Container);
 
+	var _LoginPage = __webpack_require__(305);
+
+	var _LoginPage2 = _interopRequireDefault(_LoginPage);
+
+	var _SignUp = __webpack_require__(307);
+
+	var _SignUp2 = _interopRequireDefault(_SignUp);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -120,7 +128,9 @@
 					_react2.default.createElement(
 						_reactRouter.Route,
 						{ path: '/', component: _Container2.default },
-						_react2.default.createElement(_reactRouter.IndexRoute, { component: _LandingPage2.default })
+						_react2.default.createElement(_reactRouter.IndexRoute, { component: _LandingPage2.default }),
+						_react2.default.createElement(_reactRouter.Route, { path: '/login', component: _LoginPage2.default }),
+						_react2.default.createElement(_reactRouter.Route, { path: '/sign-up', component: _SignUp2.default })
 					)
 				);
 			}
@@ -428,8 +438,15 @@
 /* 5 */
 /***/ function(module, exports) {
 
+	/*
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
+
 	'use strict';
 	/* eslint-disable no-unused-vars */
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
@@ -450,7 +467,7 @@
 			// Detect buggy property enumeration order in older V8 versions.
 
 			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc');  // eslint-disable-line
+			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
 			test1[5] = 'de';
 			if (Object.getOwnPropertyNames(test1)[0] === '5') {
 				return false;
@@ -479,7 +496,7 @@
 			}
 
 			return true;
-		} catch (e) {
+		} catch (err) {
 			// We don't expect any of the above to throw, but better to be safe.
 			return false;
 		}
@@ -499,8 +516,8 @@
 				}
 			}
 
-			if (Object.getOwnPropertySymbols) {
-				symbols = Object.getOwnPropertySymbols(from);
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
 				for (var i = 0; i < symbols.length; i++) {
 					if (propIsEnumerable.call(from, symbols[i])) {
 						to[symbols[i]] = from[symbols[i]];
@@ -24899,11 +24916,11 @@
 		return value;
 	}
 
-	function sorter(input) {
+	function keysSorter(input) {
 		if (Array.isArray(input)) {
 			return input.sort();
 		} else if (typeof input === 'object') {
-			return sorter(Object.keys(input)).sort(function (a, b) {
+			return keysSorter(Object.keys(input)).sort(function (a, b) {
 				return Number(a) - Number(b);
 			}).map(function (key) {
 				return input[key];
@@ -24951,10 +24968,12 @@
 		});
 
 		return Object.keys(ret).sort().reduce(function (result, key) {
-			if (Boolean(ret[key]) && typeof ret[key] === 'object') {
-				result[key] = sorter(ret[key]);
+			var val = ret[key];
+			if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
+				// Sort object keys, not values
+				result[key] = keysSorter(val);
 			} else {
-				result[key] = ret[key];
+				result[key] = val;
 			}
 
 			return result;
@@ -30899,7 +30918,7 @@
 						null,
 						_react2.default.createElement(
 							_reactRouter.IndexLink,
-							{ activeClassName: 'navlink-active', to: '/' },
+							{ activeClassName: 'navlink-active', to: '/login' },
 							'Log In'
 						)
 					),
@@ -30908,7 +30927,7 @@
 						null,
 						_react2.default.createElement(
 							_reactRouter.IndexLink,
-							{ activeClassName: 'navlink-active', to: '/' },
+							{ activeClassName: 'navlink-active', to: '/sign-up' },
 							'Sign Up'
 						)
 					)
@@ -31180,9 +31199,194 @@
 
 /***/ },
 /* 305 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var LoginPage = function (_Component) {
+	    _inherits(LoginPage, _Component);
+
+	    function LoginPage() {
+	        _classCallCheck(this, LoginPage);
+
+	        return _possibleConstructorReturn(this, (LoginPage.__proto__ || Object.getPrototypeOf(LoginPage)).apply(this, arguments));
+	    }
+
+	    _createClass(LoginPage, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container-fluid content login-wrapper' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'login-container col-xs-6  col-sm-6  col-md-4  col-lg-4  vcenter' },
+	                    _react2.default.createElement(
+	                        'form',
+	                        { className: 'form-signin' },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            { className: 'form-signin-heading ' },
+	                            'Please login'
+	                        ),
+	                        _react2.default.createElement('input', { type: 'text', className: 'form-control login-input', name: 'username', placeholder: 'user name', required: '' }),
+	                        _react2.default.createElement('input', { type: 'password', className: 'form-control login-input', name: 'password', placeholder: 'password', required: '' }),
+	                        _react2.default.createElement(
+	                            'label',
+	                            { className: 'checkbox login-checkbox' },
+	                            _react2.default.createElement('input', { type: 'checkbox', value: 'remember-me', id: 'rememberMe', name: 'rememberMe' }),
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                'Remember Me'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            { className: 'btn btn-lg btn-custom btn-block', type: 'submit' },
+	                            'Login'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'login-create-account-link' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            { className: 'text-center ' },
+	                            _react2.default.createElement(
+	                                'a',
+	                                { href: '#', className: 'text-right' },
+	                                'Don\'t have an account? Click here!'
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return LoginPage;
+	}(_react.Component);
+
+	exports.default = LoginPage;
+
+/***/ },
+/* 306 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 307 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SignUp = function (_Component) {
+	    _inherits(SignUp, _Component);
+
+	    function SignUp() {
+	        _classCallCheck(this, SignUp);
+
+	        return _possibleConstructorReturn(this, (SignUp.__proto__ || Object.getPrototypeOf(SignUp)).apply(this, arguments));
+	    }
+
+	    _createClass(SignUp, [{
+	        key: 'dateDayDisplay',
+	        value: function dateDayDisplay() {
+	            var tempHTML;
+	            for (var i = 0; i < 31; i++) {
+	                tempHTML += _react2.default.createElement(
+	                    'option',
+	                    { key: i },
+	                    'i'
+	                );
+	            }
+	            return tempHTML;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container-fluid content login-wrapper' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'login-container col-xs-6  col-sm-6  col-md-4  col-lg-4  vcenter' },
+	                    _react2.default.createElement(
+	                        'form',
+	                        { className: 'form-signin' },
+	                        _react2.default.createElement(
+	                            'h2',
+	                            { className: 'form-signin-heading ' },
+	                            'Create an account here!'
+	                        ),
+	                        _react2.default.createElement('input', { type: 'text', className: 'form-control login-input', name: 'fname', placeholder: 'firstname', required: '' }),
+	                        _react2.default.createElement('input', { type: 'text', className: 'form-control login-input', name: 'lname', placeholder: 'lastname', required: '' }),
+	                        _react2.default.createElement('input', { type: 'text', className: 'form-control login-input', name: 'email', placeholder: 'email', required: '' }),
+	                        _react2.default.createElement('input', { type: 'text', className: 'form-control login-input', name: 'username', placeholder: 'username', required: '' }),
+	                        _react2.default.createElement('input', { type: 'text', className: 'form-control login-input', name: 'password', placeholder: 'password', required: '' }),
+	                        _react2.default.createElement('input', { type: 'text', className: 'form-control login-input', name: 'passwordConfirm', placeholder: 'confirm password', required: '' }),
+	                        _react2.default.createElement(
+	                            'select',
+	                            { 'class': 'selectpicker' },
+	                            this.dateDayDisplay()
+	                        ),
+	                        _react2.default.createElement(
+	                            'button',
+	                            { className: 'btn btn-lg btn-custom btn-block', type: 'submit' },
+	                            'Create Account'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return SignUp;
+	}(_react.Component);
+
+	exports.default = SignUp;
 
 /***/ }
 /******/ ]);

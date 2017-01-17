@@ -12,6 +12,8 @@ const store = createStore(allReducers);
 
 import LandingPage from './components/LandingPage';
 import Container from './components/Container/Container';
+import LoginPage from './components/LoginPage';
+import SignUp from './components/SignUp';
 
 class App extends React.Component {
 	render() {
@@ -19,6 +21,8 @@ class App extends React.Component {
 			<Router history={hashHistory}>
 				<Route path='/' component={Container}>
 					<IndexRoute component={LandingPage} />
+					<Route path="/login" component={LoginPage} />
+					<Route path="/sign-up" component={SignUp} />
 				</Route>
 			</Router>
 		);

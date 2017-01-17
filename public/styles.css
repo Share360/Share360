@@ -6,7 +6,7 @@ nav {
 .navbar-default {
   background-color: white; }
   .navbar-default a:hover {
-    color: hotpink !important; }
+    color: #FFAD00 !important; }
 
 .navbar {
   border-radius: 0;
@@ -59,6 +59,29 @@ footer {
   footer p {
     margin-top: 12px; }
 
+.login-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc((100vh / 2) + 100px); }
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.login-checkbox {
+  padding-left: 27px; }
+
+.login-create-account-link {
+  margin-left: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px; }
+
+.login-input {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
 html {
   height: 100%; }
 
@@ -68,13 +91,23 @@ body {
   padding-bottom: 60px; }
 
 a {
-  color: hotpink; }
+  color: #FFAD00; }
   a:focus, a:hover {
-    color: #e90074; }
+    color: #805700; }
+
+.btn-custom {
+  box-sizing: border-box;
+  background-color: #FFAD00;
+  color: white;
+  border: 2px solid #FFAD00; }
+  .btn-custom:hover {
+    background-color: white;
+    color: #FFAD00;
+    border: 2px solid #FFAD00; }
 
 .prof-title,
 .prof-title:hover {
-  color: #FF8C00;
+  color: #1CC1D7;
   text-decoration: none; }
 
 .prof-head-tag {
@@ -85,11 +118,11 @@ a {
 .prof-link,
 .prof-link:hover {
   font-size: 14px;
-  color: #525251;
+  color: #FFAD00;
   text-decoration: none; }
 
 .prof-img {
-  background-color: #525251;
+  background-color: #FFAD00;
   border: 2px solid #000;
   width: 75px;
   height: 75px; }
@@ -99,7 +132,7 @@ a {
   height: 40px;
   background-color: transparent;
   border: 1px solid #000;
-  box-shadow: 1.2px 1.2px #525251; }
+  box-shadow: 1.2px 1.2px #FFAD00; }
 
 .video-btn-remove {
   background-color: transparent;
