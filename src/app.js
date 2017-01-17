@@ -12,6 +12,7 @@ import Container from './components/Container/Container';
 import Featured from './components/Featured';
 import LoginPage from './components/LoginPage';
 import SignUp from './components/SignUp';
+import VideoPage from './components/VideoPage';
 
 //created the store so that I can access fake data for profile template.
 const store = createStore(allReducers);
@@ -27,6 +28,7 @@ class App extends React.Component {
 					<Route path="/login" component={LoginPage} />
 					<Route path="/sign-up" component={SignUp} />
 					<Route path='/profile' component={Profile} />
+					<Route path='/video/:id' component={VideoPage} />
 				</Route>
 			</Router>
 		);

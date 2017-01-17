@@ -4,8 +4,8 @@
 @import 'container';
 @import 'login';
 @import 'profile';
+@import 'videoPage';
 @import 'featured';
-
 
 html {
   height: 100%;
@@ -26,7 +26,6 @@ a {
   }
 }
 
-
 .btn-custom {
   box-sizing: border-box;
   background-color: $button-color;
@@ -39,5 +38,3 @@ a {
     border: 2px solid $button-color;
   }
 }
-
-
