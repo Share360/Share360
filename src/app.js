@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import allReducers from './reducers/index';
 import Profile from './components/Profile';
+import Categories from './components/Categories'
 
 //created the store so that I can access fake data for profile template.
 const store = createStore(allReducers);
@@ -19,6 +20,7 @@ class App extends React.Component {
 			<Router history={hashHistory}>
 				<Route path='/' component={Container}>
 					<IndexRoute component={LandingPage} />
+					<Route path="/categories" component={Categories} />
 				</Route>
 			</Router>
 		);

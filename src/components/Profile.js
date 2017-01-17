@@ -39,7 +39,7 @@ class Profile extends Component {
                 );
             });
         }
-
+ 
     showProfile() {
         return this.props.users.map((user) => {
             if(user.id === 1)
