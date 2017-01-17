@@ -1,0 +1,42 @@
+@import 'variables';
+@import 'mixins';
+
+
+//////////////////////////////
+//login-page
+//////////////////////////////
+.login-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc((100vh / 2) + 100px);
+}
+
+.login-container {
+    @include centerer;
+}
+
+.login-checkbox {
+  padding-left: 27px;
+}
+//
+//.vertical-center {
+//  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+//  //min-height: 100vh; /* These two lines are counted as one :-)       */
+//
+//  display: flex;
+//  align-items: center;
+//}
+
+.login-create-account-link {
+  margin-left: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.login-input {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/////////////////////////////
+// end login-page
+/////////////////////////////

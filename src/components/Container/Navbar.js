@@ -23,8 +23,8 @@ export default class NavBar extends React.Component {
 	renderNavItems() {
 		return (
 			<ul className="nav navbar-nav navbar-right">
-				<li><IndexLink activeClassName="navlink-active" to="/">Log In</IndexLink></li>
-				<li><IndexLink activeClassName="navlink-active" to="/">Sign Up</IndexLink></li>
+				<li><IndexLink activeClassName="navlink-active" to="/login">Log In</IndexLink></li>
+				<li><IndexLink activeClassName="navlink-active" to="/sign-up">Sign Up</IndexLink></li>
 			</ul>
 		);
 	}

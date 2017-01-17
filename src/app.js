@@ -10,11 +10,11 @@ import Profile from './components/Profile';
 import LandingPage from './components/LandingPage';
 import Container from './components/Container/Container';
 import Featured from './components/Featured';
+import LoginPage from './components/LoginPage';
+import SignUp from './components/SignUp';
 
 //created the store so that I can access fake data for profile template.
 const store = createStore(allReducers);
-
-
 
 class App extends React.Component {
 	render() {
@@ -24,6 +24,9 @@ class App extends React.Component {
 					<IndexRoute component={LandingPage} />
 					<Route path='/featured' component={Featured} />
                     <Route path='/profile' component={Profile} />
+					<Route path="/login" component={LoginPage} />
+					<Route path="/sign-up" component={SignUp} />
+					<Route path='/profile' component={Profile} />
 				</Route>
 			</Router>
 		);
