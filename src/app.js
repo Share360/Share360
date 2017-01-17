@@ -18,7 +18,7 @@ const store = createStore(allReducers);
 class App extends React.Component {
 	render() {
 		return (
-			<Router history={hashHistory}>styles
+			<Router history={hashHistory}>
 				<Route path='/' component={Container}>
 					<IndexRoute component={LandingPage} />
 					<Route path="/login" component={LoginPage} />

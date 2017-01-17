@@ -2,12 +2,8 @@
 @import 'mixins';
 
 @import 'container';
-<<<<<<< HEAD
 @import 'login';
-
-=======
 @import 'profile';
->>>>>>> 9b888e49ee2f0bc0644332e9110e53405d203c89
 
 html {
   height: 100%;
@@ -28,7 +24,6 @@ a {
   }
 }
 
-<<<<<<< HEAD
 .btn-custom {
   box-sizing: border-box;
   background-color: $button-color;
@@ -103,5 +98,3 @@ a {
 
 
 
-=======
->>>>>>> 9b888e49ee2f0bc0644332e9110e53405d203c89
