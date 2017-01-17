@@ -1,4 +1,19 @@
 #featuredCanvas {
   height: calc(500px);
-  width: 100%;
+  width: calc(100% - 6px);
+}
+
+.feat-banner {
+  position: absolute;
+  top: 69px;
+  left: 15px;
+  background-color: $dark-gray;
+  color: #ffffff;
+  opacity: 0.7;
+  width: 200px;
+  text-align: center;
+  p {
+    font-size: 1.3em;
+    margin: 0;
+  }
 }
