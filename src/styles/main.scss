@@ -4,6 +4,8 @@
 @import 'container';
 @import 'login';
 @import 'profile';
+@import 'videoPage';
+@import 'featured';
 
 html {
   height: 100%;
@@ -36,8 +38,6 @@ a {
     border: 2px solid $button-color;
   }
 }
-
-
 
 
 

@@ -16,6 +16,7 @@ let massiveInstance = massive.connectSync({connectionString: config.postgresURL 
 
 app.set('db', massiveInstance);
 let db = app.get('db');
+
 const mainServCtrl = require('./server/serverCtrl/mainServCtrl');
 
 app.use( session({
