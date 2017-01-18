@@ -6,8 +6,8 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <div className="container-fluid content login-wrapper">
-                <div className="login-container col-xs-6  col-sm-6  col-md-4  col-lg-4  vcenter">
+                <div className="container-fluid content login-wrapper">
+                    <div className="login-container col-xs-6  col-sm-6  col-md-4  col-lg-4  vcenter">
                     <LoginForm />
                 </div>
             </div>

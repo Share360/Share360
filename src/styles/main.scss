@@ -4,6 +4,11 @@
 @import 'container';
 @import 'login';
 @import 'profile';
+<<<<<<< HEAD
+=======
+@import 'videoPage';
+@import 'featured';
+>>>>>>> fef8897d0c99a166bc39ccbea68a355dfc979f45
 
 html {
   height: 100%;
@@ -36,6 +41,7 @@ a {
     border: 2px solid $button-color;
   }
 }
+<<<<<<< HEAD
 
 .prof-title,
 .prof-title:hover {
@@ -98,3 +104,5 @@ a {
 
 
 
+=======
+>>>>>>> fef8897d0c99a166bc39ccbea68a355dfc979f45

@@ -1,4 +1,5 @@
 import React , { Component } from 'react'
+import axios from 'axios';
 
 class LoginForm extends Component {
     constructor(props){
@@ -19,6 +20,7 @@ class LoginForm extends Component {
     onSubmit(e){
         e.preventDefault();
         console.log(this.state);
+        // axios.post('/api', { user: this.state})
     }
 
     render(){
