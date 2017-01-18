@@ -1,6 +1,7 @@
 // npm i --save-dev webpack babel-core babel-loader babel-preset-react babel-preset-es2015
 // for SCSS: npm i --save-dev node-sass sass-loader css-loader extract-text-webpack-plugin
 
+
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
