@@ -26,7 +26,19 @@ class VideoPage extends React.Component {
         );
     }
 
+    renderDisqus() {
+        var disqus_config = function () {
+            this.page.url = "share-360.herokuapp.com/#/" + this.props.params.id;
+            this.page.identifier = this.props.params.id;
+        };
+        var d = document, s = d.createElement('script');
+        s.src = '//share-360.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    }
+
     render() {
+
         return (
             <div className="container-fluid">
                 
@@ -43,6 +55,9 @@ class VideoPage extends React.Component {
                 <p><i>Uploaded: {this.props.videos[this.props.params.id].timestamp}</i></p>
                 <p><b>Description: </b>{this.props.videos[this.props.params.id].description}</p>
                 {this.renderCategories()}
+                <br />
+                <div id="disqus_thread"></div>
+                {this.renderDisqus.bind(this)()}
             </div>
         );
     }
