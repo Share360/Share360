@@ -50,14 +50,19 @@ class VideoPage extends React.Component {
                     <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
                 </a-scene>
                 
-                <h1>{this.props.videos[this.props.params.id].title}</h1>
-                <p><Link to="/profile">Uploader</Link> (Join Users table on uploader_id)</p>
-                <p><i>Uploaded: {this.props.videos[this.props.params.id].timestamp}</i></p>
-                <p><b>Description: </b>{this.props.videos[this.props.params.id].description}</p>
-                {this.renderCategories()}
+                <div className="video-info">
+                    <h1>{this.props.videos[this.props.params.id].title}</h1>
+                    <p><Link to="/profile">Uploader</Link> (Join Users table on uploader_id)</p>
+                    <p><i>Uploaded: {this.props.videos[this.props.params.id].timestamp}</i></p>
+                    <p><b>Description: </b>{this.props.videos[this.props.params.id].description}</p>
+                    {this.renderCategories()}
+                </div>
+
                 <br />
+
                 <div id="disqus_thread"></div>
                 {this.renderDisqus.bind(this)()}
+                
             </div>
         );
     }

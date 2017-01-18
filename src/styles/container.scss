@@ -66,8 +66,9 @@ nav {
       }
 
       &:hover {
-        background: #777;
+        // background: #777;
         // background: $link-color;
+        background: $primary-color;
         color: white;
       }
     }
