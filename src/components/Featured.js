@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AudioCtrl from './audioController';
 import aframe from 'aframe';
 
 class Featured extends Component {
@@ -7,7 +8,7 @@ class Featured extends Component {
             <div>
                 <a-scene id="featuredCanvas" embedded>
                     <a-assets>
-                        <video id="video" src="/assets/explore360.mp4" autoPlay loop></video>
+                        <video id="video" src="./assets/explore360.mp4" autoPlay loop crossOrigin></video>
                     </a-assets>
                     <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
 
@@ -15,6 +16,7 @@ class Featured extends Component {
                 <div className="feat-banner">
                     <p>Featured Experience</p>
                 </div>
+                <AudioCtrl />
             </div>
         );
     }
