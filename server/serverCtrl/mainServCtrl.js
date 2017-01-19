@@ -19,5 +19,23 @@ module.exports = {
     			res.status(200).send(response);
     		}
     	});
+    },
+    findUser: function(username, password, cb) {
+        db.findUser( [ username, password], (err, response) => {
+            if (err) {
+                console.log(err);
+            } else {
+                cb( response );
+            }
+        });
+    },
+    signUp: ( fname, lname, email, username, password, passwordConfirm, day, month, year ) => {
+        db.signUp( [ fname, lname, email, username, password, passwordConfirm, day, month, year], (err, response) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.status(200).send(response);
+            }
+        } )
     }
 };
