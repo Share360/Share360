@@ -17,3 +17,28 @@
     margin: 0;
   }
 }
+
+.featuredList {
+    height: 300px;
+    img {
+      height: 200px;
+      width: 360px;
+    }
+    hr {
+      margin: -10px 0 10px 0;
+      width: 85%;
+    }
+    .videoContentBox {
+      padding: 0 20px 10px 20px;
+    }
+}
+
+.mostPopularTitle {
+  hr {
+    margin: -8px 0 18px 0;
+  }
+
+  h2 {
+    margin-left: 20px;
+  }
+}
