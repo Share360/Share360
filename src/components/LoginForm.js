@@ -1,12 +1,19 @@
-import React , { Component } from 'react'
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
+import { Link, IndexLink } from 'react-router';
 import axios from 'axios';
+
+import validateInput from '../../server/validations/login'
 
 class LoginForm extends Component {
     constructor(props){
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errors: {},
+            isLoading: false
         };
 
         this.onChange = this.onChange.bind(this);
@@ -17,10 +24,22 @@ class LoginForm extends Component {
         this.setState({ [ e.target.name ] : e.target.value });
     }
 
+    isValid() {
+        const {errors, isValid } = validateInput(this.state);
+
+        if(!isValid) {
+            this.state({ errors })
+        }
+        return isValid;
+    }
+
+
     onSubmit(e){
         e.preventDefault();
         console.log(this.state);
-        // axios.post('/api', { user: this.state})
+        axios.post('/api', { user: this.state})
+        if(this.isValid()){
+        }
     }
 
     render(){
@@ -59,7 +78,7 @@ class LoginForm extends Component {
                         <button className="btn btn-lg btn-custom btn-block" type="submit">Login</button>
 
                         <div className="login-create-account-link">
-                            <p className="text-center "><a href="#" className="text-right">Don't have an account? Click here!</a></p>
+                            <IndexLink activeClassName="navlink-active" to="/sign-up">Dont have an account? Click here to sign up!</IndexLink>
                         </div>
                     </form>
 
