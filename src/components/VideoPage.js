@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import videoActions from '../actions/videoActions';
+import VideoPlayer from './VideoPlayer';
 
 class VideoPage extends React.Component {
     constructor(props) {
@@ -14,21 +15,21 @@ class VideoPage extends React.Component {
     }
 
     renderCategories() {
-        if (this.props.videos[this.props.params.id].cat2 && this.props.videos[this.props.params.id].cat3) {
+        if (this.props.videoDetails.cat2 && this.props.videoDetails.cat3) {
             return (
-                <p className="text-capitalize"><b>Categories: </b>{this.props.videos[this.props.params.id].cat1} | {this.props.videos[this.props.params.id].cat2} | {this.props.videos[this.props.params.id].cat3}</p>
+                <p className="text-capitalize"><b>Categories: </b>{this.props.videoDetails.cat1} | {this.props.videoDetails.cat2} | {this.props.videoDetails.cat3}</p>
             );
-        } else if (this.props.videos[this.props.params.id].cat2) {
+        } else if (this.props.videoDetails.cat2) {
             return (
-                <p className="text-capitalize"><b>Categories: </b>{this.props.videos[this.props.params.id].cat1} | {this.props.videos[this.props.params.id].cat2}</p>
+                <p className="text-capitalize"><b>Categories: </b>{this.props.videoDetails.cat1} | {this.props.videoDetails.cat2}</p>
             );
-        } else if (this.props.videos[this.props.params.id].cat3) {
+        } else if (this.props.videoDetails.cat3) {
             return (
-                <p className="text-capitalize"><b>Categories: </b>{this.props.videos[this.props.params.id].cat1} | {this.props.videos[this.props.params.id].cat3}</p>
+                <p className="text-capitalize"><b>Categories: </b>{this.props.videoDetails.cat1} | {this.props.videoDetails.cat3}</p>
             );
         }
         return (
-            <p className="text-capitalize"><b>Category: </b>{this.props.videos[this.props.params.id].cat1}</p>
+            <p className="text-capitalize"><b>Category: </b>{this.props.videoDetails.cat1}</p>
         );
     }
 
@@ -44,23 +45,16 @@ class VideoPage extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="container-fluid">
                 
-                {/*<iframe width="560" height="315" src="https://www.youtube.com/embed/-xNN-bJQ4vI" frameBorder="0" allowFullScreen></iframe>*/}
-                <a-scene embedded id="video-player">
-                    <a-assets>
-                        <video id="video" autoPlay loop crossOrigin src="https://ucarecdn.com/bcece0a8-86ce-460e-856b-40dac4875f15/"></video>
-                    </a-assets>
-                    <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
-                </a-scene>
-                
+                <VideoPlayer videosource={this.props.videoDetails.url} />
+
                 <div className="video-info">
-                    <h1>{this.props.videos[this.props.params.id].title}</h1>
-                    <p><Link to="/profile">Uploader</Link> (Join Users table on uploader_id)</p>
-                    <p><i>Uploaded: {this.props.videos[this.props.params.id].timestamp}</i></p>
-                    <p><b>Description: </b>{this.props.videos[this.props.params.id].description}</p>
+                    <h1>{this.props.videoDetails.title}</h1>
+                    <p><i>Uploaded: {this.props.videoDetails.upload_date}</i></p>
+                    <p><b>Uploader: </b><Link to={"/profile/" + this.props.videoDetails.uploader_id}>{this.props.videoDetails.username}</Link></p>
+                    <p><b>Description: </b>{this.props.videoDetails.description}</p>
                     {this.renderCategories()}
                 </div>
 
