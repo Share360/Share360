@@ -14,8 +14,7 @@ import LoginPage from './components/LoginPage';
 import SignUp from './components/SignUp';
 import VideoPage from './components/VideoPage';
 
-//created the store so that I can access fake data for profile template.
-const store = createStore(allReducers);
+const store = createStore(allReducers, applyMiddleware(thunk));
 
 class App extends React.Component {
 	render() {

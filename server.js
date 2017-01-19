@@ -41,3 +41,4 @@ app.listen(app.get('port'), () => {
 
 app.get('/test', mainServCtrl.test);
 
+app.get('/api/getvideobyid/:id', mainServCtrl.getVideoById);

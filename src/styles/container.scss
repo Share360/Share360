@@ -53,8 +53,8 @@ nav {
       padding-left: 20px;
       font-size: 18px;
       color: #5e5e5e;
-      transition: .2s;
-      -webkit-transition: .2s;
+      // transition: .2s;
+      // -webkit-transition: .2s;
 
       &:focus, &:hover {
         color: darken(#5e5e5e, 20%);
@@ -66,8 +66,9 @@ nav {
       }
 
       &:hover {
-        background: #777;
+        // background: #777;
         // background: $link-color;
+        background: $primary-color;
         color: white;
       }
     }
