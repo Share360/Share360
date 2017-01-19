@@ -1,4 +1,6 @@
-// import express from 'express'
+// // import express from 'express';
+// const express = require('express')
+//
 //
 //
 // let router = express.Router();
@@ -7,4 +9,6 @@
 //    console.log(req.body);
 // });
 //
-// export default router;
+// module.exports = {
+//     router: router
+// }
