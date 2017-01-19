@@ -7,6 +7,8 @@ const massive = require('massive');
 
 const secrets = require('./server/secrets');
 const config = require('./server/config');
+// const users = require('./server/routes/users');
+
 
 // INITIALIZE EXPRESS, PASSPORT
 
@@ -40,5 +42,8 @@ app.listen(app.get('port'), () => {
 //endpoints
 
 app.get('/test', mainServCtrl.test);
+
+//stuff for validations
+// app.use('api/users', users);
 
 app.get('/api/getvideobyid/:id', mainServCtrl.getVideoById);
