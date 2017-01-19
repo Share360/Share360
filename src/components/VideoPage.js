@@ -2,9 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import videoActions from '../actions/videoActions';
+
 class VideoPage extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(videoActions.getVideoById(this.props.params.id));
     }
 
     renderCategories() {
@@ -26,7 +32,19 @@ class VideoPage extends React.Component {
         );
     }
 
+    renderDisqus() {
+        var disqus_config = function () {
+            this.page.url = "share-360.herokuapp.com/#/" + this.props.params.id;
+            this.page.identifier = this.props.params.id;
+        };
+        var d = document, s = d.createElement('script');
+        s.src = '//share-360.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    }
+
     render() {
+        console.log(this.props);
         return (
             <div className="container-fluid">
                 
@@ -38,11 +56,19 @@ class VideoPage extends React.Component {
                     <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
                 </a-scene>
                 
-                <h1>{this.props.videos[this.props.params.id].title}</h1>
-                <p><Link to="/profile">Uploader</Link> (Join Users table on uploader_id)</p>
-                <p><i>Uploaded: {this.props.videos[this.props.params.id].timestamp}</i></p>
-                <p><b>Description: </b>{this.props.videos[this.props.params.id].description}</p>
-                {this.renderCategories()}
+                <div className="video-info">
+                    <h1>{this.props.videos[this.props.params.id].title}</h1>
+                    <p><Link to="/profile">Uploader</Link> (Join Users table on uploader_id)</p>
+                    <p><i>Uploaded: {this.props.videos[this.props.params.id].timestamp}</i></p>
+                    <p><b>Description: </b>{this.props.videos[this.props.params.id].description}</p>
+                    {this.renderCategories()}
+                </div>
+
+                <br />
+
+                <div id="disqus_thread"></div>
+                {this.renderDisqus.bind(this)()}
+                
             </div>
         );
     }
@@ -50,7 +76,8 @@ class VideoPage extends React.Component {
 
 function mapStateToProps(state){
     return {
-        videos: state.videos
+        videos: state.videos,
+        videoDetails: state.videoDetails
     };
 }
 
