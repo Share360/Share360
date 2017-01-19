@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+
+import signUpAction from '../actions/signUpActions';
 
 class SignUp extends Component {
     constructor( props ) {
@@ -13,50 +14,54 @@ class SignUp extends Component {
             username: '',
             password: '',
             passwordConfirm: '',
+            day: '',
+            month: '',
+            year: '',
             isLoading: false,
             errors: {}
 
         };
+
         this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
     }
 
     onChange(e){
         this.setState({ [ e.target.name ] : e.target.value });
     }
+
     onSubmit(e){
         e.preventDefault();
         console.log(this.state.fname);
-        // axios.post('/api', { user: this.state})
+        this.props.dispatch( signUpActions.signUp ( this.state.fname, this.state.lname, this.state.email, this.state.username, this.state.password, this.state.passworConfirm, this.state.day, this.state.month, this.state.year ) )
     }
 
 
     dayDisplay() {
         return this.props.dates.days.map( (date, i) => {
             return (
-                <option key={ i } value={ date }>{ date }</option>
+                <option key={ i } name ="day" value={ date }>{ date }</option>
             )
         })
     }
     monthDisplay() {
         return this.props.dates.months.map( (date, i) => {
             return (
-                <option key={ i } value={ date }>{ date }</option>
+                <option key={ i } name="month" value={ date }>{ date }</option>
             )
         })
     }
     yearDisplay() {
         return this.props.dates.years.map( (date, i) => {
             return (
-                <option key={ i } value={ date }>{ date }</option>
+                <option key={ i } name="year" value={ date }>{ date }</option>
             )
         })
     }
 
 
     render() {
-
-        const { fname, lname, email, username, passowrd, passwordConfirm, isLoading, errors} = this.state;
 
         return (
             <div className="container-fluid content login-wrapper">
@@ -65,7 +70,6 @@ class SignUp extends Component {
                         <h2 className="form-signin-heading ">Create an account here!</h2>
                         <textFieldGroup className="form-group">
                             <input type="text"
-                                   value={ this.state.fname}
                                    onChange={ this.onChange }
                                    className="form-control login-input"
                                    name="fname"
@@ -75,7 +79,6 @@ class SignUp extends Component {
                         </textFieldGroup>
                         <div className="form-group">
                             <input type="text"
-                                   value={ this.state.lname }
                                    onChange={ this.onChange }
                                    className="form-control login-input"
                                    name="lname"
@@ -85,7 +88,6 @@ class SignUp extends Component {
                         </div>
                         <div className="form-group">
                             <input type="text"
-                                   value={ this.state.email }
                                    onChange={ this.onChange }
                                    className="form-control login-input"
                                    name="email"
@@ -95,7 +97,6 @@ class SignUp extends Component {
                         </div>
                         <div className="form-group">
                             <input type="text"
-                                   value={ this.state.username }
                                    onChange={ this.onChange }
                                    className="form-control login-input"
                                    name="username"
@@ -105,7 +106,6 @@ class SignUp extends Component {
                         </div>
                         <div className="form-group">
                             <input type="text"
-                                   value={ this.state.password }
                                    onChange={ this.onChange }
                                    className="form-control login-input"
                                    name="password"
@@ -115,7 +115,6 @@ class SignUp extends Component {
                         </div>
                         <div className="form-group">
                             <input type="text"
-                                   value={ this.state.passwordConfirm }
                                    onChange={ this.onChange }
                                    className="form-control login-input"
                                    name="passwordConfirm"
@@ -134,7 +133,7 @@ class SignUp extends Component {
                         </select>
 
 
-                        <button className="btn btn-lg btn-custom btn-block" type="submit" disabled={isLoading}>Create Account</button>
+                        <button className="btn btn-lg btn-custom btn-block" type="submit" disabled={this.state.isLoading}>Create Account</button>
                     </form>
                 </div>
             </div>
