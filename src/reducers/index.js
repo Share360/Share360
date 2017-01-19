@@ -8,7 +8,7 @@ import videoDetailsReducer from './videoDetailsReducer';
 const allReducers = combineReducers({
     users: fakeUsers,
     videos: fakeVideos,
-    dates: dates
+    dates: dates,
     videoDetails: videoDetailsReducer,
 });
 
