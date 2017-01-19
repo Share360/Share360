@@ -46,3 +46,4 @@ app.get('/test', mainServCtrl.test);
 //stuff for validations
 // app.use('api/users', users);
 
+app.get('/api/getvideobyid/:id', mainServCtrl.getVideoById);
