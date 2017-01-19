@@ -2,9 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import videoActions from '../actions/videoActions';
+
 class VideoPage extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(videoActions.getVideoById(this.props.params.id));
     }
 
     renderCategories() {
@@ -38,7 +44,7 @@ class VideoPage extends React.Component {
     }
 
     render() {
-
+        console.log(this.props);
         return (
             <div className="container-fluid">
                 
@@ -70,7 +76,8 @@ class VideoPage extends React.Component {
 
 function mapStateToProps(state){
     return {
-        videos: state.videos
+        videos: state.videos,
+        videoDetails: state.videoDetails
     };
 }
 
