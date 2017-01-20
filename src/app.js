@@ -13,6 +13,7 @@ import Featured from './components/Featured';
 import LoginPage from './components/LoginPage';
 import SignUp from './components/SignUp';
 import VideoPage from './components/VideoPage';
+import NotFound from './components/NotFound';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
@@ -28,6 +29,7 @@ class App extends React.Component {
 					<Route path="/sign-up" component={SignUp} />
 					<Route path='/profile' component={Profile} />
 					<Route path='/video/:id' component={VideoPage} />
+					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>
 		);
