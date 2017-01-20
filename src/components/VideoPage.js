@@ -70,7 +70,6 @@ class VideoPage extends React.Component {
 
 function mapStateToProps(state){
     return {
-        videos: state.videos,
         videoDetails: state.videoDetails
     };
 }

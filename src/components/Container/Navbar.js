@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { browserHistory, Link, IndexLink } from 'react-router';
+import { connect } from 'react-redux';
 
-export default class NavBar extends React.Component {
+class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -17,16 +18,31 @@ export default class NavBar extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		window.location = "#";
+		window.location = '/#/search/?search=' + this.state.searchText;
 	}
 
 	renderNavItems() {
-		return (
-			<ul className="nav navbar-nav navbar-right">
-				<li><IndexLink activeClassName="navlink-active" to="/login">Log In</IndexLink></li>
-				<li><IndexLink activeClassName="navlink-active" to="/sign-up">Sign Up</IndexLink></li>
-			</ul>
-		);
+		if (this.props.loginStatus.loggedIn) {
+			return (
+				<ul className="nav navbar-nav navbar-right">
+					<li className="dropdown">
+		            	<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button">{this.props.loginStatus.username} <span className="caret"></span></a>
+		            	<ul className="dropdown-menu">
+		            		<li><Link to={"/profile/" + this.props.loginStatus.id}>Profile</Link></li>
+		            		<li><Link to="/logout">Log Out</Link></li>
+		            	</ul>
+		            </li>
+				</ul>
+			);
+		}
+		else {
+			return (
+				<ul className="nav navbar-nav navbar-right">
+					<li><IndexLink activeClassName="navlink-active" to="/login">Log In</IndexLink></li>
+					<li><IndexLink activeClassName="navlink-active" to="/sign-up">Sign Up</IndexLink></li>
+				</ul>
+			);
+		}
 	}
 
 	render() {
@@ -43,8 +59,8 @@ export default class NavBar extends React.Component {
 					</div>
 					<div className="collapse navbar-collapse" id="navbar-data">
 						{this.renderNavItems.bind(this)()}
-						<form className="navbar-form navbar-right" onSubmit={this.handleSubmit.bind(this)}>
-							<div className="input-group">
+						<form className="navbar-form navbar-right" style={{width: "60%"}} onSubmit={this.handleSubmit.bind(this)}>
+							<div className="input-group" style={{width: "70%"}}>
 								<input type="text" className="form-control" onChange={this.handleSearchChange.bind(this)} placeholder="Search" />
 								<div className="input-group-btn">
 									<button className="btn btn-default" type="submit">
@@ -59,3 +75,11 @@ export default class NavBar extends React.Component {
 		);
 	}
 }
+
+function mapStateToProps(state){
+    return {
+        loginStatus: state.loginStatus
+    };
+}
+
+export default connect(mapStateToProps)(NavBar);
