@@ -14,9 +14,9 @@ import Featured from './components/Featured';
 import LoginPage from './components/LoginPage';
 import SignUp from './components/SignUp';
 import VideoPage from './components/VideoPage';
+import NotFound from './components/NotFound';
 
-//created the store so that I can access fake data for profile template.
-const store = createStore(allReducers);
+const store = createStore(allReducers, applyMiddleware(thunk));
 
 class App extends React.Component {
 	render() {
@@ -31,6 +31,7 @@ class App extends React.Component {
 					<Route path="/sign-up" component={SignUp} />
 					<Route path='/profile' component={Profile} />
 					<Route path='/video/:id' component={VideoPage} />
+					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>
 		);

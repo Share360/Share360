@@ -7,6 +7,8 @@ const massive = require('massive');
 
 const secrets = require('./server/secrets');
 const config = require('./server/config');
+// const users = require('./server/routes/users');
+
 
 // INITIALIZE EXPRESS, PASSPORT
 
@@ -25,8 +27,23 @@ app.use( session({
   resave: true
 }));
 app.use( passport.initialize() );
-
 app.use( passport.session() );
+passport.use( new LocalStrategy(
+  function(username, password, done) {
+    mainServCtrl.findUser( username, password, (user) => {
+      if(!user) {
+        return done(null, false);
+      }
+      return done(null, user);
+    })
+  }
+));
+passport.serializeUser( function( user, done ) {
+  done( null, user);
+});
+passport.deserializeUser( function (obj, done) {
+  done( null, obj);
+});
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -40,3 +57,23 @@ app.listen(app.get('port'), () => {
 //endpoints
 
 app.get('/test', mainServCtrl.test);
+
+app.post('/api/login', (req, res) => {
+    passport.authenticate( 'local', function( error, user, info ) {
+        if(error) { res.send( { success: false } ) }
+        else if ( !user ) { res.send( { success: false } ) }
+        else {
+            req.logIn( user, function(err) {
+                if( err ) {return res.send( { success: false } ) }
+                else { return res.send( { success: true, user: user[0].username, id: user[0].id } ) }
+            })
+        }
+
+    })(req, res);
+});
+app.post('/api/signUp', mainServCtrl.signUp);
+
+//stuff for validations
+// app.use('api/users', users);
+
+app.get('/api/getvideobyid/:id', mainServCtrl.getVideoById);
