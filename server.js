@@ -70,7 +70,7 @@ app.post('/api/login', (req, res) => {
 
     })(req, res);
 });
-app.post('/api/signUp', mainServCtrl.signUp);
+app.post('/api/signup', mainServCtrl.signUp);
 
 //stuff for validations
 // app.use('api/users', users);
