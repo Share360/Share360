@@ -14,7 +14,6 @@ import Featured from './components/Featured';
 import LoginPage from './components/LoginPage';
 import SignUp from './components/SignUp';
 import VideoPage from './components/VideoPage';
->>>>>>> master
 
 //created the store so that I can access fake data for profile template.
 const store = createStore(allReducers);

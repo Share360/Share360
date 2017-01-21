@@ -1,5 +1,5 @@
-let app = require('../../server.js');
-let db = app.get('db');
+const app = require('../../server.js');
+const db = app.get('db');
 
 module.exports = {
     test: function(req, res) {

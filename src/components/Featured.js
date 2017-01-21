@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import aframe from 'aframe';
 
 class Featured extends Component {
     render() {
