@@ -98,7 +98,7 @@
 
 
 .prof-details-container {
-  padding-top: 70px;
+  padding-top: 100px;
   padding-left: 35px;
   padding-right: 35px;
 }
@@ -123,4 +123,14 @@
 
 .text-middle {
   @include centerer;
+}
+
+.edit-btn {
+    position: relative;
+    top: 40px;
+    left: -45px;
+}
+
+.editable {
+  margin-left: 8px;
 }

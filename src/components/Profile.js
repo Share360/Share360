@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { toggleEdit, toggleProfile } from '../actions/editModeActions';
+
+
+import Modal from './Modal';
 
 class Profile extends Component {
-
 
     showVideos() {
         return this.props.videos.map((video) => {
@@ -57,13 +60,19 @@ class Profile extends Component {
                                             <div className="col-md-10">
                                                 <div className="text-container">
                                                     <div className="text-bottom">
-                                                        <p className="prof-head-tag">Username: <span className="prof-username">{user.username}</span></p>
+                                                        <p className="prof-head-tag">Username: {this.props.edit.editMode ? <span><span className="prof-username">{user.username}</span><span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span></span> : <span className="prof-username">{user.username}</span>}</p>
+                                                        <a className="edit-btn"
+                                                           href="#"
+                                                           onClick={(e) => {(e).preventDefault();
+                                                               {this.props.edit.editMode ? this.props.toggleProfile(user) : this.props.toggleEdit(user)}
+                                                                            console.log(this.props.edit.editMode)
+                                                                            }}>{this.props.edit.editMode ? 'Profile Mode' : 'Edit Profile'}</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-md-1">
                                                 <div className="text-container">
-                                                    <button className="btn prof-upload-btn">
+                                                    <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#myModal">
                                                         <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
                                                     </button>
                                                 </div>
@@ -72,8 +81,8 @@ class Profile extends Component {
                                     </div>
                                 </div>
                                 <div className="panel-body prof-details-container">
-                                    <p className="prof-head-tag">E-Mail: <a href="#" className="prof-link">{user.email}</a></p>
-                                    <p className="prof-head-tag">Description:</p>
+                                    <p className="prof-head-tag">E-Mail: {this.props.edit.editMode ? <span><a href="#" className="prof-link">{user.email}</a><span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span></span> : <a href="#" className="prof-link">{user.email}</a>}</p>
+                                    <p className="prof-head-tag">Description: {this.props.edit.editMode ? <span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span> : ''}</p>
                                     <p className="span">{user.description}</p>
                                     <hr />
                                     <h4>Uploaded Videos</h4>
@@ -82,6 +91,7 @@ class Profile extends Component {
                             </div>
                         </div>
                     </div>
+                    <Modal />
                 </div>
 
             );
@@ -98,11 +108,17 @@ class Profile extends Component {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({toggleEdit: toggleEdit, toggleProfile: toggleProfile}, dispatch)
+
+}
+
 function mapStateToProps(state){
     return {
         users: state.users,
-        videos: state.videos
+        videos: state.videos,
+        edit: state.editProfile
     };
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

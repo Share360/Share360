@@ -41,3 +41,4 @@ jspm_packages
 bundle.js
 styles.css
 assets
+.env

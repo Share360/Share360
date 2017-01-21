@@ -10,6 +10,8 @@ const config = require('./server/config');
 // const users = require('./server/routes/users');
 
 
+
+
 // INITIALIZE EXPRESS, PASSPORT
 
 const app = module.exports = express();
@@ -76,3 +78,5 @@ app.post('/api/signUp', mainServCtrl.signUp);
 // app.use('api/users', users);
 
 app.get('/api/getvideobyid/:id', mainServCtrl.getVideoById);
+
+
