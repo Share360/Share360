@@ -55,18 +55,21 @@ class Profile extends Component {
                                     <div className="row">
                                         <div className="prof-sub-panel-head">
                                             <div className="col-md-1">
-                                                <img src={user.profile_url} className="img-circle prof-img" />
+                                                <div className="profile-img-container">
+                                                    <img src={user.profile_url} className="img-circle prof-img" />
+                                                    <a className="edit-btn"
+                                                       href="#"
+                                                       onClick={(e) => {(e).preventDefault();
+                                                           {this.props.edit.editMode ? this.props.toggleProfile(user) : this.props.toggleEdit(user)}
+                                                           console.log(this.props.edit.editMode)
+                                                       }}>{this.props.edit.editMode ? 'Cancel' : 'Edit'}</a>
+                                                    {this.props.edit.editMode ? <div className="editable"><span className="glyphicon glyphicon-pencil"></span></div> : ''}
+                                                </div>
                                             </div>
                                             <div className="col-md-10">
                                                 <div className="text-container">
                                                     <div className="text-bottom">
                                                         <p className="prof-head-tag">Username: {this.props.edit.editMode ? <span><span className="prof-username">{user.username}</span><span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span></span> : <span className="prof-username">{user.username}</span>}</p>
-                                                        <a className="edit-btn"
-                                                           href="#"
-                                                           onClick={(e) => {(e).preventDefault();
-                                                               {this.props.edit.editMode ? this.props.toggleProfile(user) : this.props.toggleEdit(user)}
-                                                                            console.log(this.props.edit.editMode)
-                                                                            }}>{this.props.edit.editMode ? 'Profile Mode' : 'Edit Profile'}</a>
                                                     </div>
                                                 </div>
                                             </div>
