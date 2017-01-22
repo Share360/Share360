@@ -29,8 +29,8 @@ module.exports = {
             }
         });
     },
-    signUp: ( fname, lname, email, username, password, passwordConfirm, day, month, year ) => {
-        db.signUp( [ fname, lname, email, username, password, passwordConfirm, day, month, year], (err, response) => {
+    signUp: ( req, res ) => {
+        db.signUp( [ req.body.fname, req.body.lname, req.body.email, req.body.username, req.body.password, req.body.birthday ], (err, response) => {
             if (err) {
                 console.log(err);
             } else {
