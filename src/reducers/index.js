@@ -4,6 +4,7 @@ import fakeVideos from './fake-videos';
 import dates from './dates'
 import videoDetailsReducer from './videoDetailsReducer';
 import loginReducer from './loginReducer';
+import searchReducer from './searchReducer';
 
 
 const allReducers = combineReducers({
@@ -11,7 +12,8 @@ const allReducers = combineReducers({
     videos: fakeVideos,
     videoDetails: videoDetailsReducer,
     dates: dates,
-    loginStatus: loginReducer
+    loginStatus: loginReducer,
+    searchResults: searchReducer
 });
 
 export default allReducers;

@@ -2,12 +2,18 @@ import React from 'react';
 import { browserHistory, Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 
+import loginActions from '../../actions/loginActions';
+
 class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			searchText: "",
 		};
+	}
+
+	componentWillMount() {
+		this.props.dispatch(loginActions.checkLoginStatus());
 	}
 
 	handleSearchChange(e) {
@@ -18,7 +24,7 @@ class NavBar extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		window.location = '/#/search/?search=' + this.state.searchText;
+		window.location = '/#/search?search=' + this.state.searchText;
 	}
 
 	renderNavItems() {
