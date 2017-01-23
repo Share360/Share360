@@ -14,6 +14,14 @@ class VideoPage extends React.Component {
         this.props.dispatch(videoActions.getVideoById(this.props.params.id));
     }
 
+    addFavorite() {
+        if (!this.props.loginStatus.loggedIn) {
+            alert('Please log in or sign up to add this video to your favorites.')
+        } else {
+            this.props.dispatch(videoActions.addFavorite(this.props.params.id, this.props.loginStatus.id));
+        }
+    }
+
     renderCategories() {
         if (this.props.videoDetails.cat2 && this.props.videoDetails.cat3) {
             return (
@@ -51,11 +59,20 @@ class VideoPage extends React.Component {
                 <VideoPlayer videosource={this.props.videoDetails.url} />
 
                 <div className="video-info">
-                    <h1>{this.props.videoDetails.title}</h1>
-                    <p><i>Uploaded: {this.props.videoDetails.upload_date}</i></p>
-                    <p><b>Uploader: </b><Link to={"/profile/" + this.props.videoDetails.uploader_id}>{this.props.videoDetails.username}</Link></p>
-                    <p><b>Description: </b>{this.props.videoDetails.description}</p>
-                    {this.renderCategories()}
+                    <div className="row">
+                        <div className="col-xs-10">
+                            <h1>{this.props.videoDetails.title}</h1>
+                            <p><i>Uploaded: {this.props.videoDetails.upload_date}</i></p>
+                            <p><b>Uploader: </b><Link to={"/profile/" + this.props.videoDetails.uploader_id}>{this.props.videoDetails.username}</Link></p>
+                            <p><b>Description: </b>{this.props.videoDetails.description}</p>
+                            {this.renderCategories()}
+                        </div>
+                        
+                        <div className="col-xs-2">
+                            <button onClick={this.addFavorite.bind(this)} className="btn btn-custom">Favorite</button>
+                        </div>
+                        
+                    </div>
                 </div>
 
                 <br />
@@ -70,7 +87,8 @@ class VideoPage extends React.Component {
 
 function mapStateToProps(state){
     return {
-        videoDetails: state.videoDetails
+        videoDetails: state.videoDetails,
+        loginStatus: state.loginStatus
     };
 }
 

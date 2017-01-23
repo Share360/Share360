@@ -15,6 +15,8 @@ import LoginPage from './components/LoginPage';
 import SignUp from './components/SignUp';
 import VideoPage from './components/VideoPage';
 import NotFound from './components/NotFound';
+import SearchPage from './components/Search/SearchPage';
+import FavoritesPage from './components/FavoritesPage';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
@@ -31,6 +33,8 @@ class App extends React.Component {
 					<Route path="/sign-up" component={SignUp} />
 					<Route path='/profile' component={Profile} />
 					<Route path='/video/:id' component={VideoPage} />
+					<Route path='/search' component={SearchPage} />
+					<Route path='/favorites' component={FavoritesPage} />
 					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>
