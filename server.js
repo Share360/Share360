@@ -90,3 +90,5 @@ app.get('/api/checklogin', (req, res) => {
     res.status(200).send({loggedIn: false});
   }
 });
+
+app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
