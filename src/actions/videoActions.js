@@ -10,5 +10,14 @@ module.exports = {
 				});
 			});
 		}
+	},
+	addFavorite: (videoID, userID) => {
+		return function(dispatch) {
+			axios.post('/api/addfavorite', { videoID, userID }).then((res) => {
+				dispatch({
+					type: "ADD_FAVORITE",
+				});
+			});
+		}
 	}
 }

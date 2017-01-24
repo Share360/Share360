@@ -22,5 +22,15 @@ module.exports = {
 
             })
         }
+    },
+    checkLoginStatus: () => {
+        return (dispatch) => {
+            axios.get('/api/checklogin').then((response) => {
+                dispatch({
+                    type: "SET_LOGIN_STATUS",
+                    payload: response.data
+                });
+            });
+        }
     }
 }

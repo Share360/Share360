@@ -57,7 +57,6 @@ app.listen(app.get('port'), () => {
 
 //endpoints
 
-app.get('/test', mainServCtrl.test);
 app.post('/api/login', (req, res) => {
     passport.authenticate( 'local', function( error, user, info ) {
         if(error) { res.send( { success: false } ) }
@@ -77,7 +76,6 @@ app.post('/api/signup', mainServCtrl.signUp);
 // app.use('api/users', users);
 
 app.get('/api/getvideobyid/:id', mainServCtrl.getVideoById);
-
 
 // S3 Endpoint
 app.get('/upload', (req, res) => {
@@ -111,3 +109,18 @@ function upload(file) {
         });
     });
 }
+
+app.get('/api/search/:searchterm', mainServCtrl.getSearchResults);
+
+app.get('/api/getfavorites/:id', mainServCtrl.getFavoritesById);
+
+app.post('/api/addfavorite', mainServCtrl.addFavorite);
+
+app.get('/api/checklogin', (req, res) => {
+  if (req.user) {
+    res.status(200).send({loggedIn: true, username: req.user[0].username, id: req.user[0].id});
+  } else {
+    res.status(200).send({loggedIn: false});
+  }
+});
+
