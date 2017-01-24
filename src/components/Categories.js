@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
+import SideBar from './Container/Sidebar';
 
 class Categories extends Component {
+    constructor (props) {
+      super(props);
+    }
 
     render() {
         return (
@@ -29,4 +35,10 @@ class Categories extends Component {
     }
 }
 
-export default Categories;
+function mapStateToProps(state) {
+  return {
+    loginStatus : state.loginStatus
+  };
+}
+
+export default connect(mapStateToProps)(Categories);

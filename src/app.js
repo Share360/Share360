@@ -28,13 +28,21 @@ class App extends React.Component {
 					<IndexRoute component={LandingPage} />
 					<Route path="/categories" component={Categories} />
 					<Route path='/featured' component={Featured} />
-                    <Route path='/profile' component={Profile} />
+          <Route path='/profile' component={Profile} />
 					<Route path="/login" component={LoginPage} />
 					<Route path="/sign-up" component={SignUp} />
 					<Route path='/profile' component={Profile} />
 					<Route path='/video/:id' component={VideoPage} />
 					<Route path='/search' component={SearchPage} />
 					<Route path='/favorites' component={FavoritesPage} />
+					<Route path='/newest' component={Categories} />
+					<Route path='/most-popular' component={Categories} />
+					<Route path='/music' component={Categories} />
+					<Route path='/sports' component={Categories} />
+					<Route path='/gaming' component={Categories} />
+					<Route path='/entertainment' component={Categories} />
+					<Route path='/news' component={Categories} />
+					<Route path='/travel' component={Categories} />
 					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>

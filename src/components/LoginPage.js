@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 class LoginPage extends Component {
 
     render() {
-        console.log(this.props);
         return (
                 <div className="container-fluid content login-wrapper">
                     <div className="login-container col-xs-6  col-sm-6  col-md-4  col-lg-4  vcenter">

@@ -55,7 +55,7 @@ app.listen(app.get('port'), () => {
 });
 
 //endpoints
-app.get('/test', mainServCtrl.test);
+// app.get('/test', mainServCtrl.test);
 
 app.post('/api/login', (req, res) => {
     passport.authenticate( 'local', function( error, user, info ) {
