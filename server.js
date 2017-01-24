@@ -11,7 +11,6 @@ const config = require('./server/config');
 
 
 
-
 // INITIALIZE EXPRESS, PASSPORT
 
 const app = module.exports = express();
@@ -80,3 +79,35 @@ app.post('/api/signup', mainServCtrl.signUp);
 app.get('/api/getvideobyid/:id', mainServCtrl.getVideoById);
 
 
+// S3 Endpoint
+app.get('/upload', (req, res) => {
+    upload(req.query).then(url => {
+        res.json({url: url});
+    }).catch(e => {
+        console.log(e);
+    });
+});
+
+// S3 Uploader
+const aws = require('aws-sdk');
+
+const BUCKET = 'share360videosbucket';
+
+function upload(file) {
+    const s3 = new aws.S3();
+    const params = {
+        Bucket: BUCKET,
+        Key: file.filename,
+        Expires: 60,
+        ContentType: file.filetype
+    };
+
+    return new Promise((resolve, reject) => {
+        s3.getSignedUrl('putObject', params, (err, url) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(url);
+        });
+    });
+}

@@ -42,3 +42,5 @@ bundle.js
 styles.css
 assets
 .env
+AWUtil.js
+UploadVideo.js

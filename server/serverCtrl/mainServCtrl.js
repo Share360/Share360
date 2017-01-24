@@ -1,6 +1,7 @@
 let app = require('../../server.js');
 let db = app.get('db');
 
+
 module.exports = {
     test: function(req, res) {
         db.test((err, response) => {

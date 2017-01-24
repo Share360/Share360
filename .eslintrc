@@ -1,0 +1,20 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "env": {
+      "node": true,
+      "commonjs": true,
+      "shared-node-browser": true,
+      "es6": true,
+      "browser": true
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {}
+  }
+}
