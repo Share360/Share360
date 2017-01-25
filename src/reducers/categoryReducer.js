@@ -1,5 +1,5 @@
 
-export default function categoryReducer( state = {}, action ) {
+export default function categoryReducer( state = { videos: [] }, action ) {
     switch( action.type ) {
         case "GET_VIDEOS_BY_CATEGORIES_FAILURE": {
             console.log('something happend in get videos by categories failure');
@@ -7,8 +7,7 @@ export default function categoryReducer( state = {}, action ) {
         }
         case "GET_VIDEOS_BY_CATEGORIES_SUCCESS": {
             console.log('something happened in get videos by categories success');
-
-            return Object.assign( {}, state, { categoriesVideoResponse : action.payload.categoriesVideoResponse } )
+            return Object.assign( {}, state, { videos : action.payload.categoriesVideoResponse } )
         }
         default: {
             return state;

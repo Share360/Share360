@@ -7,10 +7,11 @@ module.exports = {
                 selectedCategory
             })
                 .then( ( response ) => {
-                    if( response.data.success ) {
+                    console.log(response);
+                    if( response.status === 200 ) {
                         dispatch({
                             type: "GET_VIDEOS_BY_CATEGORIES_SUCCESS",
-                            payload: { categoriesVideoResponse: response }
+                            payload: { categoriesVideoResponse: response.data }
                         })
                     } else {
                         dispatch({
