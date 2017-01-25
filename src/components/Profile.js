@@ -42,7 +42,7 @@ class Profile extends Component {
                 );
             });
         }
-
+ 
     showProfile() {
         return this.props.users.map((user) => {
             if(user.id === 1)
@@ -122,6 +122,5 @@ function mapStateToProps(state){
         videos: state.videos,
         edit: state.editProfile
     };
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

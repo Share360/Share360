@@ -15,10 +15,10 @@ const config = require('./server/config');
 
 const app = module.exports = express();
 
-let massiveInstance = massive.connectSync({connectionString: config.postgresURL });
+const massiveInstance = massive.connectSync({connectionString: config.postgresURL });
 
 app.set('db', massiveInstance);
-let db = app.get('db');
+const db = app.get('db');
 
 const mainServCtrl = require('./server/serverCtrl/mainServCtrl');
 
@@ -56,6 +56,7 @@ app.listen(app.get('port'), () => {
 });
 
 //endpoints
+// app.get('/test', mainServCtrl.test);
 
 app.post('/api/login', (req, res) => {
     passport.authenticate( 'local', function( error, user, info ) {
@@ -124,3 +125,4 @@ app.get('/api/checklogin', (req, res) => {
   }
 });
 
+app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);

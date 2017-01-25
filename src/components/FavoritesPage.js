@@ -29,9 +29,9 @@ class FavoritesPage extends React.Component {
             return (
                 <div className="container-fluid">
                     <h1>Favorites</h1>
-                    
+
                     { this.props.favorites? ( this.props.favorites.length === 0 ? (<p>You don't have any videos in your favorites!</p>) : (<div className="row">{this.renderFavorites()}</div>) ) : null }
-                    
+
                 </div>
             );
         } else {
