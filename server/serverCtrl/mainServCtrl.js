@@ -57,6 +57,24 @@ module.exports = {
             }
         });
     },
+    getProfile: (req, res) => {
+        db.getProfile([req.params.id], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
+    addProfileImg: (req, res) => {
+        db.addProfileImg([req.body.id, req.body.url], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        })
+    },
     getCategoriesVideos: ( req, res ) => {
         db.getCategoriesVideos( [ req.body.selectedCategory ], ( err, response ) => {
             if( err ) {

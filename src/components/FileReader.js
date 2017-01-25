@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class FileReader extends Component {
     constructor(props) {
@@ -13,6 +14,17 @@ class FileReader extends Component {
         this.handleOnDrop = this.handleOnDrop.bind(this);
     }
 
+    addProfileImage(images) {
+        console.log('adding profile image:', images)
+        axios.post('/api/addprofileimg', {
+            url: images[0].url,
+            id: this.props.loginStatus.id
+        }).then((res) => {
+            console.log(res);
+        });
+    }
+
+
     handleOnDrop(files) {
         this.setState({isUploading: true});
 
@@ -22,6 +34,7 @@ class FileReader extends Component {
                     isUploading: false,
                     images: this.state.images.concat(images)
                 });
+                this.addProfileImage(images);
             }).catch(e => console.log(e));
     }
 
@@ -94,4 +107,10 @@ class FileReader extends Component {
     }
 }
 
-export default FileReader;
+function mapStateToProps(state) {
+    return {
+        loginStatus: state.loginStatus
+    }
+}
+
+export default connect(mapStateToProps)(FileReader);
