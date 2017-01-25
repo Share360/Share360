@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class Sidebar extends React.Component {
 	constructor(props) {
-		super(props)
+		super(props);
 	}
 
 	render() {
@@ -16,6 +16,7 @@ class Sidebar extends React.Component {
 					{ this.props.loginStatus.loggedIn ? ( <li><Link activeClassName="active" to="/subscriptions">Subscriptions</Link></li> ) : null }
 					<li><Link activeClassName="active" to="/newest">Newest</Link></li>
 					<li><Link activeClassName="active" to="/categories/most-popular">Most Popular</Link></li>
+					<li><Link activeClassName="active" to="/most-popular">Most Popular</Link></li>
 					<li><Link activeClassName="active" to="/categories/music">Music</Link></li>
 					<li><Link activeClassName="active" to="/categories/sports">Sports</Link></li>
 					<li><Link activeClassName="active" to="/categories/gaming">Gaming</Link></li>

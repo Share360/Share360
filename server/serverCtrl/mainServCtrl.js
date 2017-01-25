@@ -55,5 +55,14 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
+    },
+    getCategoriesVideos: ( req, res ) => {
+        db.getCategoriesVideos( [ req.body.selectedCategory ], ( err, response ) => {
+            if( err ) {
+                res.send( err );
+            } else {
+                res.status( 200 ).send( response );
+            }
+        });
     }
 };
