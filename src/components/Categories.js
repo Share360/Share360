@@ -19,14 +19,16 @@ class Categories extends Component {
     // }
 
     renderVideosByCategory( selectedCategory ) {
-        this.props.dispatch( getVideosByCategoryActions(selectedCategory) );
+        getVideosByCategoryActions (selectedCategory);
     }
 
     renderVideos() {
-        return this.props.categoryVideos.map( ( video ) => {
+
+        return this.props.categoryVideos.categoriesVideoResponse.map( ( video ) => {
             return (
-                <div key={ video.id }
-                     className="col-sm-3 col-md-3 col-md-3 category-list">
+                <div
+                  key={ video.id }
+                  className="col-sm-3 col-md-3 col-md-3 category-list">
                     <div className="thumbnail">
                         <img
                             src={ video.thumbnail }
@@ -39,11 +41,9 @@ class Categories extends Component {
                         Username: { video.user_id }
                     </div>
                 </div>
-            )
-        })
+            );
+        });
     }
-
-
 
     render() {
         return (
@@ -56,16 +56,12 @@ class Categories extends Component {
                 <div className="row">
                     { this.renderVideosByCategory(this.props.params.id) }
                     { this.renderVideos() }
-
                 </div>
             </div>
         );
     }
 }
 
-function mapDispatchToProps( dispatch ) {
-    return bindActionCreators({ getVideosByCategoryActions: getVideosByCategoryActions }, dispatch)
-}
 
 function mapStateToProps(state) {
   return {
@@ -73,6 +69,8 @@ function mapStateToProps(state) {
   };
 }
 
-
+function mapDispatchToProps( dispatch ) {
+  return bindActionCreators({ getVideosByCategoryActions: getVideosByCategoryActions }, dispatch)
+}
 
 export default connect( mapStateToProps, mapDispatchToProps )( Categories );
