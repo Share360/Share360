@@ -15,10 +15,10 @@ const config = require('./server/config');
 
 const app = module.exports = express();
 
-let massiveInstance = massive.connectSync({connectionString: config.postgresURL });
+const massiveInstance = massive.connectSync({connectionString: config.postgresURL });
 
 app.set('db', massiveInstance);
-let db = app.get('db');
+const db = app.get('db');
 
 const mainServCtrl = require('./server/serverCtrl/mainServCtrl');
 
@@ -56,6 +56,7 @@ app.listen(app.get('port'), () => {
 });
 
 //endpoints
+// app.get('/test', mainServCtrl.test);
 
 app.post('/api/login', (req, res) => {
     passport.authenticate( 'local', function( error, user, info ) {
@@ -97,7 +98,8 @@ function upload(file) {
         Bucket: BUCKET,
         Key: file.filename,
         Expires: 60,
-        ContentType: file.filetype
+        ContentType: file.filetype,
+        ACL: 'public-read'
     };
 
     return new Promise((resolve, reject) => {
@@ -105,6 +107,7 @@ function upload(file) {
             if (err) {
                 reject(err);
             }
+            console.log(url);
             resolve(url);
         });
     });
@@ -123,4 +126,14 @@ app.get('/api/checklogin', (req, res) => {
     res.status(200).send({loggedIn: false});
   }
 });
+
+
+//profile endpoints
+
+app.get('/api/getProfile/:id', mainServCtrl.getProfile);
+
+app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
+
+
+app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
 

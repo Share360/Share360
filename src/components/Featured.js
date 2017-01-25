@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import FeaturedVideos from './featuredPageVideos';
 
 class Featured extends Component {

@@ -1,5 +1,5 @@
-let app = require('../../server.js');
-let db = app.get('db');
+const app = require('../../server.js');
+const db = app.get('db');
 
 
 module.exports = {
@@ -54,6 +54,33 @@ module.exports = {
                 res.send(err);
             } else {
                 res.status(200).send(response);
+            }
+        });
+    },
+    getProfile: (req, res) => {
+        db.getProfile([req.params.id], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
+    addProfileImg: (req, res) => {
+        db.addProfileImg([req.body.id, req.body.url], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        })
+    },
+    getCategoriesVideos: ( req, res ) => {
+        db.getCategoriesVideos( [ req.body.selectedCategory ], ( err, response ) => {
+            if( err ) {
+                res.send( err );
+            } else {
+                res.status( 200 ).send( response );
             }
         });
     }
