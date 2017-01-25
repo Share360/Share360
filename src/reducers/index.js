@@ -4,8 +4,12 @@ import fakeVideos from './fake-videos';
 import dates from './dates'
 import videoDetailsReducer from './videoDetailsReducer';
 import loginReducer from './loginReducer';
+
+import editProfileReducer from './edit-profile-reducer';
+
 import searchReducer from './searchReducer';
 import categoryReducer from './categoryReducer';
+
 
 
 const allReducers = combineReducers({
