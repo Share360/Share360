@@ -8,6 +8,7 @@ import loginReducer from './loginReducer';
 import editProfileReducer from './edit-profile-reducer';
 
 import searchReducer from './searchReducer';
+import profileReducer from './profileReducer';
 
 
 
@@ -18,7 +19,8 @@ const allReducers = combineReducers({
     dates: dates,
     loginStatus: loginReducer,
     editProfile: editProfileReducer,
-    searchResults: searchReducer
+    searchResults: searchReducer,
+    userProfile: profileReducer
 });
 
 export default allReducers;

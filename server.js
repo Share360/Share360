@@ -97,7 +97,8 @@ function upload(file) {
         Bucket: BUCKET,
         Key: file.filename,
         Expires: 60,
-        ContentType: file.filetype
+        ContentType: file.filetype,
+        ACL: 'public-read'
     };
 
     return new Promise((resolve, reject) => {
@@ -105,6 +106,7 @@ function upload(file) {
             if (err) {
                 reject(err);
             }
+            console.log(url);
             resolve(url);
         });
     });
@@ -123,4 +125,10 @@ app.get('/api/checklogin', (req, res) => {
     res.status(200).send({loggedIn: false});
   }
 });
+
+//profile endpoints
+
+app.get('/api/getProfile/:id', mainServCtrl.getProfile);
+
+app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
 

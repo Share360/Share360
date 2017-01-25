@@ -29,7 +29,7 @@ class App extends React.Component {
                     <Route path='/profile' component={Profile} />
 					<Route path="/login" component={LoginPage} />
 					<Route path="/sign-up" component={SignUp} />
-					<Route path='/profile' component={Profile} />
+					<Route path='/profile/:id' component={Profile} />
 					<Route path='/video/:id' component={VideoPage} />
 					<Route path='/search' component={SearchPage} />
 					<Route path='/favorites' component={FavoritesPage} />
