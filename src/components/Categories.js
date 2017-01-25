@@ -8,12 +8,14 @@ class Categories extends Component {
       super(props);
     }
 
+
+
     render() {
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-12 col-md-12">
-                        <h1>Categories</h1>
+                        <h1>{this.props.params.id}</h1>
                     </div>
                 </div>
                 <div className="row">
@@ -37,7 +39,7 @@ class Categories extends Component {
 
 function mapStateToProps(state) {
   return {
-    loginStatus : state.loginStatus
+    categories : state.categories
   };
 }
 

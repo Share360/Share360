@@ -37,12 +37,7 @@ class App extends React.Component {
 					<Route path='/favorites' component={FavoritesPage} />
 					<Route path='/newest' component={Categories} />
 					<Route path='/most-popular' component={Categories} />
-					<Route path='/music' component={Categories} />
-					<Route path='/sports' component={Categories} />
-					<Route path='/gaming' component={Categories} />
-					<Route path='/entertainment' component={Categories} />
-					<Route path='/news' component={Categories} />
-					<Route path='/travel' component={Categories} />
+					<Route path='/categories/:id' component={Categories} />
 					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>

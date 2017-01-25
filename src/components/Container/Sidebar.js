@@ -5,17 +5,6 @@ import { connect } from 'react-redux';
 class Sidebar extends React.Component {
 	constructor(props) {
 		super(props)
-
-		this.state = {
-			newSelect = false;
-		}
-	}
-
-	newestIsSelected () {
-		this.setState({
-			this.newSelect = true
-		})
-		console.log(this.state.newSelect);
 	}
 
 	render() {
@@ -25,14 +14,14 @@ class Sidebar extends React.Component {
 					<li><Link activeClassName="active" to="/">Home</Link></li>
 					{ this.props.loginStatus.loggedIn ? ( <li><Link activeClassName="active" to="/favorites">Favorites</Link></li> ) : null }
 					{ this.props.loginStatus.loggedIn ? ( <li><Link activeClassName="active" to="/subscriptions">Subscriptions</Link></li> ) : null }
-					<li onClick={this.state.newestIsSelected}><Link activeClassName="active" to="/newest">Newest</Link></li>
-					<li><Link activeClassName="active" to="/most-popular">Most Popular</Link></li>
-					<li><Link activeClassName="active" to="/music">Music</Link></li>
-					<li><Link activeClassName="active" to="/sports">Sports</Link></li>
-					<li><Link activeClassName="active" to="/gaming">Gaming</Link></li>
-					<li><Link activeClassName="active" to="/entertainment">Entertainment</Link></li>
-					<li><Link activeClassName="active" to="/news">News</Link></li>
-					<li><Link activeClassName="active" to="/travel">Travel</Link></li>
+					<li><Link activeClassName="active" to="/newest">Newest</Link></li>
+					<li><Link activeClassName="active" to="/categories/most-popular">Most Popular</Link></li>
+					<li><Link activeClassName="active" to="/categories/music">Music</Link></li>
+					<li><Link activeClassName="active" to="/categories/sports">Sports</Link></li>
+					<li><Link activeClassName="active" to="/categories/gaming">Gaming</Link></li>
+					<li><Link activeClassName="active" to="/categories/entertainment">Entertainment</Link></li>
+					<li><Link activeClassName="active" to="/categories/news">News</Link></li>
+					<li><Link activeClassName="active" to="/categories/travel">Travel</Link></li>
 				</ul>
 			</div>
 		);
