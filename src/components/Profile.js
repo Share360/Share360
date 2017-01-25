@@ -48,10 +48,9 @@ class Profile extends Component {
                         </div>
                         <hr />
                     </div>
-
                 );
-        });
-    }
+            });
+        }
 
     showProfile() {
         return (
@@ -124,7 +123,7 @@ class Profile extends Component {
 //
 // }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         users: state.users,
         videos: state.videos,
@@ -135,3 +134,4 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps)(Profile);
+
