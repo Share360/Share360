@@ -29164,6 +29164,10 @@
 	            {
 	                return Object.assign({}, state, action.payload);
 	            }
+	        case "LOGOUT_SUCCESS":
+	            {
+	                return Object.assign({}, { loggedIn: false });
+	            }
 	        default:
 	            {
 	                return state;
@@ -32661,6 +32665,11 @@
 				window.location = '/#/search?search=' + this.state.searchText;
 			}
 		}, {
+			key: 'handleLogout',
+			value: function handleLogout() {
+				this.props.dispatch(_loginActions2.default.logout());
+			}
+		}, {
 			key: 'renderNavItems',
 			value: function renderNavItems() {
 				if (this.props.loginStatus.loggedIn) {
@@ -32694,7 +32703,7 @@
 									null,
 									_react2.default.createElement(
 										_reactRouter.Link,
-										{ to: '/logout' },
+										{ className: 'clickable', onClick: this.handleLogout.bind(this) },
 										'Log Out'
 									)
 								)
@@ -32818,6 +32827,18 @@
 	                    dispatch({
 	                        type: "LOGIN_FAILURE"
 	                    });
+	                }
+	            });
+	        };
+	    },
+	    logout: function logout() {
+	        return function (dispatch) {
+	            _axios2.default.get('/api/logout').then(function (res) {
+	                if (res.data === true) {
+	                    dispatch({
+	                        type: "LOGOUT_SUCCESS"
+	                    });
+	                    window.location = "/#/";
 	                }
 	            });
 	        };
