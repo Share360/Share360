@@ -71,6 +71,12 @@ app.post('/api/login', (req, res) => {
 
     })(req, res);
 });
+
+app.get('/api/logout', (req, res) => {
+  req.logout();
+  res.status(200).send(true);
+});
+
 app.post('/api/signup', mainServCtrl.signUp);
 
 //stuff for validations
