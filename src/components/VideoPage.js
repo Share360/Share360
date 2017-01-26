@@ -110,8 +110,8 @@ class VideoPage extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                
-                <VideoPlayer videosource={this.props.videoDetails.url} />
+
+                    <VideoPlayer videosource={this.props.videoDetails.url} />
 
                 <div className="video-info">
                     <div className="row">
@@ -129,8 +129,9 @@ class VideoPage extends React.Component {
                 </div>
 
                 <br />
+                <br />
 
-                {this.state.showComments ? ( <div id="disqus_thread"></div> ) : ( <button className="btn btn-custom" onClick={this.showComments.bind(this)}>Load Comments</button> ) }
+                {this.state.showComments ? ( <div id="disqus_thread"></div> ) : ( <button className="btn btn-custom center-block" onClick={this.showComments.bind(this)}>Load Comments</button> ) }
 
                 
             </div>

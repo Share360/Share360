@@ -33667,9 +33667,10 @@
 	                    )
 	                ),
 	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('br', null),
 	                this.state.showComments ? _react2.default.createElement('div', { id: 'disqus_thread' }) : _react2.default.createElement(
 	                    'button',
-	                    { className: 'btn btn-custom', onClick: this.showComments.bind(this) },
+	                    { className: 'btn btn-custom center-block', onClick: this.showComments.bind(this) },
 	                    'Load Comments'
 	                )
 	            );
