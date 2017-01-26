@@ -11,7 +11,27 @@ class VideoPage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(videoActions.getVideoById(this.props.params.id));
+        this.getVideoDetails(this.props);
+        if (this.props.loginStatus.loggedIn) {
+            this.checkFavorite(this.props);
+        }
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        if (this.props.params.id !== nextProps.params.id) {
+            this.getVideoDetails(nextProps);
+            if (nextProps.loginStatus.loggedIn) {
+                this.checkFavorite(nextProps);
+            }
+        }
+    }
+
+    checkFavorite(passedProps) {
+        passedProps.dispatch(videoActions.checkFavorite(passedProps.params.id, passedProps.loginStatus.id));
+    }
+
+    getVideoDetails(passedProps) {
+        passedProps.dispatch(videoActions.getVideoById(passedProps.params.id));
     }
 
     addFavorite() {
@@ -19,6 +39,30 @@ class VideoPage extends React.Component {
             alert('Please log in or sign up to add this video to your favorites.')
         } else {
             this.props.dispatch(videoActions.addFavorite(this.props.params.id, this.props.loginStatus.id));
+        }
+    }
+
+    removeFavorite() {
+        if (!this.props.loginStatus.loggedIn) {
+            alert('Please log in or sign up to edit favorites.')
+        } else {
+            this.props.dispatch(videoActions.removeFavorite(this.props.params.id, this.props.loginStatus.id));
+        }
+    }
+
+    renderButton() {
+        if (!this.props.videoDetails.inFavorites) {
+            return (
+                <div className="col-xs-2">
+                    <button id="favButton" onClick={this.addFavorite.bind(this)} className="btn btn-custom">Add Favorite</button>
+                </div>
+            );
+        } else {
+            return (
+                <div className="col-xs-2">
+                    <button id="favButton" onClick={this.removeFavorite.bind(this)} className="btn btn-custom">Remove Favorite</button>
+                </div>
+            );
         }
     }
 
@@ -68,9 +112,7 @@ class VideoPage extends React.Component {
                             {this.renderCategories()}
                         </div>
                         
-                        <div className="col-xs-2">
-                            <button onClick={this.addFavorite.bind(this)} className="btn btn-custom">Favorite</button>
-                        </div>
+                        {this.renderButton()}
                         
                     </div>
                 </div>

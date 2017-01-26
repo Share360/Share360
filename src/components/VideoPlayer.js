@@ -15,7 +15,9 @@ export default class VideoPlayer extends React.Component {
                     <a-camera position="0 0 0">
                         <a-cursor id="cursor" color="#1CC1D7"></a-cursor>
                     </a-camera>
+                    {/*
                     <a-entity video-controls="src:#video; size:2.0; barColor:#1CC1D7; textColor: white; infoTextTop:Click button or press spacebar to play/pause.; infoTextBottom:Double click outside of controls to hide.; size:2.0"></a-entity>
+                    */}
                 </a-scene>        
         );
     }
