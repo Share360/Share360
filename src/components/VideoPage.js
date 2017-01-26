@@ -12,16 +12,22 @@ class VideoPage extends React.Component {
 
     componentDidMount() {
         this.getVideoDetails(this.props);
+        if (this.props.loginStatus.loggedIn) {
+            this.checkFavorite(this.props);
+        }
     }
     
     componentWillReceiveProps(nextProps) {
         if (this.props.params.id !== nextProps.params.id) {
             this.getVideoDetails(nextProps);
+            if (nextProps.loginStatus.loggedIn) {
+                this.checkFavorite(nextProps);
+            }
         }
     }
 
-    checkFavorite() {
-        this.props.dispatch(videoActions.checkFavorite());
+    checkFavorite(passedProps) {
+        passedProps.dispatch(videoActions.checkFavorite(passedProps.params.id, passedProps.loginStatus.id));
     }
 
     getVideoDetails(passedProps) {
@@ -36,17 +42,25 @@ class VideoPage extends React.Component {
         }
     }
 
+    removeFavorite() {
+        if (!this.props.loginStatus.loggedIn) {
+            alert('Please log in or sign up to edit favorites.')
+        } else {
+            this.props.dispatch(videoActions.removeFavorite(this.props.params.id, this.props.loginStatus.id));
+        }
+    }
+
     renderButton() {
-        if (this.props.loginStatus.loggedIn) {
+        if (!this.props.videoDetails.inFavorites) {
             return (
                 <div className="col-xs-2">
-                    <button onClick={this.addFavorite.bind(this)} className="btn btn-custom">Favorite</button>
+                    <button id="favButton" onClick={this.addFavorite.bind(this)} className="btn btn-custom">Add Favorite</button>
                 </div>
             );
         } else {
             return (
                 <div className="col-xs-2">
-                    <button className="btn btn-custom" disabled>In Favorites</button>
+                    <button id="favButton" onClick={this.removeFavorite.bind(this)} className="btn btn-custom">Remove Favorite</button>
                 </div>
             );
         }
