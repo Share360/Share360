@@ -37,9 +37,9 @@ jspm_packages
 .node_repl_history
 
 .DS_Store
+.idea
 bundle.js
 styles.css
-.idea
 assets
 .env
 AWUtil.js
