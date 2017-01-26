@@ -119,6 +119,10 @@ app.get('/api/getfavorites/:id', mainServCtrl.getFavoritesById);
 
 app.post('/api/addfavorite', mainServCtrl.addFavorite);
 
+app.delete('/api/removefavorite', mainServCtrl.removeFavorite);
+
+app.get('/api/checkfavorite', mainServCtrl.checkFavorite);
+
 app.get('/api/checklogin', (req, res) => {
   if (req.user) {
     res.status(200).send({loggedIn: true, username: req.user[0].username, id: req.user[0].id});

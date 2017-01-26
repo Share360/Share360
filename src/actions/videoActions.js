@@ -19,5 +19,33 @@ module.exports = {
 				});
 			});
 		}
+	},
+	removeFavorite: (videoID, userID) => {
+		return function(dispatch) {
+			axios.delete(`/api/removefavorite?videoid=${videoID}&userid=${userID}`).then((res) => {
+				dispatch({
+					type: "REMOVE_FAVORITE",
+				});
+			});
+		}
+	},
+	checkFavorite: (videoID, userID) => {
+		return function(dispatch) {
+			console.log('checking favorite');
+			axios.get(`/api/checkfavorite?videoid=${videoID}&userid=${userID}`).then((res) => {
+				console.log(res);
+				if (Number(res.data[0].num_occurences) === 0) {
+					dispatch({
+						type: "SET_FAVORITE",
+						payload: false
+					});
+				} else if (Number(res.data[0].num_occurences) > 0) {
+					dispatch({
+						type: "SET_FAVORITE",
+						payload: true
+					});
+				}
+			});
+		}
 	}
 }
