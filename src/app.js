@@ -17,6 +17,7 @@ import VideoPage from './components/VideoPage';
 import NotFound from './components/NotFound';
 import SearchPage from './components/Search/SearchPage';
 import FavoritesPage from './components/FavoritesPage';
+import Newest from './components/Newest';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
@@ -35,7 +36,7 @@ class App extends React.Component {
 					<Route path='/video/:id' component={VideoPage} />
 					<Route path='/search' component={SearchPage} />
 					<Route path='/favorites' component={FavoritesPage} />
-					<Route path='/newest' component={Categories} />
+					<Route path='/newest' component={Newest} />
 					<Route path='/most-popular' component={Categories} />
 					<Route path='/categories/:id' component={Categories} />
 					<Route path='*' component={NotFound} />
