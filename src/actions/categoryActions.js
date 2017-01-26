@@ -7,7 +7,6 @@ module.exports = {
                 selectedCategory
             })
                 .then( ( response ) => {
-                    console.log(response);
                     if( response.status === 200 ) {
                         dispatch({
                             type: "GET_VIDEOS_BY_CATEGORIES_SUCCESS",
