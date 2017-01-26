@@ -38,8 +38,6 @@ jspm_packages
 
 .DS_Store
 .idea
-bundle.js
-styles.css
 assets
 .env
 AWUtil.js

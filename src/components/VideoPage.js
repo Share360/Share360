@@ -8,6 +8,9 @@ import VideoPlayer from './VideoPlayer';
 class VideoPage extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showComments: false
+        }
     }
 
     componentDidMount() {
@@ -23,6 +26,9 @@ class VideoPage extends React.Component {
             if (nextProps.loginStatus.loggedIn) {
                 this.checkFavorite(nextProps);
             }
+            this.setState({
+                showComments: false
+            });
         }
     }
 
@@ -85,15 +91,20 @@ class VideoPage extends React.Component {
         );
     }
 
-    renderDisqus() {
+    showComments() {
         var disqus_config = function () {
-            this.page.url = "share-360.herokuapp.com/#/" + this.props.params.id;
+            this.page.url = "share-360.herokuapp.com/#/video/" + this.props.params.id;
             this.page.identifier = this.props.params.id;
         };
         var d = document, s = d.createElement('script');
         s.src = '//share-360.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
+        this.setState(
+            {
+                showComments: true
+            }
+        );
     }
 
     render() {
@@ -119,8 +130,8 @@ class VideoPage extends React.Component {
 
                 <br />
 
-                <div id="disqus_thread"></div>
-                {this.renderDisqus.bind(this)()}
+                {this.state.showComments ? ( <div id="disqus_thread"></div> ) : ( <button className="btn btn-custom" onClick={this.showComments.bind(this)}>Load Comments</button> ) }
+
                 
             </div>
         );
