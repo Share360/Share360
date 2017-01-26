@@ -123,6 +123,10 @@
 
 	var _FavoritesPage2 = _interopRequireDefault(_FavoritesPage);
 
+	var _Newest = __webpack_require__(335);
+
+	var _Newest2 = _interopRequireDefault(_Newest);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -161,7 +165,7 @@
 						_react2.default.createElement(_reactRouter.Route, { path: '/video/:id', component: _VideoPage2.default }),
 						_react2.default.createElement(_reactRouter.Route, { path: '/search', component: _SearchPage2.default }),
 						_react2.default.createElement(_reactRouter.Route, { path: '/favorites', component: _FavoritesPage2.default }),
-						_react2.default.createElement(_reactRouter.Route, { path: '/newest', component: _Categories2.default }),
+						_react2.default.createElement(_reactRouter.Route, { path: '/newest', component: _Newest2.default }),
 						_react2.default.createElement(_reactRouter.Route, { path: '/most-popular', component: _Categories2.default }),
 						_react2.default.createElement(_reactRouter.Route, { path: '/categories/:id', component: _Categories2.default }),
 						_react2.default.createElement(_reactRouter.Route, { path: '*', component: _NotFound2.default })
@@ -34085,6 +34089,7 @@
 	        key: 'renderVideos',
 	        value: function renderVideos() {
 	            return this.props.categoryVideos.videos.map(function (video, index) {
+	                console.log(video);
 	                return _react2.default.createElement(
 	                    'div',
 	                    {
@@ -34204,6 +34209,81 @@
 	    }
 
 	};
+
+/***/ },
+/* 335 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(255);
+
+	var _redux = __webpack_require__(234);
+
+	var _reactRouter = __webpack_require__(179);
+
+	var _Sidebar = __webpack_require__(314);
+
+	var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Newest = function (_Component) {
+	  _inherits(Newest, _Component);
+
+	  function Newest() {
+	    _classCallCheck(this, Newest);
+
+	    return _possibleConstructorReturn(this, (Newest.__proto__ || Object.getPrototypeOf(Newest)).apply(this, arguments));
+	  }
+
+	  _createClass(Newest, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container-fluid' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-sm-12 col-md-12' },
+	            _react2.default.createElement(
+	              'h1',
+	              { className: 'text-capitalize bottom-line' },
+	              'Newest'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Newest;
+	}(_react.Component);
+
+	function mapStateToProps(state) {
+	  return {};
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Newest);
 
 /***/ }
 /******/ ]);
