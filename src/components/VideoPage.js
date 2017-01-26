@@ -97,7 +97,7 @@ class VideoPage extends React.Component {
             this.page.identifier = this.props.params.id;
         };
         var d = document, s = d.createElement('script');
-        s.src = '//share-360.disqus.com/embed.js';
+        s.src = '//share360-1.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         this.setState(
