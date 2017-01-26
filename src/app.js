@@ -17,6 +17,7 @@ import VideoPage from './components/VideoPage';
 import NotFound from './components/NotFound';
 import SearchPage from './components/Search/SearchPage';
 import FavoritesPage from './components/FavoritesPage';
+import MostPopular from './components/MostPopular';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
@@ -28,16 +29,16 @@ class App extends React.Component {
 					<IndexRoute component={LandingPage} />
 					<Route path="/categories" component={Categories} />
 					<Route path='/featured' component={Featured} />
-          <Route path='/profile' component={Profile} />
+					<Route path='/profile' component={Profile} />
 					<Route path="/login" component={LoginPage} />
 					<Route path="/sign-up" component={SignUp} />
 					<Route path='/profile/:id' component={Profile} />
 					<Route path='/video/:id' component={VideoPage} />
 					<Route path='/search' component={SearchPage} />
 					<Route path='/favorites' component={FavoritesPage} />
-					<Route path='/newest' component={Categories} />
-					<Route path='/most-popular' component={Categories} />
-					<Route path='/categories/:id' component={Categories} />
+					<Route path='/newest' component={ Categories } />
+					<Route path='/mostpopular' component={ MostPopular } />
+					<Route path='/categories/:id' component={ Categories } />
 					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>

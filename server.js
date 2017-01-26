@@ -138,6 +138,6 @@ app.get('/api/getProfile/:id', mainServCtrl.getProfile);
 
 app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
 
-
 app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
 
+app.get('./api/getvideosbymostlikes', mainServCtrl.getVideosByMostLikes);

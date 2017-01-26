@@ -101,5 +101,14 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
+    },
+    getVideosByMostLikes: ( req, res ) => {
+        db.getVideosByMostLikes( [], ( err, response ) => {
+            if( err ) {
+                res.send( err );
+            } else {
+                res.status( 200 ).send( response );
+            }
+        });
     }
 };
