@@ -147,3 +147,4 @@ app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
 
 app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
 
+app.get('/api/getvideos', mainServCtrl.getVideos);

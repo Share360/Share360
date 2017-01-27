@@ -19,6 +19,7 @@ import SearchPage from './components/Search/SearchPage';
 import FavoritesPage from './components/FavoritesPage';
 import Newest from './components/Newest';
 
+
 const store = createStore(allReducers, applyMiddleware(thunk));
 
 class App extends React.Component {
@@ -29,7 +30,6 @@ class App extends React.Component {
 					<IndexRoute component={LandingPage} />
 					<Route path="/categories" component={Categories} />
 					<Route path='/featured' component={Featured} />
-          <Route path='/profile' component={Profile} />
 					<Route path="/login" component={LoginPage} />
 					<Route path="/sign-up" component={SignUp} />
 					<Route path='/profile/:id' component={Profile} />

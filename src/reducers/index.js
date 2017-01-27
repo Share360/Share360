@@ -21,7 +21,6 @@ const allReducers = combineReducers({
     editProfile: editProfileReducer,
     searchResults: searchReducer,
     userProfile: profileReducer,
-    searchResults: searchReducer,
     categoryVideos: categoryReducer
 
 });
