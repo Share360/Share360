@@ -9,6 +9,7 @@ module.exports = {
             })
                 .then((response) => {
                     if(response.data.success ) {
+                        window.location = '/#/';
                         dispatch({
                             type: "LOGIN_SUCCESS",
                             payload: { username: response.data.user, id: response.data.id }
@@ -19,7 +20,6 @@ module.exports = {
                         })
 
                     }
-
             })
         }
     },

@@ -25,8 +25,9 @@ module.exports = {
         db.signUp( [ req.body.fname, req.body.lname, req.body.email, req.body.username, req.body.password, req.body.birthday ], (err, response) => {
             if (err) {
                 console.log(err);
+                res.send( "FAILURE" );
             } else {
-                res.status(200).send(response);
+                res.status(200).send( "SUCCESS" );
             }
         } )
     },
@@ -102,8 +103,8 @@ module.exports = {
             }
         });
     },
-    getVideosByMostLikes: ( req, res ) => {
-        db.getVideosByMostLikes( [], ( err, response ) => {
+    mostpopularvideos: ( req, res ) => {
+        db.mostpopularvideos( [], ( err, response ) => {
             if( err ) {
                 res.send( err );
             } else {

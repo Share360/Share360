@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 module.exports = {
-  getVideosByLikesActions: () => {
+    mostPopularActions: () => {
       return ( dispatch ) => {
-          axios.get('/api/getvideosbymostlikes')
+          axios.get('/api/mostpopularvideos')
               .then( ( response ) => {
                   if( response.status === 200 ) {
                       dispatch({

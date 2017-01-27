@@ -2,21 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { getVideosByLikesActions } from '../actions/getVideosByLikesActions';
+import { mostPopularActions } from '../actions/mostPopularActions';
 
 
 class MostPopular extends Component {
 
-    getVideosByLikes() {
-        this.props.dispatch( getVideosByLikesActions() );
+    getMostPopularVideos() {
+        this.props.dispatch( mostPopularActions() );
     }
 
     componentDidMount() {
-        this.getVideosByLikes();
+        this.getMostPopularVideos();
+    }
+
+    componentWillReceiveProps( nextprops ) {
+        if( this.props.mostPopVideos.mostPopVideos != nextprops.mostPopVideos.mostPopVideos ) {
+            this.getMostPopularVideos();
+        }
     }
 
     renderVideos() {
-        return this.props.categoryVideos.videos.map( ( video, index ) => {
+        return this.props.mostPopVideos.mostPopVideos.map( ( video, index ) => {
             return (
                 <div
                     key={ index }
@@ -34,7 +40,11 @@ class MostPopular extends Component {
                             <Link to={"/video/" + video.id}>{video.title}</Link>
                         </h3>
                         <hr/>
-                        <Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
+                        {/*query doens't return username yet. yeah, I'm working on that*/}
+                        {/*<Link to={"/profile/" + video.uploader_id}>{video.username}</Link>*/}
+
+                        <div>Favorites: { video.most_popular }</div>
+
                     </div>
                 </div>
             );
@@ -47,10 +57,11 @@ class MostPopular extends Component {
           <div>
               <div>
                   <h1>Most Popular</h1>
+                  <hr/>
               </div>
               <div className="container-fluid">
                   <div className="row">
-                      {/*{ this.renderVideos() }*/}
+                      { this.renderVideos() }
                   </div>
               </div>
           </div>
@@ -62,7 +73,8 @@ class MostPopular extends Component {
 
 function mapStateToProps( state ) {
     return {
-        mostPopVideos: state.mostPopVideos
+        mostPopVideos: state.mostPopVideos,
+        videos: state.videos
     }
 }
 
