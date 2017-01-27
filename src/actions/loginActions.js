@@ -9,6 +9,7 @@ module.exports = {
             })
                 .then((response) => {
                     if(response.data.success ) {
+                        window.location = '/#/';
                         dispatch({
                             type: "LOGIN_SUCCESS",
                             payload: { username: response.data.user, id: response.data.id }
@@ -19,8 +20,19 @@ module.exports = {
                         })
 
                     }
-
             })
+        }
+    },
+    logout: () => {
+        return (dispatch) => {
+            axios.get('/api/logout').then((res) => {
+                if(res.data === true) {
+                    dispatch({
+                        type: "LOGOUT_SUCCESS"
+                    });
+                    window.location = "/#/";
+                }
+            });
         }
     },
     checkLoginStatus: () => {

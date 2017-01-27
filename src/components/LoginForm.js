@@ -30,7 +30,7 @@ class LoginForm extends Component {
         return (
 
                     <form className="form-signin" onSubmit={this.onSubmit}>
-                        <h2 className="form-signin-heading ">Please login</h2>
+                        <h2 className="form-signin-heading ">Log In</h2>
                         <div className="form-group">
                             <input
                                 onChange={this.onChange}
@@ -60,7 +60,7 @@ class LoginForm extends Component {
                         <button className="btn btn-lg btn-custom btn-block" type="submit" disabled={this.state.isLoading}>Login</button>
 
                         <div className="login-create-account-link">
-                            <IndexLink activeClassName="navlink-active" to="/sign-up">Dont have an account? Click here to sign up!</IndexLink>
+                            <IndexLink activeClassName="navlink-active" to="/sign-up">Don't have an account? Click here to sign up!</IndexLink>
                         </div>
                     </form>
 

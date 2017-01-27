@@ -14,6 +14,8 @@ module.exports = {
             .then( (response ) => {
                 console.log(response);
                 if( response.data === "SUCCESS") {
+                    window.location = '/#/login';
+
                     dispatch({
                         type: "SIGNUP_SUCCESS"
                     })
