@@ -18,6 +18,7 @@ class VideoPage extends React.Component {
         if (this.props.loginStatus.loggedIn) {
             this.checkFavorite(this.props);
         }
+        this.showComments(this.props);
     }
     
     componentWillReceiveProps(nextProps) {
@@ -30,6 +31,7 @@ class VideoPage extends React.Component {
                 showComments: false
             });
         }
+        this.showComments(nextProps);
     }
 
     checkFavorite(passedProps) {
@@ -91,10 +93,10 @@ class VideoPage extends React.Component {
         );
     }
 
-    showComments() {
+    showComments(passedProps) {
         var disqus_config = function () {
-            this.page.url = "share-360.herokuapp.com/#/video/" + this.props.params.id;
-            this.page.identifier = this.props.params.id;
+            this.page.url = "share-360.herokuapp.com/#/video/" + passedProps.params.id;
+            this.page.identifier = passedProps.params.id;
         };
         var d = document, s = d.createElement('script');
         s.src = '//share360-1.disqus.com/embed.js';
