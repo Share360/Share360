@@ -23,6 +23,18 @@ module.exports = {
             })
         }
     },
+    logout: () => {
+        return (dispatch) => {
+            axios.get('/api/logout').then((res) => {
+                if(res.data === true) {
+                    dispatch({
+                        type: "LOGOUT_SUCCESS"
+                    });
+                    window.location = "/#/";
+                }
+            });
+        }
+    },
     checkLoginStatus: () => {
         return (dispatch) => {
             axios.get('/api/checklogin').then((response) => {

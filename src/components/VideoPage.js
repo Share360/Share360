@@ -8,10 +8,36 @@ import VideoPlayer from './VideoPlayer';
 class VideoPage extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showComments: false
+        }
     }
 
     componentDidMount() {
-        this.props.dispatch(videoActions.getVideoById(this.props.params.id));
+        this.getVideoDetails(this.props);
+        if (this.props.loginStatus.loggedIn) {
+            this.checkFavorite(this.props);
+        }
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        if (this.props.params.id !== nextProps.params.id) {
+            this.getVideoDetails(nextProps);
+            if (nextProps.loginStatus.loggedIn) {
+                this.checkFavorite(nextProps);
+            }
+            this.setState({
+                showComments: false
+            });
+        }
+    }
+
+    checkFavorite(passedProps) {
+        passedProps.dispatch(videoActions.checkFavorite(passedProps.params.id, passedProps.loginStatus.id));
+    }
+
+    getVideoDetails(passedProps) {
+        passedProps.dispatch(videoActions.getVideoById(passedProps.params.id));
     }
 
     addFavorite() {
@@ -19,6 +45,30 @@ class VideoPage extends React.Component {
             alert('Please log in or sign up to add this video to your favorites.')
         } else {
             this.props.dispatch(videoActions.addFavorite(this.props.params.id, this.props.loginStatus.id));
+        }
+    }
+
+    removeFavorite() {
+        if (!this.props.loginStatus.loggedIn) {
+            alert('Please log in or sign up to edit favorites.')
+        } else {
+            this.props.dispatch(videoActions.removeFavorite(this.props.params.id, this.props.loginStatus.id));
+        }
+    }
+
+    renderButton() {
+        if (!this.props.videoDetails.inFavorites) {
+            return (
+                <div className="col-xs-2">
+                    <button id="favButton" onClick={this.addFavorite.bind(this)} className="btn btn-custom">Add Favorite</button>
+                </div>
+            );
+        } else {
+            return (
+                <div className="col-xs-2">
+                    <button id="favButton" onClick={this.removeFavorite.bind(this)} className="btn btn-custom">Remove Favorite</button>
+                </div>
+            );
         }
     }
 
@@ -41,22 +91,27 @@ class VideoPage extends React.Component {
         );
     }
 
-    renderDisqus() {
+    showComments() {
         var disqus_config = function () {
-            this.page.url = "share-360.herokuapp.com/#/" + this.props.params.id;
+            this.page.url = "share-360.herokuapp.com/#/video/" + this.props.params.id;
             this.page.identifier = this.props.params.id;
         };
         var d = document, s = d.createElement('script');
         s.src = '//share-360.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
+        this.setState(
+            {
+                showComments: true
+            }
+        );
     }
 
     render() {
         return (
             <div className="container-fluid">
-                
-                <VideoPlayer videosource={this.props.videoDetails.url} />
+
+                    <VideoPlayer videosource={this.props.videoDetails.url} />
 
                 <div className="video-info">
                     <div className="row">
@@ -68,17 +123,16 @@ class VideoPage extends React.Component {
                             {this.renderCategories()}
                         </div>
                         
-                        <div className="col-xs-2">
-                            <button onClick={this.addFavorite.bind(this)} className="btn btn-custom">Favorite</button>
-                        </div>
+                        {this.renderButton()}
                         
                     </div>
                 </div>
 
                 <br />
+                <br />
 
-                <div id="disqus_thread"></div>
-                {this.renderDisqus.bind(this)()}
+                {this.state.showComments ? ( <div id="disqus_thread"></div> ) : ( <button className="btn btn-custom center-block" onClick={this.showComments.bind(this)}>Load Comments</button> ) }
+
                 
             </div>
         );

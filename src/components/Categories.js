@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 
 import SideBar from './Container/Sidebar';
 import { getVideosByCategoryActions } from  '../actions/categoryActions';
@@ -33,24 +34,30 @@ class Categories extends Component {
     }
 
     renderVideos() {
-        return this.props.categoryVideos.videos.map( ( video ) => {
+        return this.props.categoryVideos.videos.map( ( video, index ) => {
+          console.log(video);
             return (
-                <div key={ video.id }
-                     className="col-sm-3 col-md-3 col-md-3 category-list">
+                <div
+                  key={ index }
+                  className="col-sm-4 col-md-4 col-md-4 category-list">
                     <div className="thumbnail">
                         <img
-                            src={ video.thumbnail }
+                            className="clickable"
+                            onClick={ () => {window.location = "/#/video/" + video.id} }
+                            src={ video.thumbnail_url }
                             alt={ video.title }
                         />
                     </div>
                     <div className="videoContentBox">
-                        <h3>{ video.title }</h3>
+                        <h3>
+                          <Link to={"/video/" + video.id}>{video.title}</Link>
+                        </h3>
                         <hr/>
-                        Username: { video.user_id }
+                        <Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
                     </div>
                 </div>
-            )
-        })
+            );
+        });
     }
 
     render() {
@@ -63,7 +70,6 @@ class Categories extends Component {
                 </div>
                 <div className="row">
                     { this.renderVideos() }
-
                 </div>
             </div>
         );
@@ -80,6 +86,8 @@ function mapStateToProps(state) {
   };
 }
 
-
+function mapDispatchToProps( dispatch ) {
+  return bindActionCreators({ getVideosByCategoryActions: getVideosByCategoryActions }, dispatch)
+}
 
 export default connect( mapStateToProps )( Categories );

@@ -57,6 +57,15 @@ module.exports = {
             }
         });
     },
+    removeFavorite: (req, res) => {
+        db.removeFavorite([req.query.userid, req.query.videoid], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
     getProfile: (req, res) => {
         db.getProfile([req.params.id], (err, response) => {
             if (err) {
@@ -84,8 +93,9 @@ module.exports = {
             }
         });
     },
-    getVideos: (req, res) => {
-        db.getVideos( { req }, (err, response) => {
+    checkFavorite: (req, res) => {
+        db.checkFavorite([req.query.videoid, req.query.userid], (err, response) => {
+
             if (err) {
                 res.send(err);
             } else {

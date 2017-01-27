@@ -71,6 +71,12 @@ app.post('/api/login', (req, res) => {
 
     })(req, res);
 });
+
+app.get('/api/logout', (req, res) => {
+  req.logout();
+  res.status(200).send(true);
+});
+
 app.post('/api/signup', mainServCtrl.signUp);
 
 //stuff for validations
@@ -118,6 +124,10 @@ app.get('/api/search/:searchterm', mainServCtrl.getSearchResults);
 app.get('/api/getfavorites/:id', mainServCtrl.getFavoritesById);
 
 app.post('/api/addfavorite', mainServCtrl.addFavorite);
+
+app.delete('/api/removefavorite', mainServCtrl.removeFavorite);
+
+app.get('/api/checkfavorite', mainServCtrl.checkFavorite);
 
 app.get('/api/checklogin', (req, res) => {
   if (req.user) {
