@@ -137,15 +137,14 @@ app.get('/api/checklogin', (req, res) => {
   }
 });
 
+app.get('/api/getRecentVideos', mainServCtrl.getRecentVideos);
+
+app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
+
+app.get('/api/mostpopularvideos', mainServCtrl.mostpopularvideos);
 
 //profile endpoints
 
 app.get('/api/getProfile/:id', mainServCtrl.getProfile);
 
 app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
-
-app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
-
-app.get('/api/mostpopularvideos', mainServCtrl.mostpopularvideos);
-
-app.get('/api/getvideos', mainServCtrl.getVideos);
