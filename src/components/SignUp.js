@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, router } from 'react-router';
 
 import signUpActions from '../actions/signUpActions';
+import '../styles/signUpStyles.scss';
 
 
 
@@ -52,10 +53,10 @@ class SignUp extends Component {
         e.preventDefault();
 
         if (this.state.password === this.state.passwordConfirm) {
-
             this.props.dispatch( signUpActions.signUp ( this.state.fname, this.state.lname, this.state.email, this.state.username, this.state.password, this.state.day, this.state.month, this.state.year ) );
+
         } else {
-            alert("sorry, your passwords don't match, try again!");
+            alert("Your passwords don't match, try again.");
         }
     }
 
@@ -84,12 +85,17 @@ class SignUp extends Component {
         })
     }
 
+    test() {
+        if( this.props.signUpStatus.usernameAlreadyExists ) {
+            alert(' this was alerted, means that usernameAlreadyExists....is set to true')
+        }
+    }
 
     render() {
 
         return (
-            <div className="container-fluid content login-wrapper">
-                <div className="login-container col-xs-6  col-sm-6  col-md-4  col-lg-4  vcenter">
+            <div className="container-fluid content">
+                <div className="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
                     <form className="form-signin" onSubmit={ this.onSubmit }>
                         <h2 className="form-signin-heading ">Create an account here!</h2>
                         <textFieldGroup className="form-group">
@@ -171,6 +177,7 @@ class SignUp extends Component {
 
                         <button className="btn btn-lg btn-custom btn-block" type="submit" disabled={this.state.isLoading}>Create Account</button>
                     </form>
+                    <div className='alert alert-danger username-exists' hidden={ !this.props.signUpStatus.usernameAlreadyExists }> <p>That username already exists</p> </div>
                 </div>
             </div>
         );
@@ -179,7 +186,9 @@ class SignUp extends Component {
 
 function mapStateToProps( state ) {
     return {
-        dates: state.dates
+        dates: state.dates,
+        loginStatus: state.loginStatus,
+        signUpStatus: state.signUpStatus
 
     }
 }
