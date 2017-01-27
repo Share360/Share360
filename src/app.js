@@ -38,7 +38,7 @@ class App extends React.Component {
 					<Route path='/video/:id' component={VideoPage} />
 					<Route path='/search' component={SearchPage} />
 					<Route path='/favorites' component={FavoritesPage} />
-					<Route path='/newest' component={ Categories } />
+					<Route path='/newest' component={Newest} />
 					<Route path='/mostpopular' component={ MostPopular } />
 					<Route path='/categories/:id' component={ Categories } />
 

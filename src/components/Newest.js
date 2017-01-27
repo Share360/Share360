@@ -15,14 +15,9 @@ class Newest extends Component {
   componentDidMount () {
     this.getAllVideos();
   }
-// 2017-01-26T20:48:30.629Z
-  // changeTimeFormat(time) {
-  //
-  // }
 
   renderVideos() {
     return this.props.videos.videos.map( (video, index ) => {
-      console.log(video)
       return (
         <div
           key={ index }
