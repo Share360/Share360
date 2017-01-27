@@ -23,7 +23,7 @@ class LoginForm extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        this.props.dispatch( loginActions.login ( this.state.username, this.state.password))
+        this.props.dispatch( loginActions.login ( this.state.username.toLowerCase(), this.state.password))
     }
 
     render(){

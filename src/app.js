@@ -19,6 +19,7 @@ import SearchPage from './components/Search/SearchPage';
 import FavoritesPage from './components/FavoritesPage';
 import MostPopular from './components/MostPopular';
 import Newest from './components/Newest';
+import Subscriptions from './components/Subscriptions';
 
 
 const store = createStore(allReducers, applyMiddleware(thunk));
@@ -29,18 +30,19 @@ class App extends React.Component {
 			<Router history={hashHistory}>
 				<Route path='/' component={Container}>
 					<IndexRoute component={LandingPage} />
-					<Route path='/categories' component={Categories} />
-					<Route path='/featured' component={Featured} />
-					<Route path='/profile' component={Profile} />
-					<Route path='/login' component={LoginPage} />
-					<Route path='/sign-up' component={SignUp} />
-					<Route path='/profile/:id' component={Profile} />
-					<Route path='/video/:id' component={VideoPage} />
-					<Route path='/search' component={SearchPage} />
-					<Route path='/favorites' component={FavoritesPage} />
-					<Route path='/newest' component={Newest} />
+					<Route path='/categories' component={ Categories } />
+					<Route path='/featured' component={ Featured } />
+					<Route path='/profile' component={ Profile } />
+					<Route path='/login' component={ LoginPage } />
+					<Route path='/sign-up' component={ SignUp } />
+					<Route path='/profile/:id' component={ Profile } />
+					<Route path='/video/:id' component={ VideoPage } />
+					<Route path='/search' component={ SearchPage } />
+					<Route path='/favorites' component={ FavoritesPage } />
+					<Route path='/newest' component={ Newest } />
 					<Route path='/mostpopular' component={ MostPopular } />
 					<Route path='/categories/:id' component={ Categories } />
+					<Route path="/subscriptions" component={ Subscriptions } />
 
 					<Route path='*' component={NotFound} />
 				</Route>
@@ -50,6 +52,6 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-	<Provider store={store}>
+	<Provider store={ store }>
 		<App />
 	</Provider>, document.getElementById('root'));
