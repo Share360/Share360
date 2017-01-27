@@ -7,17 +7,6 @@ import SideBar from './Container/Sidebar';
 import { getVideosByCategoryActions } from  '../actions/categoryActions';
 
 class Categories extends Component {
-    // constructor (props) {
-    //   super(props);
-    //
-    //   // this.renderVideosByCategory = this.renderVideosByCategory.bind( this );
-    // }
-
-    // componentWillReceiveProps( nextProps ) {
-    //     this.setState({
-    //         categoryVideos: nextProps.categoryVideos
-    //     })
-    // }
 
     getVideosByCategory( selectedCategory ) {
         this.props.dispatch( getVideosByCategoryActions(selectedCategory) );
@@ -76,18 +65,14 @@ class Categories extends Component {
     }
 }
 
-// function mapDispatchToProps( dispatch ) {
-//     return bindActionCreators({ getVideosByCategoryActions: getVideosByCategoryActions }, dispatch)
-// }
-
 function mapStateToProps(state) {
   return {
     categoryVideos: state.categoryVideos
   };
 }
 
-function mapDispatchToProps( dispatch ) {
-  return bindActionCreators({ getVideosByCategoryActions: getVideosByCategoryActions }, dispatch)
-}
+// function mapDispatchToProps( dispatch ) {
+//   return bindActionCreators({ getVideosByCategoryActions: getVideosByCategoryActions }, dispatch)
+// }
 
 export default connect( mapStateToProps )( Categories );

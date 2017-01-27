@@ -8,6 +8,7 @@ import editProfileReducer from './edit-profile-reducer';
 import searchReducer from './searchReducer';
 import profileReducer from './profileReducer';
 import categoryReducer from './categoryReducer';
+import recentVideoReducer from './recentVideosReducer';
 
 
 
@@ -22,8 +23,8 @@ const allReducers = combineReducers({
     searchResults: searchReducer,
     userProfile: profileReducer,
     searchResults: searchReducer,
-    categoryVideos: categoryReducer
-
+    categoryVideos: categoryReducer,
+    allRecentVideos: recentVideoReducer
 });
 
 export default allReducers;

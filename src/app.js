@@ -27,11 +27,11 @@ class App extends React.Component {
 			<Router history={hashHistory}>
 				<Route path='/' component={Container}>
 					<IndexRoute component={LandingPage} />
-					<Route path="/categories" component={Categories} />
+					<Route path='/categories' component={Categories} />
 					<Route path='/featured' component={Featured} />
           <Route path='/profile' component={Profile} />
-					<Route path="/login" component={LoginPage} />
-					<Route path="/sign-up" component={SignUp} />
+					<Route path='/login' component={LoginPage} />
+					<Route path='/sign-up' component={SignUp} />
 					<Route path='/profile/:id' component={Profile} />
 					<Route path='/video/:id' component={VideoPage} />
 					<Route path='/search' component={SearchPage} />

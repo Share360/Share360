@@ -101,5 +101,14 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
+    },
+    getRecentVideos: (req, res) => {
+        db.getRecentVideos( (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
     }
 };
