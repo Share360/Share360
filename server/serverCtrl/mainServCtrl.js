@@ -83,5 +83,14 @@ module.exports = {
                 res.status( 200 ).send( response );
             }
         });
+    },
+    getVideos: (req, res) => {
+        db.getVideos( { req }, (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
     }
 };

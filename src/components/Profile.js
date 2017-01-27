@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { toggleEdit, toggleProfile } from '../actions/editModeActions';
-import profileActions from '../actions/profileActions';
-
-
+import { getProfileById } from '../actions/profileActions';
+import VideoModal from './VideoModal';
 import Modal from './Modal';
 
 class Profile extends Component {
     componentDidMount() {
-        this.props.dispatch(profileActions.getProfileById(this.props.params.id));
+        this.props.getProfileById(this.props.params.id);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.params.id !== this.props.params.id) {
-            nextProps.dispatch(profileActions.getProfileById(nextProps.params.id));
+            nextProps.getProfileById(nextProps.params.id);
         }
     }
 
@@ -53,6 +52,7 @@ class Profile extends Component {
         }
 
     showProfile() {
+        console.log(this.props.loginStatus)
         return (
             <div className="container-fluid prof-wrapper">
                 <div className="row">
@@ -66,11 +66,12 @@ class Profile extends Component {
                                                 <img src={this.props.userProfile.profile_url} className="img-circle prof-img" />
                                                 <a className="edit-btn"
                                                    href="#"
-                                                   onClick={(e) => {(e).preventDefault();
+                                                   onClick={(e, user) => {
+                                                       (e).preventDefault();
                                                        {this.props.edit.editMode ? this.props.toggleProfile(user) : this.props.toggleEdit(user)}
                                                        console.log(this.props.edit.editMode)
-                                                   }}>{this.props.edit.editMode ? 'Cancel' : 'Edit'}</a>
-                                                {this.props.edit.editMode ? <div className="editable"><span className="glyphicon glyphicon-pencil"></span></div> : ''}
+                                                        }}>{this.props.edit.editMode ? 'Cancel' : 'Edit'}</a>
+                                                {this.props.edit.editMode ? <div className="editable"><span data-toggle="modal" data-target="#myModal" className="glyphicon glyphicon-pencil"></span></div> : ''}
                                             </div>
                                         </div>
                                         <div className="col-md-10">
@@ -82,8 +83,8 @@ class Profile extends Component {
                                         </div>
                                         <div className="col-md-1">
                                             <div className="text-container">
-                                                <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#myModal">
-                                                    <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                                                <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#videoModal">
+                                                    Upload Video <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
                                                 </button>
                                             </div>
                                         </div>
@@ -101,7 +102,8 @@ class Profile extends Component {
                         </div>
                     </div>
                 </div>
-                <Modal />
+                <Modal/>
+                <VideoModal/>
             </div>
 
         );
@@ -118,10 +120,15 @@ class Profile extends Component {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators({toggleEdit: toggleEdit, toggleProfile: toggleProfile}, dispatch)
-//
-// }
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(
+        {
+            toggleEdit: toggleEdit,
+            toggleProfile: toggleProfile,
+            getProfileById: getProfileById
+    }, dispatch)
+
+}
 
 function mapStateToProps(state) {
     return {
@@ -133,5 +140,5 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 

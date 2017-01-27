@@ -1,18 +1,18 @@
 
 import React, { Component } from 'react';
-import FileReader from './FileReader';
+import VideoUploader from './VideoUploader';
 
-class Modal extends Component {
+class VideoModal extends Component {
     render() {
         return (
-            <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div className="modal fade" id="videoModal" tabIndex="-1" role="dialog" aria-labelledby="videoModalLabel">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content modal-position">
                         <div className="modal-header">
-                            <h4 className="modal-title" id="myModalLabel">Select file to upload</h4>
+                            <h4 className="modal-title" id="videoModalLabel">Select file to upload</h4>
                         </div>
                         <div className="modal-body">
-                            <FileReader />
+                            <VideoUploader />
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
@@ -24,4 +24,4 @@ class Modal extends Component {
     }
 }
 
-export default Modal;
+export default VideoModal;

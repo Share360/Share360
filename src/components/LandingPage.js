@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import Featured from './Featured';
+import Home from './Home';
 
 class LandingPage extends React.Component {
 	render() {
         const { loggedIn } = this.props.loginStatus;
 		return (
 			<div className="container-fluid content">
-                {loggedIn ? <div> logged in</div> : <Featured />}
+                {loggedIn ? <Home /> : <Featured />}
 			</div>
 		);
 	}
