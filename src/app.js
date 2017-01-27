@@ -18,6 +18,8 @@ import NotFound from './components/NotFound';
 import SearchPage from './components/Search/SearchPage';
 import FavoritesPage from './components/FavoritesPage';
 import MostPopular from './components/MostPopular';
+import Newest from './components/Newest';
+
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
@@ -39,6 +41,7 @@ class App extends React.Component {
 					<Route path='/newest' component={ Categories } />
 					<Route path='/mostpopular' component={ MostPopular } />
 					<Route path='/categories/:id' component={ Categories } />
+
 					<Route path='*' component={NotFound} />
 				</Route>
 			</Router>

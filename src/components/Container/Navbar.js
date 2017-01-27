@@ -27,6 +27,10 @@ class NavBar extends React.Component {
 		window.location = '/#/search?search=' + this.state.searchText;
 	}
 
+	handleLogout() {
+		this.props.dispatch(loginActions.logout());
+	}
+
 	renderNavItems() {
 		if (this.props.loginStatus.loggedIn) {
 			return (
@@ -35,7 +39,7 @@ class NavBar extends React.Component {
 		            	<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button">{this.props.loginStatus.username} <span className="caret"></span></a>
 		            	<ul className="dropdown-menu">
 		            		<li><Link to={"/profile/" + this.props.loginStatus.id}>Profile</Link></li>
-		            		<li><Link to="/logout">Log Out</Link></li>
+		            		<li><Link className="clickable" onClick={this.handleLogout.bind(this)}>Log Out</Link></li>
 		            	</ul>
 		            </li>
 				</ul>

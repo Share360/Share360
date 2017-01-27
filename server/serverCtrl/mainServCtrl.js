@@ -96,6 +96,7 @@ module.exports = {
     },
     checkFavorite: (req, res) => {
         db.checkFavorite([req.query.videoid, req.query.userid], (err, response) => {
+
             if (err) {
                 res.send(err);
             } else {

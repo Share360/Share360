@@ -24,9 +24,8 @@ const allReducers = combineReducers({
     editProfile: editProfileReducer,
     searchResults: searchReducer,
     userProfile: profileReducer,
-    categoryVideos: categoryReducer,
-    mostPopVideos: mostPopularVideosReducer
-
+    mostPopVideos: mostPopularVideosReducer,
+    categoryVideos: categoryReducer
 });
 
 export default allReducers;

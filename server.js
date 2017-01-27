@@ -71,6 +71,12 @@ app.post('/api/login', (req, res) => {
 
     })(req, res);
 });
+
+app.get('/api/logout', (req, res) => {
+  req.logout();
+  res.status(200).send(true);
+});
+
 app.post('/api/signup', mainServCtrl.signUp);
 
 //stuff for validations
@@ -141,3 +147,5 @@ app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
 app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
 
 app.get('/api/mostpopularvideos', mainServCtrl.mostpopularvideos);
+
+app.get('/api/getvideos', mainServCtrl.getVideos);
