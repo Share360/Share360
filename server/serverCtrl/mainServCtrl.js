@@ -25,8 +25,9 @@ module.exports = {
         db.signUp( [ req.body.fname, req.body.lname, req.body.email, req.body.username, req.body.password, req.body.birthday ], (err, response) => {
             if (err) {
                 console.log(err);
+                res.send( "FAILURE" );
             } else {
-                res.status(200).send(response);
+                res.status(200).send( "SUCCESS" );
             }
         } )
     },
@@ -95,10 +96,29 @@ module.exports = {
     },
     checkFavorite: (req, res) => {
         db.checkFavorite([req.query.videoid, req.query.userid], (err, response) => {
+
             if (err) {
                 res.send(err);
             } else {
                 res.status(200).send(response);
+            }
+        });
+    },
+    getRecentVideos: (req, res) => {
+        db.getRecentVideos( (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
+    mostpopularvideos: ( req, res ) => {
+        db.mostpopularvideos( [], ( err, response ) => {
+            if( err ) {
+                res.send( err );
+            } else {
+                res.status( 200 ).send( response );
             }
         });
     }
