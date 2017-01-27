@@ -55,6 +55,7 @@ class Categories extends Component {
                 <div className="row">
                     <div className="col-sm-12 col-md-12">
                         <h1 className="text-capitalize bottom-line">{ this.props.params.id }</h1>
+                        <hr/>
                     </div>
                 </div>
                 <div className="row">
