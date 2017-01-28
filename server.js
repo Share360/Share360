@@ -4,7 +4,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const massive = require('massive');
-
+const CryptoJS = require('crypto-js');
 const secrets = require('./server/secrets');
 const config = require('./server/config');
 // const users = require('./server/routes/users');
@@ -84,6 +84,36 @@ app.post('/api/signup', mainServCtrl.signUp);
 
 app.get('/api/getvideobyid/:id', mainServCtrl.getVideoById);
 
+app.get('/api/search/:searchterm', mainServCtrl.getSearchResults);
+
+app.get('/api/getfavorites/:id', mainServCtrl.getFavoritesById);
+
+app.post('/api/addfavorite', mainServCtrl.addFavorite);
+
+app.delete('/api/removefavorite', mainServCtrl.removeFavorite);
+
+app.get('/api/checkfavorite', mainServCtrl.checkFavorite);
+
+app.get('/api/checklogin', (req, res) => {
+  if (req.user) {
+    res.status(200).send({loggedIn: true, username: req.user[0].username, id: req.user[0].id});
+  } else {
+    res.status(200).send({loggedIn: false});
+  }
+});
+
+
+//profile endpoints
+
+app.get('/api/getProfile/:id', mainServCtrl.getProfile);
+
+app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
+
+
+app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
+
+app.get('/api/getuservideos/:id', mainServCtrl.getUserVideos);
+
 // S3 Endpoint
 app.get('/upload', (req, res) => {
     upload(req.query).then(url => {
@@ -93,7 +123,9 @@ app.get('/upload', (req, res) => {
     });
 });
 
-// S3 Uploader
+
+
+// S3 IMAGE Uploader
 const aws = require('aws-sdk');
 
 const BUCKET = 'share360videosbucket';
@@ -118,6 +150,7 @@ function upload(file) {
         });
     });
 }
+
 
 app.get('/api/search/:searchterm', mainServCtrl.getSearchResults);
 
@@ -150,3 +183,4 @@ app.get('/api/mostpopularvideos', mainServCtrl.mostpopularvideos);
 app.get('/api/getProfile/:id', mainServCtrl.getProfile);
 
 app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
+

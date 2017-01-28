@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import VideoUploader from './VideoUploader';
+import UploadComponent from './VideoReader';
 
 class VideoModal extends Component {
     render() {
@@ -12,7 +12,7 @@ class VideoModal extends Component {
                             <h4 className="modal-title" id="videoModalLabel">Select file to upload</h4>
                         </div>
                         <div className="modal-body">
-                            <VideoUploader />
+                            <UploadComponent />
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
