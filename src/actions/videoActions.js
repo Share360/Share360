@@ -47,5 +47,17 @@ module.exports = {
 				}
 			});
 		}
+	},
+	getRecentVideos: (videos) => {
+			return (dispatch) => {
+				axios.get('/api/getRecentVideos', {
+					videos
+				}).then((res) => {
+					dispatch({
+						type: "GET_VIDEOS_LIST",
+						payload: { allVideosResponse: res.data }
+					});
+				});
+			}
 	}
 };

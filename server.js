@@ -152,3 +152,33 @@ function upload(file) {
 }
 
 
+app.get('/api/search/:searchterm', mainServCtrl.getSearchResults);
+
+app.get('/api/getfavorites/:id', mainServCtrl.getFavoritesById);
+
+app.post('/api/addfavorite', mainServCtrl.addFavorite);
+
+app.delete('/api/removefavorite', mainServCtrl.removeFavorite);
+
+app.get('/api/checkfavorite', mainServCtrl.checkFavorite);
+
+app.get('/api/checklogin', (req, res) => {
+  if (req.user) {
+    res.status(200).send({loggedIn: true, username: req.user[0].username, id: req.user[0].id});
+  } else {
+    res.status(200).send({loggedIn: false});
+  }
+});
+
+app.get('/api/getRecentVideos', mainServCtrl.getRecentVideos);
+
+app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
+
+app.get('/api/mostpopularvideos', mainServCtrl.mostpopularvideos);
+
+//profile endpoints
+
+app.get('/api/getProfile/:id', mainServCtrl.getProfile);
+
+app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
+
