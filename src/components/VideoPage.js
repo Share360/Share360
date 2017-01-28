@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import videoActions from '../actions/videoActions';
+import commentActions from '../actions/commentActions';
 import VideoPlayer from './VideoPlayer';
 
 class VideoPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showComments: false
+            commentText: ""
         }
     }
 
@@ -18,6 +19,7 @@ class VideoPage extends React.Component {
         if (this.props.loginStatus.loggedIn) {
             this.checkFavorite(this.props);
         }
+        this.getComments(this.props);
     }
     
     componentWillReceiveProps(nextProps) {
@@ -26,10 +28,19 @@ class VideoPage extends React.Component {
             if (nextProps.loginStatus.loggedIn) {
                 this.checkFavorite(nextProps);
             }
-            this.setState({
-                showComments: false
-            });
         }
+        this.getComments(nextProps);
+    }
+
+    handleCommentChange(e) {
+        this.setState({
+            commentText: e.target.value
+        });
+    }
+
+    handleCommentSubmit(e) {
+        e.preventDefault();
+        this.props.dispatch(commentActions.addComment(this.props.loginStatus.id, this.state.commentText, this.props.params.id));
     }
 
     checkFavorite(passedProps) {
@@ -38,6 +49,10 @@ class VideoPage extends React.Component {
 
     getVideoDetails(passedProps) {
         passedProps.dispatch(videoActions.getVideoById(passedProps.params.id));
+    }
+
+    getComments(passedProps) {
+        console.log('getting comments');
     }
 
     addFavorite() {
@@ -91,22 +106,6 @@ class VideoPage extends React.Component {
         );
     }
 
-    showComments() {
-        var disqus_config = function () {
-            this.page.url = "share-360.herokuapp.com/#/video/" + this.props.params.id;
-            this.page.identifier = this.props.params.id;
-        };
-        var d = document, s = d.createElement('script');
-        s.src = '//share360-1.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        this.setState(
-            {
-                showComments: true
-            }
-        );
-    }
-
     render() {
         return (
             <div className="container-fluid">
@@ -130,10 +129,20 @@ class VideoPage extends React.Component {
 
                 <br />
                 <br />
-
-                {this.state.showComments ? ( <div id="disqus_thread"></div> ) : ( <button className="btn btn-custom center-block" onClick={this.showComments.bind(this)}>Load Comments</button> ) }
-
                 
+                <div className="comments-wrapper">
+                    <h1>Comments</h1>
+                    <div className="comment-input">
+                        <form onSubmit={this.handleCommentSubmit.bind(this)}>
+                            <textarea onChange={this.handleCommentChange.bind(this)} className="form-control" rows="3"></textarea>
+                            <button style={{marginTop: 5}} type="submit" className="btn btn-block btn-custom">Submit</button>
+                        </form>
+                    </div>
+                    <br />
+                    <div className="comments">
+                        <p>Comments will be displayed here.</p>
+                    </div>
+                </div>
             </div>
         );
     }
