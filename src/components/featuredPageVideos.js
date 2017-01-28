@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { bindActionCreators } from 'redux';
+import { mostPopularActions } from '../actions/mostPopularActions'
 
 class FeaturedVideos extends Component {
+
     showFeaturedVideos() {
+            if (this.props.videos)
         return this.props.videos.map((video) => {
             return (
                 <div key={video.id} className="col-sm-4 featuredList">
@@ -38,11 +40,17 @@ class FeaturedVideos extends Component {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators( { mostPopularActions: mostPopularActions(dispatch) } );
+}
+
+
 function mapStateToProps(state) {
     return {
-        videos: state.videos
+        videos: state.videos,
+        mostPopVideos: state.mostPopVideos
     }
 
 }
 
-export default connect(mapStateToProps)(FeaturedVideos);
+export default connect(mapStateToProps, mapDispatchToProps)(FeaturedVideos);
