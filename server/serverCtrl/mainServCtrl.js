@@ -102,5 +102,14 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
+    },
+    getUserVideos: (req, res) => {
+        db.getUserVideos([req.params.id], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
     }
 };
