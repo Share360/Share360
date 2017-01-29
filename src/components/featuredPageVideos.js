@@ -9,13 +9,12 @@ class FeaturedVideos extends Component {
         this.props.dispatch(mostPopularActions());
     }
     showFeaturedVideos() {
-            if (this.props.mostPopularVideosReducer.mostPopularVideosReducer.mostPopVideos) {
-                console.log(this.props.mostPopularVideosReducer.mostPopularVideosReducer.mostPopVideos)
-                return this.props.mostPopularVideosReducer.mostPopularVideosReducer.mostPopVideos.map((video) => {
+            if (this.props.mostPopVideos.mostPopVideos) {
+                return this.props.mostPopVideos.mostPopVideos.map((video) => {
                     return (
                         <div key={video.id} className="col-sm-4 featuredList">
-                            <div>
-                                <a href="#" className="thumbnail"><img src={video.thumbnail_url}/></a>
+                            <div className="thumbnail">
+                                <a href="#"><img className="img-responsive" src={video.thumbnail_url}/></a>
                             </div>
                             <div className="videoContentBox">
                                 <Link to={"/video/" + video.id} className="prof-title prof-head-tag"><h3>{video.title}</h3></Link>
@@ -48,7 +47,7 @@ class FeaturedVideos extends Component {
 function mapStateToProps(state) {
     return {
         videos: state.videos,
-        mostPopularVideosReducer: state.mostPopularVideosReducer
+        mostPopVideos: state.mostPopVideos
     }
 
 }

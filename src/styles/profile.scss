@@ -165,23 +165,23 @@
   margin-left: 8px;
 }
 
-.thumbnail {
-  position: relative;
-  overflow: hidden;
-  min-height: 130px;
-  min-width: 240px;
-  max-height: 170px;
-  max-width: 270px;
+// .thumbnail {
+//   position: relative;
+//   overflow: hidden;
+//   min-height: 130px;
+//   min-width: 240px;
+//   max-height: 170px;
+//   max-width: 270px;
 
-  img {
-      position: absolute;
-      top: -9999px;
-      bottom: -9999px;
-      left: -9999px;
-      right: -9999px;
-      margin: auto;
-  }
-}
+//   img {
+//       position: absolute;
+//       top: -9999px;
+//       bottom: -9999px;
+//       left: -9999px;
+//       right: -9999px;
+//       margin: auto;
+//   }
+// }
 
 // for Video Uploader
 
