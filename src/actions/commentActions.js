@@ -6,7 +6,7 @@ module.exports = {
 			axios.get('/api/getcomments/' + id).then((res) => {
 				dispatch({
 					type: "GET_COMMENTS",
-					payload: res.data[0]
+					payload: res.data
 				});
 			});
 		}
@@ -16,6 +16,12 @@ module.exports = {
 			axios.post('/api/addcomment', { userID, commentText, videoID }).then((res) => {
 				dispatch({
 					type: "ADD_COMMENT",
+				});
+				axios.get('/api/getcomments/' + videoID).then((res) => {
+					dispatch({
+						type: "GET_COMMENTS",
+						payload: res.data
+					});
 				});
 			});
 		}

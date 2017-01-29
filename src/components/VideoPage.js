@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import videoActions from '../actions/videoActions';
 import commentActions from '../actions/commentActions';
 import VideoPlayer from './VideoPlayer';
+import Comment from './Comment';
 
 class VideoPage extends React.Component {
     constructor(props) {
@@ -28,8 +29,8 @@ class VideoPage extends React.Component {
             if (nextProps.loginStatus.loggedIn) {
                 this.checkFavorite(nextProps);
             }
+            this.getComments(nextProps);
         }
-        this.getComments(nextProps);
     }
 
     handleCommentChange(e) {
@@ -41,6 +42,9 @@ class VideoPage extends React.Component {
     handleCommentSubmit(e) {
         e.preventDefault();
         this.props.dispatch(commentActions.addComment(this.props.loginStatus.id, this.state.commentText, this.props.params.id));
+        this.setState({
+            commentText: ""
+        });
     }
 
     checkFavorite(passedProps) {
@@ -52,7 +56,7 @@ class VideoPage extends React.Component {
     }
 
     getComments(passedProps) {
-        console.log('getting comments');
+        passedProps.dispatch(commentActions.getComments(passedProps.params.id));
     }
 
     addFavorite() {
@@ -106,6 +110,31 @@ class VideoPage extends React.Component {
         );
     }
 
+    renderCommentInput() {
+        if (this.props.loginStatus.loggedIn) {
+            return(
+                <div className="comment-input">
+                    <form onSubmit={this.handleCommentSubmit.bind(this)}>
+                        <textarea onChange={this.handleCommentChange.bind(this)} value={this.state.commentText} className="form-control" rows="3"></textarea>
+                        <button style={{marginTop: 5}} type="submit" className="btn btn-block btn-custom">Submit</button>
+                    </form>
+                </div>
+            );
+        } else {
+            return(
+                <p>You must log in to post a comment.</p>
+            );
+        }
+    }
+
+    renderComments() {
+        return this.props.videoDetails.comments.map((comment, index) => {
+            return (
+                <Comment key={index} {...comment} />
+            );
+        });
+    }
+
     render() {
         return (
             <div className="container-fluid">
@@ -132,15 +161,10 @@ class VideoPage extends React.Component {
                 
                 <div className="comments-wrapper">
                     <h1>Comments</h1>
-                    <div className="comment-input">
-                        <form onSubmit={this.handleCommentSubmit.bind(this)}>
-                            <textarea onChange={this.handleCommentChange.bind(this)} className="form-control" rows="3"></textarea>
-                            <button style={{marginTop: 5}} type="submit" className="btn btn-block btn-custom">Submit</button>
-                        </form>
-                    </div>
-                    <br />
+                    {this.renderCommentInput.bind(this)()}
                     <div className="comments">
-                        <p>Comments will be displayed here.</p>
+                        <hr />
+                        {this.renderComments.bind(this)()}
                     </div>
                 </div>
             </div>

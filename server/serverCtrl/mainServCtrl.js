@@ -139,5 +139,14 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
-    }
+    },
+    getComments: (req, res) => {
+        db.getComments([req.params.id], (err, response) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
 };
