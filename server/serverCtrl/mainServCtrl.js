@@ -122,12 +122,12 @@ module.exports = {
             }
         });
     },
-    mostpopularvideos: ( req, res ) => {
-        db.mostpopularvideos( [], ( err, response ) => {
+    mostpopularvideos: (req, res) => {
+        db.mostpopularvideos( [], ( err, response) => {
             if( err ) {
                 res.send( err );
             } else {
-                res.status( 200 ).send( response );
+                res.status(200).send(response);
             }
         });
     }
