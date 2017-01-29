@@ -26,7 +26,7 @@ class Featured extends Component {
                     <div className="col-sm-12 col-md-12">
                         <a-scene id="featuredCanvas" embedded>
                             <a-assets>
-                                <video id="video" src="./assets/explore360.mp4" crossOrigin></video>
+                                <video id="video" src="https://s3-us-west-2.amazonaws.com/share360videosbucket/explore360.mp4" crossOrigin></video>
                             </a-assets>
                             <a-videosphere src="#video" rotation="0 180 0"></a-videosphere>
                         </a-scene>

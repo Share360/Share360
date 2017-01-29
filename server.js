@@ -160,6 +160,10 @@ app.post('/api/addfavorite', mainServCtrl.addFavorite);
 
 app.delete('/api/removefavorite', mainServCtrl.removeFavorite);
 
+app.get('/api/getcomments/:id', mainServCtrl.getComments);
+
+app.post('/api/addcomment', mainServCtrl.addComment);
+
 app.get('/api/checkfavorite', mainServCtrl.checkFavorite);
 
 app.get('/api/checklogin', (req, res) => {
