@@ -20,8 +20,8 @@ import FavoritesPage from './components/FavoritesPage';
 import MostPopular from './components/MostPopular';
 import Newest from './components/Newest';
 
-
-const store = createStore(allReducers, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(allReducers, composeEnhancers(applyMiddleware(thunk)));
 
 class App extends React.Component {
 	render() {
