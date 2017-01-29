@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 import videoActions from '../actions/videoActions';
 import commentActions from '../actions/commentActions';
@@ -145,7 +146,7 @@ class VideoPage extends React.Component {
                     <div className="row">
                         <div className="col-xs-10">
                             <h1>{this.props.videoDetails.title}</h1>
-                            <p><i>Uploaded: {this.props.videoDetails.upload_date}</i></p>
+                            <p><i>Uploaded: {moment(this.props.videoDetails.upload_date).format("MMM D, YYYY")}</i></p>
                             <p><b>Uploader: </b><Link to={"/profile/" + this.props.videoDetails.uploader_id}>{this.props.videoDetails.username}</Link></p>
                             <p><b>Description: </b>{this.props.videoDetails.description}</p>
                             {this.renderCategories()}
