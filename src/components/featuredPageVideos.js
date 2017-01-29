@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { mostPopularActions } from '../actions/mostPopularActions'
+import { Link } from 'react-router';
+import { mostPopularActions } from '../actions/mostPopularActions';
+
 
 class FeaturedVideos extends Component {
-
+    componentWillMount() {
+        this.props.dispatch(mostPopularActions());
+    }
     showFeaturedVideos() {
-            if (this.props.videos)
-        return this.props.videos.map((video) => {
-            return (
-                <div key={video.id} className="col-sm-4 featuredList">
-                    <div>
-                        <a href="#" className="thumbnail"><img src={video.thumbnail} /></a>
-                    </div>
-                    <div className="videoContentBox">
-                        <h3>{video.title}</h3>
-                        <hr />
-                        Username : {video.user_id}
-                    </div>
-                </div>
-            );
-        });
+            if (this.props.mostPopularVideosReducer.mostPopularVideosReducer.mostPopVideos) {
+                console.log(this.props.mostPopularVideosReducer.mostPopularVideosReducer.mostPopVideos)
+                return this.props.mostPopularVideosReducer.mostPopularVideosReducer.mostPopVideos.map((video) => {
+                    return (
+                        <div key={video.id} className="col-sm-4 featuredList">
+                            <div>
+                                <a href="#" className="thumbnail"><img src={video.thumbnail_url}/></a>
+                            </div>
+                            <div className="videoContentBox">
+                                <Link to={"/video/" + video.id} className="prof-title prof-head-tag"><h3>{video.title}</h3></Link>
+                                <hr />
+                            </div>
+                        </div>
+                    );
+                });
+            }
     }
 
     render() {
@@ -40,17 +44,13 @@ class FeaturedVideos extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators( { mostPopularActions: mostPopularActions(dispatch) } );
-}
-
 
 function mapStateToProps(state) {
     return {
         videos: state.videos,
-        mostPopVideos: state.mostPopVideos
+        mostPopularVideosReducer: state.mostPopularVideosReducer
     }
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeaturedVideos);
+export default connect(mapStateToProps)(FeaturedVideos);
