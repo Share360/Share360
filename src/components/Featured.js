@@ -3,6 +3,22 @@ import React, { Component } from 'react';
 import FeaturedVideos from './featuredPageVideos';
 
 class Featured extends Component {
+    constructor(props) {
+        super(props);
+            this.state = { audioToggleOn: false };
+
+            this.handleClick = this.handleClick.bind(this);
+
+    }
+
+    handleClick() {
+        this.setState(prevState => ({
+            audioToggleOn: !prevState.audioToggleOn
+
+        }))
+    }
+
+
     render() {
         return (
             <div className="container-fluid">

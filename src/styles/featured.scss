@@ -20,16 +20,33 @@
 
 .featuredList {
     height: 300px;
+    .thumbnail {
+      height: 200px;
+      width: 360px;
+      position: absolute;
+      top: -9999px;
+      bottom: -9999px;
+      left: -9999px;
+      right: -9999px;
+      margin: auto;
+    }
     img {
       height: 200px;
       width: 360px;
     }
     hr {
-      margin: -10px 0 10px 0;
-      width: 85%;
+      position: relative;
+      margin: -8px 0 10px 0;
+      width: 95%;
     }
     .videoContentBox {
+      position: relative;
+      bottom: -8px;
+      left: 0px;
       padding: 0 20px 10px 20px;
+      h3 {
+        padding-left: 18px;
+      }
     }
 }
 
