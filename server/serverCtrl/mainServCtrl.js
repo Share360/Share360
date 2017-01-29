@@ -130,5 +130,23 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
-    }
+    },
+    addComment: (req, res) => {
+        db.addComment([req.body.userID, req.body.commentText, req.body.videoID], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
+    getComments: (req, res) => {
+        db.getComments([req.params.id], (err, response) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
 };

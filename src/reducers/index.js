@@ -23,7 +23,7 @@ const allReducers = combineReducers({
     searchResults: searchReducer,
     userProfile: profileReducer,
     allRecentVideos: recentVideoReducer,
-    mostPopularVideosReducer: mostPopularVideosReducer,
+    mostPopVideos: mostPopularVideosReducer,
     categoryVideos: categoryReducer
 });
 
