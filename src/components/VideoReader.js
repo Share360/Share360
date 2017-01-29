@@ -24,7 +24,6 @@ class VideoReader extends Component {
     render() {
         return (
             <div style={{width: 400, margin: '30px auto'}}>
-                <Gallery fileInput-children={ fileInputChildren } uploader={ uploader } />
             </div>
         );
     }
