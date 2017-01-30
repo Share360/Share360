@@ -36,7 +36,7 @@ class Newest extends Component {
                 <h3>
                   <Link to={"/video/" + video.id}>{video.title}</Link>
                 </h3>
-                <p><strong>Upload Date: </strong>{moment(this.props.upload_date).format("MMMM D, YYYY")}</p>
+                <p><strong>Upload Date: </strong>{moment(video.upload_date).format("MMMM D, YYYY")}</p>
                 <p><Link to={"/profile/" + video.uploader_id}>{video.username}</Link></p>
             </div>
         </div>
