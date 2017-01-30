@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-class VideoReader extends Component {
+class VideoUploader extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +13,7 @@ class VideoReader extends Component {
         };
         this.handleOnDrop = this.handleOnDrop.bind(this);
     }
-
+    //
     // addProfileImage(images) {
     //     console.log('adding profile image:', images)
     //     axios.post('/api/addprofileimg', {
@@ -34,11 +34,12 @@ class VideoReader extends Component {
                     isUploading: false,
                     videos: this.state.videos.concat(videos)
                 });
+                // this.addProfileImage(images);
             }).catch(e => console.log(e));
     }
 
     uploadVideo(file) {
-        return axios.get('/vid/upload', {
+        return axios.get('/upload', {
             params: {
                 filename: file.name,
                 filetype: file.type
@@ -55,7 +56,7 @@ class VideoReader extends Component {
             return {
                 name,
                 isUploading: true,
-                url: `share360fineuploader.s3.amazonaws.com/${file.name}`
+                url: `https://share360videosbucket.s3.amazonaws.com/${file.name}`
             };
         });
     }
@@ -84,10 +85,10 @@ class VideoReader extends Component {
 
         return (
             <div style={{width: 400, margin: '30px auto'}}>
-                <h1>Video Uploader</h1>
+                <h1>360 Video Uploader</h1>
                 <Dropzone
                     onDrop={this.handleOnDrop}
-                    accept="image/*"
+                    accept="video/*"
                     style={divStyle}
                     multiple={false}
                     activeStyle={activeStyle}
@@ -97,6 +98,11 @@ class VideoReader extends Component {
                         <div>Uploading file</div> :
                         <div>Drag or Click Here</div>}
                 </Dropzone>
+                {/*{this.state.videos.length > 0 &&*/}
+                {/*<div style={{margin: 30}}>*/}
+                    {/*{this.state.videos.map(({name, url}) =>*/}
+                        {/*<img key={name} src={url} style={{height: 200}}/>)}*/}
+                {/*</div>}*/}
             </div>
         );
     }
@@ -108,4 +114,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(VideoReader);
+export default connect(mapStateToProps)(VideoUploader);
