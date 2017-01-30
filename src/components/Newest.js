@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import moment from 'moment'
 
 import Sidebar from './Container/Sidebar';
 import { getRecentVideos } from '../actions/videoActions';
@@ -35,8 +36,8 @@ class Newest extends Component {
                 <h3>
                   <Link to={"/video/" + video.id}>{video.title}</Link>
                 </h3>
-                <hr/>
-                  <Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
+                <p><strong>Upload Date: </strong>{moment(this.props.upload_date).format("MMMM D, YYYY")}</p>
+                <p><Link to={"/profile/" + video.uploader_id}>{video.username}</Link></p>
             </div>
         </div>
       );

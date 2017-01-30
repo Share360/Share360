@@ -77,6 +77,14 @@ class VideoPage extends React.Component {
     }
 
     renderButton() {
+        if(!this.props.loginStatus.loggedIn) {
+            return (
+                <div className="col-xs-2">
+                    <button id="favButton" disabled className="btn btn-custom" title="Log In To Add Favorite">Add Favorite</button>
+                </div>
+            );
+        }
+
         if (!this.props.videoDetails.inFavorites) {
             return (
                 <div className="col-xs-2">
