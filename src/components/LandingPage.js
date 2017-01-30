@@ -10,7 +10,7 @@ class LandingPage extends React.Component {
         const { loggedIn } = this.props.loginStatus;
 		return (
 			<div className="container-fluid content">
-                {loggedIn ? <Newest /> : <Featured />}
+                {loggedIn ? <Featured /> : <Featured />}
 			</div>
 		);
 	}
