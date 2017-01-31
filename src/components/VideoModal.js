@@ -8,9 +8,6 @@ class VideoModal extends Component {
             <div className="modal fade" id="videoModal" tabIndex="-1" role="dialog" aria-labelledby="videoModalLabel">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content modal-position">
-                        <div className="modal-header">
-                            <h4 className="modal-title" id="videoModalLabel">Select file to upload</h4>
-                        </div>
                         <div className="modal-body">
                             <VideoUploader />
                         </div>
