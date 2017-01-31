@@ -4,7 +4,10 @@ export default function profileReducer(state = {}, action) {
             return Object.assign({}, state, action.payload);
         }
         case "GET_VIDEO_BY_USER": {
-            return Object.assign({}, state, { userVideos: action.payload });
+            return Object.assign({}, state, { userVideos: action.payload, videoDeleted : false });
+        }
+        case "REMOVE_VIDEO": {
+            return Object.assign({}, state, { videoDeleted : true })
         }
         default: {
             return state;

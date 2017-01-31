@@ -3,38 +3,73 @@ import {render} from 'react-dom';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import VideosCatagoryForm from './VideosCatagoryForm';
 
 class VideoUploader extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isUploading: false,
-            videos: []
+            videos: [],
+            title: '',
+            description: '',
+            checked: [],
+            detailsStatus: false
         };
         this.handleOnDrop = this.handleOnDrop.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    //
-    // addProfileImage(images) {
-    //     console.log('adding profile image:', images)
-    //     axios.post('/api/addprofileimg', {
-    //         url: images[0].url,
-    //         id: this.props.loginStatus.id
-    //     }).then((res) => {
-    //         console.log(res);
-    //     });
-    // }
+
+    handleChange(e) {
+        // const checkedArr = this.props.checked;
+        // if(e.target.type === 'checkbox') {
+        //     const newChecked = update(checkedArr, {$push: [e.target.value]})
+        //     this.setState({[this.props.checked]: newChecked});
+        // }
+        this.setState({[e.target.name]: e.target.value})
+    }
+    handleSubmit(e) {
+        e.preventDefault();
+            this.setState({detailsStatus: true});
+    }
+
+    addVideoDetails(videos) {
+        console.log('adding video details:', videos)
+        axios.post('/api/addvideo', {
+            url: videos[0].url,
+            uploader_id: this.props.loginStatus.id,
+            thumbnail_url: 'https://aframe.io/images/blog/introducing-aframe.png',
+            title: this.state.title,
+            description: this.state.description,
+            cat1: "entertainment",
+            cat2: "sports",
+            cat3: "gaming"
+        }).then((res) => {
+            console.log(res);
+        });
+    }
 
 
     handleOnDrop(files) {
+        if(this.state.detailsStatus === true)
         this.setState({isUploading: true});
-
+        if(this.state.detailsStatus === true)
         Promise.all(files.map(file => this.uploadVideo(file)))
             .then(videos => {
                 this.setState({
                     isUploading: false,
-                    videos: this.state.videos.concat(videos)
+                    videos: this.state.videos.concat(videos),
+                    videoDetails: {
+                        thumbnail_url: 'https://aframe.io/images/blog/introducing-aframe.png',
+                        title: this.state.title,
+                        description: this.state.description,
+                        cat1: "entertainment",
+                        cat2: "sports",
+                        cat3: "gaming"
+                    }
                 });
-                // this.addProfileImage(images);
+                this.addVideoDetails(videos);
             }).catch(e => console.log(e));
     }
 
@@ -85,24 +120,38 @@ class VideoUploader extends Component {
 
         return (
             <div style={{width: 400, margin: '30px auto'}}>
-                <h1>360 Video Uploader</h1>
-                <Dropzone
-                    onDrop={this.handleOnDrop}
-                    accept="video/*"
-                    style={divStyle}
-                    multiple={false}
-                    activeStyle={activeStyle}
-                    rejectStyle={rejectStyle}
-                >
-                    {this.state.isUploading ?
-                        <div>Uploading file</div> :
-                        <div>Drag or Click Here</div>}
-                </Dropzone>
-                {/*{this.state.videos.length > 0 &&*/}
-                {/*<div style={{margin: 30}}>*/}
-                    {/*{this.state.videos.map(({name, url}) =>*/}
-                        {/*<img key={name} src={url} style={{height: 200}}/>)}*/}
-                {/*</div>}*/}
+                <h1 className="text-center">360 Video Uploader</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <label>Title:</label>
+                        <input type="text" className="form-control" name="title" id="videoTitle" placeholder="Enter the video title here." value={this.state.value} onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Description:</label>
+                        <textarea type="text" className="form-control" name="description" id="videoDescription" placeholder="Enter the video description here" value={this.state.value} onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Select your Thumbnail</label>
+                        <input type="file" name="thumbnail_url" id="videoThumbnail" value={this.state.value} onChange={this.handleChange} />
+                            <p className="help-block">Image size: 300 x 250</p>
+                    </div>
+                    <VideosCatagoryForm />
+                    <button type="submit" className="btn btn-default">Submit</button>
+                </form>
+                <br />
+
+                    <Dropzone
+                        onDrop={this.handleOnDrop}
+                        accept="video/*"
+                        style={divStyle}
+                        multiple={false}
+                        activeStyle={activeStyle}
+                        rejectStyle={rejectStyle}
+                    >
+                        {this.state.isUploading ?
+                            <div>Uploading file</div> :
+                            <div>Drag or Click Here</div>}
+                    </Dropzone>
             </div>
         );
     }

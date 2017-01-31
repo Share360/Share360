@@ -148,5 +148,25 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
+    },
+    addVideo: (req, res) => {
+        db.addVideo([req.body.title, req.body.url, req.body.thumbnail_url, req.body.description, req.body.uploader_id, req.body.cat1, req.body.cat2, req.body.cat3], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        })
+    },
+    deleteUserVideo: (req, res) => {
+        db.deleteUserVideo([req.query.id, req.query.uploader_id], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
     }
 };
+
+

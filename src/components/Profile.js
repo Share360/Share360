@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { toggleEdit, toggleProfile } from '../actions/editModeActions';
-import { getProfileById, getVideoByUser } from '../actions/profileActions';
+import { getProfileById, getVideoByUser, deleteUserVideo } from '../actions/profileActions';
 import VideoModal from './VideoModal';
 import Modal from './Modal';
 import { Link } from 'react-router';
@@ -22,7 +22,15 @@ class Profile extends Component {
             nextProps.getVideoByUser(nextProps.params.id);
         }
     }
+    deleteVideo(videoid, uploaderid) {
+        console.log(videoid + " " + uploaderid);
+        this.props.deleteVideo(videoid, uploaderid);
+    }
 
+    confirm(videoid, uploaderid) {
+        console.log(videoid + " " + uploaderid);
+        alert("are you sure you would like to delete this video?");
+    }
     showVideos() {
         console.log(this.props.userVideos);
         if(this.props.userVideos)
@@ -44,9 +52,9 @@ class Profile extends Component {
                             <div className="col-sm-1">
                                 <div className="text-container">
                                     <div className="text-middle">
-                                        <button className="btn btn-lg video-btn-remove">
+                                        {this.props.edit.editMode ? <button className="btn btn-lg video-btn-remove" onClick={this.deleteVideo.bind(this, video.id, video.uploader_id)}>
                                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                        </button>
+                                        </button> : ''}
                                     </div>
                                 </div>
                             </div>
@@ -69,13 +77,13 @@ class Profile extends Component {
                                         <div className="col-sm-1">
                                             <div className="profile-img-container">
                                                 <img src={this.props.userProfile.profile_url} className="img-circle prof-img" />
-                                                <a className="edit-btn"
+                                                {this.props.loginStatus.loggedIn ? <a className="edit-btn"
                                                    href="#"
                                                    onClick={(e, user) => {
                                                        (e).preventDefault();
                                                        {this.props.edit.editMode ? this.props.toggleProfile(user) : this.props.toggleEdit(user)}
                                                        console.log(this.props.edit.editMode)
-                                                        }}>{this.props.edit.editMode ? 'Cancel' : 'Edit'}</a>
+                                                        }}>{this.props.edit.editMode ? 'Cancel' : 'Edit'}</a> : ''}
                                                 {this.props.edit.editMode ? <div className="editable"><span data-toggle="modal" data-target="#myModal" className="glyphicon glyphicon-pencil"></span></div> : ''}
                                             </div>
                                         </div>
@@ -88,9 +96,9 @@ class Profile extends Component {
                                         </div>
                                         <div className="col-sm-1">
                                             <div className="text-container">
-                                                <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#videoModal">
+                                                {this.props.loginStatus.loggedIn ? <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#videoModal">
                                                     Upload Video <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
-                                                </button>
+                                                </button> : ''}
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +139,8 @@ function mapDispatchToProps(dispatch) {
             toggleEdit: toggleEdit,
             toggleProfile: toggleProfile,
             getProfileById: getProfileById,
-            getVideoByUser: getVideoByUser
+            getVideoByUser: getVideoByUser,
+            deleteVideo: deleteUserVideo
     }, dispatch)
 
 }

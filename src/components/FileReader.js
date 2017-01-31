@@ -85,7 +85,7 @@ class FileReader extends Component {
 
         return (
             <div style={{width: 400, margin: '30px auto'}}>
-                <h1>Profile Image Uploader</h1>
+                <h1 className="text-center">Profile Image Uploader</h1>
                 <Dropzone
                     onDrop={this.handleOnDrop}
                     accept="image/*"
