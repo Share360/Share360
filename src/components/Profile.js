@@ -2,45 +2,59 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { toggleEdit, toggleProfile } from '../actions/editModeActions';
-import { getProfileById } from '../actions/profileActions';
+import { getProfileById, getVideoByUser, deleteUserVideo } from '../actions/profileActions';
 import VideoModal from './VideoModal';
 import Modal from './Modal';
+import { Link } from 'react-router';
 
 class Profile extends Component {
+    constructor(props) {
+        super(props)
+    }
     componentDidMount() {
         this.props.getProfileById(this.props.params.id);
+        this.props.getVideoByUser(this.props.params.id);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.params.id !== this.props.params.id) {
             nextProps.getProfileById(nextProps.params.id);
+            nextProps.getVideoByUser(nextProps.params.id);
         }
     }
+    deleteVideo(videoid, uploaderid) {
+        console.log(videoid + " " + uploaderid);
+        this.props.deleteVideo(videoid, uploaderid);
+    }
 
+    confirm(videoid, uploaderid) {
+        console.log(videoid + " " + uploaderid);
+        alert("are you sure you would like to delete this video?");
+    }
     showVideos() {
-        return this.props.videos.map((video) => {
-            if(video.user_id === 5)
+        console.log(this.props.userVideos);
+        if(this.props.userVideos)
+        return this.props.userVideos.map((video) => {
                 return (
-
-                    <div key={video.id} className="col-md-12">
+                    <div key={video.id} className="col-sm-12">
                         <div className="row">
-                            <div className="col-md-2">
-                                <a href="#" className="thumbnail">
-                                    <img src={video.thumbnail} className="img-responsive" />
-                                </a>
+                            <div className="col-sm-4">
+                                <Link to={"/video/" + video.id} className="thumbnail">
+                                    <img src={video.thumbnail_url} className="img-responsive" />
+                                </Link>
                             </div>
-                            <div className="col-md-2">
-                                <a href="#" className="prof-title prof-head-tag">{video.title}</a>
+                            <div className="col-sm-3">
+                                <Link to={"/video/" + video.id} className="prof-title prof-head-tag">{video.title}</Link>
                             </div>
-                            <div className="col-md-7">
+                            <div className="col-sm-4">
                                 {video.description}
                             </div>
-                            <div className="col-md-1">
+                            <div className="col-sm-1">
                                 <div className="text-container">
                                     <div className="text-middle">
-                                        <button className="btn btn-lg video-btn-remove">
+                                        {this.props.edit.editMode ? <button className="btn btn-lg video-btn-remove" onClick={this.deleteVideo.bind(this, video.id, video.uploader_id)}>
                                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                        </button>
+                                        </button> : ''}
                                     </div>
                                 </div>
                             </div>
@@ -52,40 +66,39 @@ class Profile extends Component {
         }
 
     showProfile() {
-        console.log(this.props.loginStatus)
         return (
             <div className="container-fluid prof-wrapper">
                 <div className="row">
-                    <div className="col-md-12 full-width">
+                    <div className="col-sm-12 full-width">
                         <div className="panel">
                             <div className="panel-heading prof-panel-heading">
                                 <div className="row">
                                     <div className="prof-sub-panel-head">
-                                        <div className="col-md-1">
+                                        <div className="col-sm-1">
                                             <div className="profile-img-container">
                                                 <img src={this.props.userProfile.profile_url} className="img-circle prof-img" />
-                                                <a className="edit-btn"
+                                                {this.props.loginStatus.loggedIn ? <a className="edit-btn"
                                                    href="#"
                                                    onClick={(e, user) => {
                                                        (e).preventDefault();
                                                        {this.props.edit.editMode ? this.props.toggleProfile(user) : this.props.toggleEdit(user)}
                                                        console.log(this.props.edit.editMode)
-                                                        }}>{this.props.edit.editMode ? 'Cancel' : 'Edit'}</a>
+                                                        }}>{this.props.edit.editMode ? 'Cancel' : 'Edit'}</a> : ''}
                                                 {this.props.edit.editMode ? <div className="editable"><span data-toggle="modal" data-target="#myModal" className="glyphicon glyphicon-pencil"></span></div> : ''}
                                             </div>
                                         </div>
-                                        <div className="col-md-10">
+                                        <div className="col-sm-10">
                                             <div className="text-container">
                                                 <div className="text-bottom">
                                                     <p className="prof-head-tag">Username: {this.props.edit.editMode ? <span><span className="prof-username">{this.props.userProfile.username}</span><span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span></span> : <span className="prof-username">{this.props.userProfile.username}</span>}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-1">
+                                        <div className="col-sm-1">
                                             <div className="text-container">
-                                                <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#videoModal">
+                                                {this.props.loginStatus.loggedIn ? <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#videoModal">
                                                     Upload Video <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
-                                                </button>
+                                                </button> : ''}
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +138,9 @@ function mapDispatchToProps(dispatch) {
         {
             toggleEdit: toggleEdit,
             toggleProfile: toggleProfile,
-            getProfileById: getProfileById
+            getProfileById: getProfileById,
+            getVideoByUser: getVideoByUser,
+            deleteVideo: deleteUserVideo
     }, dispatch)
 
 }
@@ -136,7 +151,8 @@ function mapStateToProps(state) {
         videos: state.videos,
         edit: state.editProfile,
         userProfile: state.userProfile,
-        loginStatus: state.loginStatus
+        loginStatus: state.loginStatus,
+        userVideos: state.userProfile.userVideos
     };
 }
 

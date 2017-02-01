@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 import videoActions from '../actions/videoActions';
+import commentActions from '../actions/commentActions';
 import VideoPlayer from './VideoPlayer';
+import Comment from './Comment';
 
 class VideoPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showComments: false
+            commentText: ""
         }
     }
 
@@ -18,6 +21,7 @@ class VideoPage extends React.Component {
         if (this.props.loginStatus.loggedIn) {
             this.checkFavorite(this.props);
         }
+        this.getComments(this.props);
     }
     
     componentWillReceiveProps(nextProps) {
@@ -26,10 +30,22 @@ class VideoPage extends React.Component {
             if (nextProps.loginStatus.loggedIn) {
                 this.checkFavorite(nextProps);
             }
-            this.setState({
-                showComments: false
-            });
+            this.getComments(nextProps);
         }
+    }
+
+    handleCommentChange(e) {
+        this.setState({
+            commentText: e.target.value
+        });
+    }
+
+    handleCommentSubmit(e) {
+        e.preventDefault();
+        this.props.dispatch(commentActions.addComment(this.props.loginStatus.id, this.state.commentText, this.props.params.id));
+        this.setState({
+            commentText: ""
+        });
     }
 
     checkFavorite(passedProps) {
@@ -38,6 +54,10 @@ class VideoPage extends React.Component {
 
     getVideoDetails(passedProps) {
         passedProps.dispatch(videoActions.getVideoById(passedProps.params.id));
+    }
+
+    getComments(passedProps) {
+        passedProps.dispatch(commentActions.getComments(passedProps.params.id));
     }
 
     addFavorite() {
@@ -57,6 +77,14 @@ class VideoPage extends React.Component {
     }
 
     renderButton() {
+        if(!this.props.loginStatus.loggedIn) {
+            return (
+                <div className="col-xs-2">
+                    <button id="favButton" disabled className="btn btn-custom" title="Log In To Add Favorite">Add Favorite</button>
+                </div>
+            );
+        }
+
         if (!this.props.videoDetails.inFavorites) {
             return (
                 <div className="col-xs-2">
@@ -91,20 +119,29 @@ class VideoPage extends React.Component {
         );
     }
 
-    showComments() {
-        var disqus_config = function () {
-            this.page.url = "share-360.herokuapp.com/#/video/" + this.props.params.id;
-            this.page.identifier = this.props.params.id;
-        };
-        var d = document, s = d.createElement('script');
-        s.src = '//share-360.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        this.setState(
-            {
-                showComments: true
-            }
-        );
+    renderCommentInput() {
+        if (this.props.loginStatus.loggedIn) {
+            return(
+                <div className="comment-input">
+                    <form onSubmit={this.handleCommentSubmit.bind(this)}>
+                        <textarea onChange={this.handleCommentChange.bind(this)} value={this.state.commentText} className="form-control" rows="3"></textarea>
+                        <button style={{marginTop: 5}} type="submit" className="btn btn-block btn-custom">Submit</button>
+                    </form>
+                </div>
+            );
+        } else {
+            return(
+                <p>You must log in to post a comment.</p>
+            );
+        }
+    }
+
+    renderComments() {
+        return this.props.videoDetails.comments.map((comment, index) => {
+            return (
+                <Comment key={index} {...comment} />
+            );
+        });
     }
 
     render() {
@@ -117,7 +154,7 @@ class VideoPage extends React.Component {
                     <div className="row">
                         <div className="col-xs-10">
                             <h1>{this.props.videoDetails.title}</h1>
-                            <p><i>Uploaded: {this.props.videoDetails.upload_date}</i></p>
+                            <p><i>Uploaded: {moment(this.props.videoDetails.upload_date).format("MMM D, YYYY")}</i></p>
                             <p><b>Uploader: </b><Link to={"/profile/" + this.props.videoDetails.uploader_id}>{this.props.videoDetails.username}</Link></p>
                             <p><b>Description: </b>{this.props.videoDetails.description}</p>
                             {this.renderCategories()}
@@ -130,10 +167,15 @@ class VideoPage extends React.Component {
 
                 <br />
                 <br />
-
-                {this.state.showComments ? ( <div id="disqus_thread"></div> ) : ( <button className="btn btn-custom center-block" onClick={this.showComments.bind(this)}>Load Comments</button> ) }
-
                 
+                <div className="comments-wrapper">
+                    <h1>Comments</h1>
+                    {this.renderCommentInput.bind(this)()}
+                    <div className="comments">
+                        <hr />
+                        {this.renderComments.bind(this)()}
+                    </div>
+                </div>
             </div>
         );
     }

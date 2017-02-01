@@ -21,8 +21,8 @@ import MostPopular from './components/MostPopular';
 import Newest from './components/Newest';
 import Subscriptions from './components/Subscriptions';
 
-
-const store = createStore(allReducers, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(allReducers, composeEnhancers(applyMiddleware(thunk)));
 
 class App extends React.Component {
 	render() {

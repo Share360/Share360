@@ -19,19 +19,22 @@
 }
 
 .featuredList {
-    height: 300px;
     img {
       height: 200px;
       width: 360px;
     }
     hr {
       margin: -10px 0 10px 0;
-      width: 85%;
+      width: 95%;
     }
     .videoContentBox {
       padding: 0 20px 10px 20px;
+      h3 {
+        padding-left: 18px;
+      }
     }
 }
+
 
 .mostPopularTitle {
   hr {

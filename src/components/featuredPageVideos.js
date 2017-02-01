@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import { mostPopularActions } from '../actions/mostPopularActions';
 
 
 class FeaturedVideos extends Component {
+    componentWillMount() {
+        this.props.dispatch(mostPopularActions());
+    }
     showFeaturedVideos() {
-        return this.props.videos.map((video) => {
-            return (
-                <div key={video.id} className="col-sm-4 featuredList">
-                    <div>
-                        <a href="#" className="thumbnail"><img src={video.thumbnail} /></a>
-                    </div>
-                    <div className="videoContentBox">
-                        <h3>{video.title}</h3>
-                        <hr />
-                        Username : {video.user_id}
-                    </div>
-                </div>
-            );
-        });
+            if (this.props.mostPopVideos.mostPopVideos) {
+                return this.props.mostPopVideos.mostPopVideos.map((video) => {
+                    return (
+                        <div key={video.id} className="col-sm-4 featuredList">
+                            <div className="thumbnail">
+                                <a href="#"><img className="img-responsive" src={video.thumbnail_url}/></a>
+                            </div>
+                            <div className="videoContentBox">
+                                <Link to={"/video/" + video.id} className="prof-title prof-head-tag"><h3>{video.title}</h3></Link>
+                                <hr />
+                            </div>
+                        </div>
+                    );
+                });
+            }
     }
 
     render() {
@@ -38,9 +43,11 @@ class FeaturedVideos extends Component {
     }
 }
 
+
 function mapStateToProps(state) {
     return {
-        videos: state.videos
+        videos: state.videos,
+        mostPopVideos: state.mostPopVideos
     }
 
 }

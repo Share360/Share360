@@ -43,7 +43,7 @@ class MostPopular extends Component {
                         <Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
 
 
-                        <div>Favorites: { video.most_popular }</div>
+                        <div><b>Favorites: </b>{ video.most_popular }</div>
 
                     </div>
                 </div>

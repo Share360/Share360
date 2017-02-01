@@ -42,7 +42,7 @@ class Categories extends Component {
                           <Link to={"/video/" + video.id}>{video.title}</Link>
                         </h3>
                         <hr/>
-                        <Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
+                        <b>Uploader: </b><Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
                     </div>
                 </div>
             );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 export default class SearchResult extends React.Component {
 	constructor(props) {
@@ -19,9 +20,10 @@ export default class SearchResult extends React.Component {
 							<img onClick={this.handleClick.bind(this)} className="img-responsive" src={this.props.thumbnail_url} alt={this.props.title} />
 						</div>
 						<div className="col-xs-12 col-sm-8 col-md-9">
-							<h4><Link to={'/video/' + this.props.id}>{this.props.title}</Link></h4>
-							<p><strong>Description: </strong>{this.props.description}</p>
-							<p><strong>Uploader: </strong>{this.props.uploader_id}</p>
+							<h4><Link to={"/video/" + this.props.video_id}>{this.props.title}</Link></h4>
+							<p><strong>Uploader: </strong><Link to={"/profile/" + this.props.uploader_id}>{this.props.username}</Link></p>
+							<p><strong>Upload Date: </strong>{moment(this.props.upload_date).format("MMMM D, YYYY")}</p>
+							<p><strong>Description: </strong>{this.props.video_description}</p>
 						</div>
 					</div>
 				</div>
