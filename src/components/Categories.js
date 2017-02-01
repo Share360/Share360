@@ -31,7 +31,7 @@ class Categories extends Component {
                   className="col-sm-4 col-md-4 col-md-4 category-list">
                     <div className="thumbnail">
                         <img
-                            className="clickable"
+                            className="clickable category-images"
                             onClick={ () => {window.location = "/#/video/" + video.id} }
                             src={ video.thumbnail_url }
                             alt={ video.title }
