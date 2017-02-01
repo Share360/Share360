@@ -1,6 +1,6 @@
 
 
-export default function loginReducer( state = { loggedIn : false }, action ) {
+export default function loginReducer( state = { loggedIn : false, id: null }, action ) {
     switch( action.type ) {
         case "LOGIN_FAILURE": {
             return Object.assign( {}, state, { loggedIn: false } );

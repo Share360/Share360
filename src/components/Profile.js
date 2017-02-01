@@ -77,7 +77,7 @@ class Profile extends Component {
                                         <div className="col-sm-1">
                                             <div className="profile-img-container">
                                                 <img src={this.props.userProfile.profile_url} className="img-circle prof-img" />
-                                                {this.props.loginStatus.loggedIn ? <a className="edit-btn"
+                                                {this.props.loginStatus.id === Number(this.props.params.id) ? <a className="edit-btn"
                                                    href="#"
                                                    onClick={(e, user) => {
                                                        (e).preventDefault();
@@ -96,7 +96,7 @@ class Profile extends Component {
                                         </div>
                                         <div className="col-sm-1">
                                             <div className="text-container">
-                                                {this.props.loginStatus.loggedIn ? <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#videoModal">
+                                                {this.props.loginStatus.id === Number(this.props.params.id) ? <button className="btn prof-upload-btn" type="button" data-toggle="modal" data-target="#videoModal">
                                                     Upload Video <span className="glyphicon glyphicon-upload" aria-hidden="true"></span>
                                                 </button> : ''}
                                             </div>
@@ -105,6 +105,7 @@ class Profile extends Component {
                                 </div>
                             </div>
                             <div className="panel-body prof-details-container">
+                                <button className="btn btn-default subscribeBtn" id="sub-btn">Subscribe</button>
                                 <p className="prof-head-tag">E-Mail: {this.props.edit.editMode ? <span><a href="#" className="prof-link">{this.props.userProfile.email}</a><span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span></span> : <a href="#" className="prof-link">{this.props.userProfile.email}</a>}</p>
                                 <p className="prof-head-tag">Description: {this.props.edit.editMode ? <span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span> : ''}</p>
                                 <p className="span">{this.props.userProfile.description}</p>
