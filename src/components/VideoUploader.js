@@ -32,7 +32,7 @@ class VideoUploader extends Component {
         // }
         if (e.target.type === "file") {
             // e.target.value = e.target.value.replace(/.*[\/\\]/, '');
-            let f = e.target.value.replace(/.*[\/\\]/, '')
+            let f = e.target.value.replace(/.*[\/\\]/, '');
             return this.setState({[e.target.name]: f})
         }
         this.setState({[e.target.name]: e.target.value})
