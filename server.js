@@ -143,6 +143,8 @@ app.post('/api/getvideosbycategory', mainServCtrl.getCategoriesVideos);
 
 app.get('/api/mostpopularvideos', mainServCtrl.mostpopularvideos);
 
+app.get('/api/getsubscriptions/:userid', mainServCtrl.getSubscriptions);
+
 //profile endpoints
 
 app.get('/api/getProfile/:id', mainServCtrl.getProfile);
