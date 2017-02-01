@@ -166,7 +166,17 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
-    }
+    },
+    getSubscriptions: ( req, res ) => {
+        db.getSubscriptions( [ req.params.userid ], ( err, response ) => {
+            if( err ) {
+                res.send( err );
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
+
 };
 
 

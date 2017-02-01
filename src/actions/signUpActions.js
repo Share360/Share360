@@ -12,10 +12,8 @@ module.exports = {
             birthday: new Date(year, month, day)
         })
             .then( (response ) => {
-                console.log(response);
                 if( response.data === "SUCCESS") {
                     window.location = '/#/login';
-
                     dispatch({
                         type: "SIGNUP_SUCCESS"
                     })

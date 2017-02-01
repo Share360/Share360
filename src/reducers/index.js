@@ -11,6 +11,7 @@ import profileReducer from './profileReducer';
 import categoryReducer from './categoryReducer';
 import recentVideoReducer from './recentVideosReducer';
 import mostPopularVideosReducer from './mostPopularReducer';
+import getSubscriptionsReducer from './getSubscriptionsReducer';
 
 const allReducers = combineReducers({
     users: fakeUsers,
@@ -24,7 +25,8 @@ const allReducers = combineReducers({
     userProfile: profileReducer,
     allRecentVideos: recentVideoReducer,
     mostPopVideos: mostPopularVideosReducer,
-    categoryVideos: categoryReducer
+    categoryVideos: categoryReducer,
+    usersSubscriptions: getSubscriptionsReducer
 });
 
 export default allReducers;

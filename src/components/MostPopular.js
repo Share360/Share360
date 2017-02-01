@@ -15,11 +15,11 @@ class MostPopular extends Component {
         this.getMostPopularVideos();
     }
 
-    componentWillReceiveProps( nextprops ) {
-        if( this.props.mostPopVideos.mostPopVideos != nextprops.mostPopVideos.mostPopVideos ) {
-            this.getMostPopularVideos();
-        }
-    }
+    // componentWillReceiveProps( nextProps ) {
+    //     if( this.props.mostPopVideos.mostPopVideos !== nextProps.mostPopVideos.mostPopVideos ) {
+    //         this.getMostPopularVideos();
+    //     }
+    // }
 
     renderVideos() {
         return this.props.mostPopVideos.mostPopVideos.map( ( video, index ) => {
@@ -40,8 +40,8 @@ class MostPopular extends Component {
                             <Link to={"/video/" + video.id}>{video.title}</Link>
                         </h3>
                         <hr/>
-                        {/*query doens't return username yet. yeah, I'm working on that*/}
-                        {/*<Link to={"/profile/" + video.uploader_id}>{video.username}</Link>*/}
+                        <Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
+
 
                         <div><b>Favorites: </b>{ video.most_popular }</div>
 
