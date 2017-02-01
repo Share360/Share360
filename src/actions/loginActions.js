@@ -27,10 +27,10 @@ module.exports = {
         return (dispatch) => {
             axios.get('/api/logout').then((res) => {
                 if(res.data === true) {
+                    window.location = "/#/";
                     dispatch({
                         type: "LOGOUT_SUCCESS"
                     });
-                    window.location = "/#/";
                 }
             });
         }
