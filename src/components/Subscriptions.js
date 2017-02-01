@@ -18,7 +18,6 @@ class Subscriptions extends Component {
 
 
     renderSubscribed() {
-        console.log( 'before map, in renderSubscribed.', this.props.usersSubscriptions.usersSubscriptions);
         return this.props.usersSubscriptions.usersSubscriptions.map( ( profile ) => {
             return (
                 <div key={ profile.id } className="col-sm-12 col-md-12 col-lg-12">

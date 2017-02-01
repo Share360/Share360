@@ -15,11 +15,6 @@ class MostPopular extends Component {
         this.getMostPopularVideos();
     }
 
-    // componentWillReceiveProps( nextProps ) {
-    //     if( this.props.mostPopVideos.mostPopVideos !== nextProps.mostPopVideos.mostPopVideos ) {
-    //         this.getMostPopularVideos();
-    //     }
-    // }
 
     renderVideos() {
         return this.props.mostPopVideos.mostPopVideos.map( ( video, index ) => {
