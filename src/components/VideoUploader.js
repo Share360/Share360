@@ -13,7 +13,10 @@ class VideoUploader extends Component {
             videos: [],
             title: '',
             description: '',
-            checked: [],
+            cat1: '',
+            cat2: '',
+            cat3: '',
+            thumbnail_url: '',
             detailsStatus: false
         };
         this.handleOnDrop = this.handleOnDrop.bind(this);
@@ -27,10 +30,17 @@ class VideoUploader extends Component {
         //     const newChecked = update(checkedArr, {$push: [e.target.value]})
         //     this.setState({[this.props.checked]: newChecked});
         // }
+        if (e.target.type === "file") {
+            // e.target.value = e.target.value.replace(/.*[\/\\]/, '');
+            let f = e.target.value.replace(/.*[\/\\]/, '')
+            return this.setState({[e.target.name]: f})
+        }
         this.setState({[e.target.name]: e.target.value})
     }
+
     handleSubmit(e) {
         e.preventDefault();
+            console.log(this.state)
             this.setState({detailsStatus: true});
     }
 
@@ -39,12 +49,12 @@ class VideoUploader extends Component {
         axios.post('/api/addvideo', {
             url: videos[0].url,
             uploader_id: this.props.loginStatus.id,
-            thumbnail_url: 'https://aframe.io/images/blog/introducing-aframe.png',
+            thumbnail_url: this.state.thumbnail_url,
             title: this.state.title,
             description: this.state.description,
-            cat1: "entertainment",
-            cat2: "sports",
-            cat3: "gaming"
+            cat1: this.state.cat1,
+            cat2: this.state.cat2,
+            cat3: this.state.cat3
         }).then((res) => {
             console.log(res);
         });
@@ -61,12 +71,12 @@ class VideoUploader extends Component {
                     isUploading: false,
                     videos: this.state.videos.concat(videos),
                     videoDetails: {
-                        thumbnail_url: 'https://aframe.io/images/blog/introducing-aframe.png',
+                        thumbnail_url: this.state.thumbnail_url,
                         title: this.state.title,
                         description: this.state.description,
-                        cat1: "entertainment",
-                        cat2: "sports",
-                        cat3: "gaming"
+                        cat1: this.state.cat1,
+                        cat2: this.state.cat2,
+                        cat3: this.state.cat3
                     }
                 });
                 this.addVideoDetails(videos);
@@ -135,7 +145,33 @@ class VideoUploader extends Component {
                         <input type="file" name="thumbnail_url" id="videoThumbnail" value={this.state.value} onChange={this.handleChange} />
                             <p className="help-block">Image size: 300 x 250</p>
                     </div>
-                    <VideosCatagoryForm />
+                    <select id="cat1select" name="cat1" onChange={this.handleChange} value={this.state.value}>
+                        <option>Category 1</option>
+                        <option value="music">Music</option>
+                        <option value="sports">Sports</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="news">news</option>
+                        <option value="travel">travel</option>
+                    </select>
+                    <select id="cat2select" name="cat2" onChange={this.handleChange} value={this.state.value}>
+                        <option>Category 2</option>
+                        <option value="music">Music</option>
+                        <option value="sports">Sports</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="news">news</option>
+                        <option value="travel">travel</option>
+                    </select>
+                    <select id="cat3select" name="cat3" onChange={this.handleChange} value={this.state.value}>
+                        <option>Category 3</option>
+                        <option value="music">Music</option>
+                        <option value="sports">Sports</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="news">news</option>
+                        <option value="travel">travel</option>
+                    </select>
                     <button type="submit" className="btn btn-default">Submit</button>
                 </form>
                 <br />
