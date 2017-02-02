@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { getSubscriptions } from '../actions/getSubscriptionsActions';
 
@@ -17,17 +18,16 @@ class Subscriptions extends Component {
 
 
     renderSubscribed() {
-        console.log( 'before map, in renderSubscribed.', this.props.usersSubscriptions.usersSubscriptions);
         return this.props.usersSubscriptions.usersSubscriptions.map( ( profile ) => {
             return (
                 <div key={ profile.id } className="col-sm-12 col-md-12 col-lg-12">
                     <div className="row">
                         <div className="subscription-list">
                             <div className=" col-sm-12 col-md-12 col-lg-12 ">
-                                <a href="#" className="col-sm-3 col-md-3 col-lg-3 flex-wrapper">
+                                <Link to={"/profile/" + profile.id } className="col-sm-3 col-md-3 col-lg-3 flex-wrapper">
                                     <img src={ profile.profile_url } className="test-one" />
-                                    <span className="prof-title prof-head-tag test-two">{ profile.username }</span>
-                                </a>
+                                    <span className="prof-title prof-head-tag text-center test-two">{ profile.username }</span>
+                                </Link>
 
                                 <div className="col-md-9">
                                     { profile.description }
