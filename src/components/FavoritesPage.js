@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 
 import searchActions from '../actions/searchActions';
 import SearchResult from './Search/SearchResult';
+import moment from 'moment';
 
 class FavoritesPage extends React.Component {
     constructor(props) {
@@ -19,7 +20,27 @@ class FavoritesPage extends React.Component {
     renderFavorites() {
         return this.props.favorites.map((video, index) => {
             return (
-                <SearchResult {...video} key={index} />
+                <div
+                  key={ index }
+                  className="col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
+                    <div className="thumbnail featuredThumbs">
+                        <img
+                            className="clickable category-images"
+                            onClick={ () => {window.location = "/#/video/" + video.id} }
+                            src={ video.thumbnail_url }
+                            alt={ video.title }
+                        />
+                    </div>
+                    <div className="videoContentBox">
+                        <h3>
+                          <Link to={"/video/" + video.id}>{video.title}</Link>
+                        </h3>
+                        <hr/>
+                        <b>Uploader: </b><Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
+                        <br />
+                        <b>Uploaded: {moment(video.upload_date).format("MMM D, YYYY")}</b>
+                    </div>
+                </div>
             );
         });
     }
@@ -28,9 +49,9 @@ class FavoritesPage extends React.Component {
         if (this.props.loginStatus.loggedIn) {
             return (
                 <div className="container-fluid">
-                    <h1>Favorites</h1>
+                    <h1><span className="text-capitalize">{this.props.loginStatus.username}</span>'s Favorites</h1>
 
-                    { this.props.favorites? ( this.props.favorites.length === 0 ? (<p>You don't have any videos in your favorites!</p>) : (<div className="row clickable">{this.renderFavorites()}</div>) ) : null }
+                    { this.props.favorites? ( this.props.favorites.length === 0 ? (<p>You don't have any videos in your favorites!</p>) : (<div className="row">{this.renderFavorites()}</div>) ) : null }
 
                 </div>
             );
