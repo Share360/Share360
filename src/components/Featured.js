@@ -23,7 +23,7 @@ class Featured extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-sm-12 col-md-12">
+                    <div className="col-xs-12 col-sm-12 col-md-12">
                         <a-scene id="featuredCanvas" embedded>
                             <a-assets>
                                 <video id="video" src="https://s3-us-west-2.amazonaws.com/share360videosbucket/explore360.mp4" crossOrigin></video>

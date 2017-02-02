@@ -12,13 +12,15 @@ class FeaturedVideos extends Component {
             if (this.props.mostPopVideos.mostPopVideos) {
                 return this.props.mostPopVideos.mostPopVideos.map((video) => {
                     return (
-                        <div key={video.id} className="col-sm-4 featuredList">
-                            <div className="thumbnail">
-                                <a href="#"><img className="img-responsive" src={video.thumbnail_url}/></a>
-                            </div>
-                            <div className="videoContentBox">
-                                <Link to={"/video/" + video.id} className="prof-title prof-head-tag"><h3>{video.title}</h3></Link>
-                                <hr />
+                        <div key={video.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                            <div className="featuredList">
+                                <div className="thumbnail featuredThumbs">
+                                    <a href="#"><img className="img-responsive featuredImg" src={video.thumbnail_url}/></a>
+                                </div>
+                                <div className="videoContentBox">
+                                    <Link to={"/video/" + video.id} className="prof-title prof-head-tag"><h3>{video.title}</h3></Link>
+                                    <hr />
+                                </div>
                             </div>
                         </div>
                     );

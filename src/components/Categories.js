@@ -27,8 +27,9 @@ class Categories extends Component {
             return (
                 <div
                   key={ index }
-                  className=" col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
-                    <div className="thumbnail">
+
+                  className="col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
+                    <div className="thumbnail featuredThumbs">
                         <img
                             className="clickable category-images"
                             onClick={ () => {window.location = "/#/video/" + video.id} }

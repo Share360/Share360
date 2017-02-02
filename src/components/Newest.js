@@ -23,7 +23,7 @@ class Newest extends Component {
         <div
           key={ index }
           className="col-sm-4 col-sm-4 col-sm-4 category-list">
-            <div className="thumbnail">
+            <div className="thumbnail featuredThumbs">
                 <img
                     data={video.upload_date}
                     className="clickable"
