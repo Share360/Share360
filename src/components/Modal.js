@@ -9,7 +9,7 @@ class Modal extends Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content modal-position">
                         <div className="modal-header uploader-modal-header">
-                            <h4 className="modal-title" id="myModalLabel">Select file to upload</h4>
+                            <h1 className="modal-title text-center" id="myModalLabel">Profile Image Uploader</h1>
                         </div>
                         <div className="modal-body">
                             <FileReader />
