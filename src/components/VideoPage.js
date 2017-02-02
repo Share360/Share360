@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 import videoActions from '../actions/videoActions';
 import VideoPlayer from './VideoPlayer';
@@ -19,7 +20,7 @@ class VideoPage extends React.Component {
             this.checkFavorite(this.props);
         }
     }
-    
+
     componentWillReceiveProps(nextProps) {
         if (this.props.params.id !== nextProps.params.id) {
             this.getVideoDetails(nextProps);
@@ -107,6 +108,14 @@ class VideoPage extends React.Component {
         );
     }
 
+    renderDate() {
+      const dateObject = this.props.videoDetails.upload_date;
+      const normalLookinDate = moment(dateObject).format('YYYY MM DD');
+        return(
+          <div>{normalLookinDate}</div>
+        )
+    }
+
     render() {
         return (
             <div className="container-fluid">
@@ -117,14 +126,15 @@ class VideoPage extends React.Component {
                     <div className="row">
                         <div className="col-xs-10">
                             <h1>{this.props.videoDetails.title}</h1>
-                            <p><i>Uploaded: {this.props.videoDetails.upload_date}</i></p>
+                            {/* <p><i>Uploaded: {this.props.videoDetails.upload_date}</i></p> */}
+                            <p><i>Uploaded: {this.renderDate()}</i></p>
                             <p><b>Uploader: </b><Link to={"/profile/" + this.props.videoDetails.uploader_id}>{this.props.videoDetails.username}</Link></p>
                             <p><b>Description: </b>{this.props.videoDetails.description}</p>
                             {this.renderCategories()}
                         </div>
-                        
+
                         {this.renderButton()}
-                        
+
                     </div>
                 </div>
 
@@ -133,7 +143,7 @@ class VideoPage extends React.Component {
 
                 {this.state.showComments ? ( <div id="disqus_thread"></div> ) : ( <button className="btn btn-custom center-block" onClick={this.showComments.bind(this)}>Load Comments</button> ) }
 
-                
+
             </div>
         );
     }

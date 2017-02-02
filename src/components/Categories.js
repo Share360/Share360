@@ -24,7 +24,6 @@ class Categories extends Component {
 
     renderVideos() {
         return this.props.categoryVideos.videos.map( ( video, index ) => {
-          console.log(video);
             return (
                 <div
                   key={ index }
