@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import moment from 'moment'
 
 import Sidebar from './Container/Sidebar';
 import { getRecentVideos } from '../actions/videoActions';
@@ -21,11 +22,11 @@ class Newest extends Component {
       return (
         <div
           key={ index }
-          className="col-sm-4 col-sm-4 col-sm-4 category-list">
-            <div className="thumbnail">
+          className="col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
+            <div className="thumbnail featuredThumbs">
                 <img
                     data={video.upload_date}
-                    className="clickable"
+                    className="clickable category-images"
                     onClick={ () => {window.location = "/#/video/" + video.id} }
                     src={ video.thumbnail_url }
                     alt={ video.title }
@@ -35,8 +36,8 @@ class Newest extends Component {
                 <h3>
                   <Link to={"/video/" + video.id}>{video.title}</Link>
                 </h3>
-                <hr/>
-                  <Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
+                <p><strong>Uploaded: </strong>{moment(video.upload_date).format("MMMM D, YYYY")}</p>
+                <p><Link to={"/profile/" + video.uploader_id}>{video.username}</Link></p>
             </div>
         </div>
       );

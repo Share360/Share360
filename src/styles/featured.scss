@@ -20,25 +20,40 @@
 
 .featuredList {
     height: 300px;
-    img {
-      height: 200px;
-      width: 360px;
-    }
     hr {
       margin: -10px 0 10px 0;
-      width: 85%;
+      width: 95%;
     }
     .videoContentBox {
       padding: 0 20px 10px 20px;
+      h3 {
+        padding-left: 18px;
+      }
     }
 }
+
 
 .mostPopularTitle {
   hr {
     margin: -8px 0 18px 0;
+    background-color: $medium-gray;
+    height: .7px;
   }
 
   h2 {
     margin-left: 20px;
   }
+}
+
+.featuredImg {
+  max-height: 200px;
+}
+
+.featuredThumbs {
+  background: #7d7e7d; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover,  #7d7e7d 0%, #0e0e0e 100%);
+  background: -webkit-radial-gradient(center, ellipse cover,  #7d7e7d 0%,#0e0e0e 100%);
+  background: radial-gradient(ellipse at center,  #7d7e7d 0%,#0e0e0e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 );
+
 }

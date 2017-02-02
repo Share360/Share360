@@ -1,6 +1,10 @@
 @import 'variables';
 @import 'mixins';
 
+.prof-panel {
+  border: none;
+}
+
 .prof-wrapper {
   padding: 0;
   width: 100%;
@@ -14,20 +18,22 @@
   }
 }
 
+
+
 .prof-title {
-  color: $secondary-color;
+  color: $primary-dark;
   text-decoration: none;
 
 }
 
 .prof-title:hover {
-  color: $secondary-light;
+  color: $primary-dark;
   text-decoration: none;
 }
 
 .prof-panel-heading {
   position: relative;
-  background-color: $primary-color;
+  background-color: $primary-dark;
   border: none;
   padding: 10px 0px;
 
@@ -69,12 +75,12 @@
 
 .prof-link {
   font-size: 14px;
-  color: $secondary-color;
+  color: $primary-dark;
   text-decoration: none;
 }
 
 .prof-link:hover {
-  color: $secondary-light;
+  color: $primary-light;
   text-decoration: none;
 }
 
@@ -92,9 +98,10 @@
   width: 120px;
   height: 20px;
   font-size: 12px;
-  color: #ffffff;
-  background-color: $secondary-color;
-  box-shadow: 0 0 3px rgba(0, 0, 0, .7);
+  color: #f7f7f7;
+  border: none;
+  background-color: $primary-dark;
+  //box-shadow: 0 0 3px rgba(0, 0, 0, .7);
 
 }
 
@@ -109,7 +116,7 @@
     top: 100px;
   }
   .editable {
-    background-color: $secondary-color;
+    background-color: $primary-light;
     color: #ffffff;
     position: relative;
     top: -115px;
@@ -124,10 +131,16 @@
       @include centerer;
     }
   }
+  .btn-subscribe {
+    position: relative;
+    top: 5px;
+    left: 5px;
+  }
 
 }
 
 .prof-details-container {
+  background-color: #f7f7f7;
   padding-top: 100px;
   padding-left: 35px;
   padding-right: 35px;
@@ -158,4 +171,26 @@
 
 .editable {
   margin-left: 8px;
+}
+
+
+// for Video Uploader
+
+.video-uploader-container {
+  width: 300px;
+  height: 200px;
+  margin: 20px 20px;
+}
+
+#cat1select, #cat2select, #cat3select {
+  width: 115px;
+  margin: 5px 8px 15px 8px;
+
+}
+
+.subscribeBtn {
+  background-color: $primary-light;
+  float: right;
+  width: 120px;
+  margin: 0 48px 30px 20px;
 }

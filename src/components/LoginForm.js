@@ -23,7 +23,7 @@ class LoginForm extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        this.props.dispatch( loginActions.login ( this.state.username, this.state.password))
+        this.props.dispatch( loginActions.login ( this.state.username.toLowerCase(), this.state.password))
     }
 
     render(){
@@ -60,7 +60,7 @@ class LoginForm extends Component {
                         <button className="btn btn-lg btn-custom btn-block" type="submit" disabled={this.state.isLoading}>Login</button>
 
                         <div className="login-create-account-link">
-                            <IndexLink activeClassName="navlink-active" to="/sign-up">Don't have an account? Click here to sign up!</IndexLink>
+                            <Link activeClassName="navlink-active" to="/sign-up">Don't have an account? Click here to sign up!</Link>
                         </div>
                     </form>
 

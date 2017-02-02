@@ -104,6 +104,15 @@ module.exports = {
             }
         });
     },
+    getUserVideos: (req, res) => {
+        db.getUserVideos([req.params.id], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
     getRecentVideos: (req, res) => {
         db.getRecentVideos( (err, response) => {
             if (err) {
@@ -113,13 +122,60 @@ module.exports = {
             }
         });
     },
-    mostpopularvideos: ( req, res ) => {
-        db.mostpopularvideos( [], ( err, response ) => {
+    mostpopularvideos: (req, res) => {
+        db.mostpopularvideos( [], ( err, response) => {
             if( err ) {
                 res.send( err );
             } else {
-                res.status( 200 ).send( response );
+                res.status(200).send(response);
+            }
+        });
+    },
+    addComment: (req, res) => {
+        db.addComment([req.body.userID, req.body.commentText, req.body.videoID], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
+    getComments: (req, res) => {
+        db.getComments([req.params.id], (err, response) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
+    addVideo: (req, res) => {
+        db.addVideo([req.body.title, req.body.url, req.body.thumbnail_url, req.body.description, req.body.uploader_id, req.body.cat1, req.body.cat2, req.body.cat3], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        })
+    },
+    deleteUserVideo: (req, res) => {
+        db.deleteUserVideo([req.query.id, req.query.uploader_id], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
+    },
+    getSubscriptions: ( req, res ) => {
+        db.getSubscriptions( [ req.params.userid ], ( err, response ) => {
+            if( err ) {
+                res.send( err );
+            } else {
+                res.status(200).send(response);
             }
         });
     }
 };
+
+

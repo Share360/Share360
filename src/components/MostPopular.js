@@ -15,21 +15,16 @@ class MostPopular extends Component {
         this.getMostPopularVideos();
     }
 
-    componentWillReceiveProps( nextprops ) {
-        if( this.props.mostPopVideos.mostPopVideos != nextprops.mostPopVideos.mostPopVideos ) {
-            this.getMostPopularVideos();
-        }
-    }
 
     renderVideos() {
         return this.props.mostPopVideos.mostPopVideos.map( ( video, index ) => {
             return (
                 <div
                     key={ index }
-                    className="col-sm-4 col-md-4 col-md-4 category-list">
-                    <div className="thumbnail">
+                    className="col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
+                    <div className="thumbnail featuredThumbs">
                         <img
-                            className="clickable"
+                            className="clickable category-images"
                             onClick={ () => {window.location = "/#/video/" + video.id} }
                             src={ video.thumbnail_url }
                             alt={ video.title }
@@ -40,10 +35,10 @@ class MostPopular extends Component {
                             <Link to={"/video/" + video.id}>{video.title}</Link>
                         </h3>
                         <hr/>
-                        {/*query doens't return username yet. yeah, I'm working on that*/}
-                        {/*<Link to={"/profile/" + video.uploader_id}>{video.username}</Link>*/}
+                        <Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
 
-                        <div>Favorites: { video.most_popular }</div>
+
+                        <div><b>Favorites: </b>{ video.most_popular }</div>
 
                     </div>
                 </div>
@@ -52,17 +47,15 @@ class MostPopular extends Component {
     }
 
     render(){
-
         return(
-          <div>
-              <div>
-                  <h1>Most Popular</h1>
-                  <hr/>
-              </div>
-              <div className="container-fluid">
-                  <div className="row">
-                      { this.renderVideos() }
+          <div className="container-fluid">
+              <div className="row">
+                  <div className="col-sm-12 col-md-12">
+                      <h1 className="text-capitalize bottom-line">Most Popular</h1>
                   </div>
+              </div>
+              <div className="row">
+                  { this.renderVideos() }
               </div>
           </div>
 
