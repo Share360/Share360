@@ -8,9 +8,10 @@
 
 
 .category-list {
-  height: 300px;
+  height: 360px;
   img {
-    height: 175px;
+    width: 100%;
+    height: 235px;
 
   }
   hr {
@@ -23,6 +24,39 @@
 }
 
 .category-images {
-  width: 100%;
+  display: block;
+  height: auto;
+  width: auto;
+  max-height: 200px;
 }
 
+
+@media ( min-width: 1400px) {
+  .category-list {
+    height: 400px;
+
+    img {
+      height: 325px;
+    }
+  }
+  .thumbnail {
+    height: 325;
+  }
+}
+//@media ( max-width: 400px ) {
+//  .category-images {
+//    width: 300px;
+//  }
+//}
+//
+//@media ( max-width: 800px ) {
+//  .category-images {
+//    width: 500px;
+//  }
+//}
+//
+//@media ( min-width: 1200px) {
+//  .category-images {
+//    width: 700px
+//  }
+//}

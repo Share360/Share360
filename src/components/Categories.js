@@ -27,7 +27,7 @@ class Categories extends Component {
             return (
                 <div
                   key={ index }
-                  className="col-sm-4 col-md-4 col-md-4 category-list">
+                  className=" col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
                     <div className="thumbnail">
                         <img
                             className="clickable category-images"
@@ -54,7 +54,6 @@ class Categories extends Component {
                 <div className="row">
                     <div className="col-sm-12 col-md-12">
                         <h1 className="text-capitalize bottom-line">{ this.props.params.id }</h1>
-                        <hr/>
                     </div>
                 </div>
                 <div className="row">
