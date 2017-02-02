@@ -6,7 +6,7 @@ import { getProfileById, getVideoByUser, deleteUserVideo } from '../actions/prof
 import VideoModal from './VideoModal';
 import Modal from './Modal';
 import { Link } from 'react-router';
-
+import ThumbnailCreator from './ThumbnailCreator';
 class Profile extends Component {
     constructor(props) {
         super(props)
