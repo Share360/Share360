@@ -130,7 +130,6 @@ class VideoUploader extends Component {
 
         return (
             <div style={{width: 400, margin: '30px auto'}}>
-                <h1 className="text-center">360 Video Uploader</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Title:</label>
@@ -186,7 +185,7 @@ class VideoUploader extends Component {
                     >
                         {this.state.isUploading ?
                             <div>Uploading file</div> :
-                            <div>Drag or Click Here</div>}
+                            <div>Enter Details Above Then Drag or Click Here</div>}
                     </Dropzone>
             </div>
         );
