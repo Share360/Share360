@@ -1,15 +1,16 @@
 @import 'variables';
 
 nav {
-  z-index: 2;
+  z-index: 3;
 
   a {
     font-size: 16px;
   }
+
 }
 
 .navbar-default {
-  background-color: white;
+  background-color: #585858;
   a {
     &:hover {
       color: $link-color !important;
@@ -20,6 +21,8 @@ nav {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
+  border-color: #585858;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .7);
 }
 
 .sidebar {
@@ -32,11 +35,11 @@ nav {
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     display: block;
     padding: 20px;
-    background-color: white;
-    border-right: 1px solid #ddd;
+    background-color: #333333;
+    border-right: 1px solid #333333;
   }
 }
 
@@ -52,17 +55,18 @@ nav {
       padding-right: 20px;
       padding-left: 20px;
       font-size: 18px;
-      color: #5e5e5e;
+      color: #c7c7c7;
       // transition: .2s;
       // -webkit-transition: .2s;
 
-      &:focus, &:hover {
+      &:hover {
         color: darken(#5e5e5e, 20%);
-        border-right: 1px solid #ddd;
+        border-right: 1px solid #333333;
       }
 
       &:focus {
-        background: white;
+        color: white;
+        background: $primary-color;
       }
 
       &:hover {
@@ -76,13 +80,13 @@ nav {
 }
 
 footer {
-  z-index: 2;
+  z-index: 1;
   width: 100%;
   position: absolute;
   bottom: 0;
   height: 50px;
-  background: white;
-  border: 1px solid #ddd;
+  background: #f7f7f7;
+  border-top: 1px solid #ddd;
 
   p {
     margin-top: 12px;

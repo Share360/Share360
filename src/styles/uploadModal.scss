@@ -3,4 +3,35 @@
   top: 50vh;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #f7f7f7;
+  button {
+    border: none;
+    background-color: $primary-dark;
+    color: #f7f7f7;
+    &:hover {
+      border: none;
+      background-color: $primary-light;
+      color: #f7f7f7;
+    }
+  }
+}
+
+.uploader-modal-header {
+  background-color: #333333;
+  color: #c7c7c7;
+}
+
+.uploader-modal-footer {
+  background-color: #333333;
+  button {
+    border: none;
+    background-color: $primary-dark;
+    color: #f7f7f7;
+    &:hover {
+      border: none;
+      background-color: $primary-light;
+      color: #f7f7f7;
+    }
+  }
+
 }

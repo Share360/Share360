@@ -29,7 +29,7 @@ class Categories extends Component {
                 <div
                   key={ index }
                   className="col-sm-4 col-md-4 col-md-4 category-list">
-                    <div className="thumbnail">
+                    <div className="thumbnail featuredThumbs">
                         <img
                             className="clickable"
                             onClick={ () => {window.location = "/#/video/" + video.id} }
@@ -55,7 +55,6 @@ class Categories extends Component {
                 <div className="row">
                     <div className="col-sm-12 col-md-12">
                         <h1 className="text-capitalize bottom-line">{ this.props.params.id }</h1>
-                        <hr/>
                     </div>
                 </div>
                 <div className="row">

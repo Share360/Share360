@@ -27,7 +27,7 @@ class MostPopular extends Component {
                 <div
                     key={ index }
                     className="col-sm-4 col-md-4 col-md-4 category-list">
-                    <div className="thumbnail">
+                    <div className="thumbnail featuredThumbs">
                         <img
                             className="clickable"
                             onClick={ () => {window.location = "/#/video/" + video.id} }

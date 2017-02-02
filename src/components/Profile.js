@@ -70,7 +70,7 @@ class Profile extends Component {
             <div className="container-fluid prof-wrapper">
                 <div className="row">
                     <div className="col-sm-12 full-width">
-                        <div className="panel">
+                        <div className="panel prof-panel">
                             <div className="panel-heading prof-panel-heading">
                                 <div className="row">
                                     <div className="prof-sub-panel-head">
