@@ -24,14 +24,14 @@ class Categories extends Component {
 
     renderVideos() {
         return this.props.categoryVideos.videos.map( ( video, index ) => {
-          console.log(video);
             return (
                 <div
                   key={ index }
-                  className="col-sm-4 col-md-4 col-md-4 category-list">
+
+                  className="col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
                     <div className="thumbnail featuredThumbs">
                         <img
-                            className="clickable"
+                            className="clickable category-images"
                             onClick={ () => {window.location = "/#/video/" + video.id} }
                             src={ video.thumbnail_url }
                             alt={ video.title }
