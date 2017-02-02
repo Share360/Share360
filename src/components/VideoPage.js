@@ -23,7 +23,7 @@ class VideoPage extends React.Component {
         }
         this.getComments(this.props);
     }
-    
+
     componentWillReceiveProps(nextProps) {
         if (this.props.params.id !== nextProps.params.id) {
             this.getVideoDetails(nextProps);
@@ -144,6 +144,14 @@ class VideoPage extends React.Component {
         });
     }
 
+    renderDate() {
+      const dateObject = this.props.videoDetails.upload_date;
+      const normalLookinDate = moment(dateObject).format('YYYY MM DD');
+        return(
+          <div>{normalLookinDate}</div>
+        )
+    }
+
     render() {
         return (
             <div className="container-fluid">
@@ -159,15 +167,16 @@ class VideoPage extends React.Component {
                             <p><b>Description: </b>{this.props.videoDetails.description}</p>
                             {this.renderCategories()}
                         </div>
-                        
+
                         {this.renderButton()}
-                        
+
                     </div>
                 </div>
 
                 <br />
                 <br />
-                
+
+
                 <div className="comments-wrapper">
                     <h1>Comments</h1>
                     {this.renderCommentInput.bind(this)()}

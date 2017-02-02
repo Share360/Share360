@@ -22,11 +22,11 @@ class Newest extends Component {
       return (
         <div
           key={ index }
-          className="col-sm-4 col-sm-4 col-sm-4 category-list">
+          className="col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
             <div className="thumbnail featuredThumbs">
                 <img
                     data={video.upload_date}
-                    className="clickable"
+                    className="clickable category-images"
                     onClick={ () => {window.location = "/#/video/" + video.id} }
                     src={ video.thumbnail_url }
                     alt={ video.title }
@@ -36,7 +36,7 @@ class Newest extends Component {
                 <h3>
                   <Link to={"/video/" + video.id}>{video.title}</Link>
                 </h3>
-                <p><strong>Upload Date: </strong>{moment(video.upload_date).format("MMMM D, YYYY")}</p>
+                <p><strong>Uploaded: </strong>{moment(video.upload_date).format("MMMM D, YYYY")}</p>
                 <p><Link to={"/profile/" + video.uploader_id}>{video.username}</Link></p>
             </div>
         </div>

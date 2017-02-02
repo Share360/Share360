@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import moment from 'moment';
 
 import SideBar from './Container/Sidebar';
 import { getVideosByCategoryActions } from  '../actions/categoryActions';
@@ -27,7 +28,6 @@ class Categories extends Component {
             return (
                 <div
                   key={ index }
-
                   className="col-xs-10 col-sm-7 col-md-4 col-md-4 col-lg-4 category-list">
                     <div className="thumbnail featuredThumbs">
                         <img
@@ -43,6 +43,8 @@ class Categories extends Component {
                         </h3>
                         <hr/>
                         <b>Uploader: </b><Link to={"/profile/" + video.uploader_id}>{video.username}</Link>
+                        <br />
+                        <b>Uploaded: {moment(video.upload_date).format("MMM D, YYYY")}</b>
                     </div>
                 </div>
             );

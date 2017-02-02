@@ -5,9 +5,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const massive = require('massive');
 const CryptoJS = require('crypto-js');
+const aws = require('aws-sdk');
+
 const secrets = require('./server/secrets');
 const config = require('./server/config');
-const aws = require('aws-sdk');
 // const users = require('./server/routes/users');
 
 
@@ -199,5 +200,3 @@ app.get('/api/getProfile/:id', mainServCtrl.getProfile);
 app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
 
 app.delete('/api/deleteuservideo', mainServCtrl.deleteUserVideo);
-
-
