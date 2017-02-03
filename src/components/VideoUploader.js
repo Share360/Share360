@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import VideosCatagoryForm from './VideosCatagoryForm';
+import profileActions from '../actions/profileActions';
 
 class VideoUploader extends Component {
     constructor(props) {
@@ -80,6 +81,7 @@ class VideoUploader extends Component {
                     }
                 });
                 this.addVideoDetails(videos);
+                this.props.dispatch(profileActions.getVideoByUser(this.props.params.id));
             }).catch(e => console.log(e));
     }
 

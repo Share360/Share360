@@ -12,7 +12,7 @@ class VideoModal extends Component {
                             <h1 className="text-center">360 Video Uploader</h1>
                         </div>
                         <div className="modal-body">
-                            <VideoUploader />
+                            <VideoUploader {...this.props} />
                         </div>
                         <div className="modal-footer uploader-modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

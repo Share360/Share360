@@ -125,7 +125,7 @@ class Profile extends Component {
                     </div>
                 </div>
                 <Modal/>
-                <VideoModal/>
+                <VideoModal { ...this.props } />
             </div>
 
         );
