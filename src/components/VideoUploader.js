@@ -142,7 +142,7 @@ class VideoUploader extends Component {
                         <textarea type="text" className="form-control" name="description" id="videoDescription" placeholder="Enter the video description here" value={this.state.value} onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
-                        <label>Select your Thumbnail</label>
+                        <label>Paste Thumbnail URL</label>
                         <input type="text" name="thumbnail_url" id="videoThumbnail" value={this.state.value} onChange={this.handleChange} />
                             <p className="help-block">Image size: 300 x 250</p>
                     </div>

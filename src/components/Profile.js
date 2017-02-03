@@ -7,6 +7,7 @@ import VideoModal from './VideoModal';
 import Modal from './Modal';
 import { Link } from 'react-router';
 import ThumbnailCreator from './ThumbnailCreator';
+
 class Profile extends Component {
     constructor(props) {
         super(props)
@@ -114,8 +115,8 @@ class Profile extends Component {
                             </div>
                             <div className="panel-body prof-details-container">
                                 {this.props.loginStatus.loggedIn && this.props.loginStatus.id !== Number(this.props.params.id) ? <button onClick={this.handleSubscribe.bind(this)} className="btn btn-custom subscribeBtn" id="sub-btn">Subscribe</button> : null }
-                                <p className="prof-head-tag">E-Mail: {this.props.edit.editMode ? <span><a href="#" className="prof-link">{this.props.userProfile.email}</a><span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span></span> : <a href="#" className="prof-link">{this.props.userProfile.email}</a>}</p>
-                                <p className="prof-head-tag">Description: {this.props.edit.editMode ? <span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span> : ''}</p>
+                                {/* <p className="prof-head-tag">E-Mail: {this.props.edit.editMode ? <span><a href="#" className="prof-link">{this.props.userProfile.email}</a><span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span></span> : <a href="#" className="prof-link">{this.props.userProfile.email}</a>}</p> */}
+                                <p hidden={!this.props.loginStatus.description} className="prof-head-tag">Description: {this.props.edit.editMode ? <span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span> : ''}</p>
                                 <p className="span">{this.props.userProfile.description}</p>
                                 <hr />
                                 <h4>Uploaded Videos</h4>
@@ -167,4 +168,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
-
