@@ -53,9 +53,11 @@ class LoginForm extends Component {
                             />
                         </div>
 
+                        {/*
                         <label className="checkbox login-checkbox">
                             <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe" /><span>Remember Me</span>
                         </label>
+                        */}
 
                         <button className="btn btn-lg btn-custom btn-block" type="submit" disabled={this.state.isLoading}>Login</button>
 
