@@ -199,3 +199,5 @@ app.get('/api/getProfile/:id', mainServCtrl.getProfile);
 app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
 
 app.delete('/api/deleteuservideo', mainServCtrl.deleteUserVideo);
+
+app.post('/api/subscribe', mainServCtrl.subscribe);

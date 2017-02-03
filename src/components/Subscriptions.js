@@ -13,7 +13,9 @@ class Subscriptions extends Component {
     }
 
     componentDidMount(){
-        this.getUsersSubscriptions()
+        if (this.props.loginStatus.loggedIn) {
+            this.getUsersSubscriptions()
+        }
     }
 
 
@@ -25,7 +27,7 @@ class Subscriptions extends Component {
                         <div className="subscription-list">
                             <div className=" col-sm-12 col-md-12 col-lg-12 ">
                                 <Link to={"/profile/" + profile.id } className="col-sm-3 col-md-3 col-lg-3 flex-wrapper">
-                                    <img src={ profile.profile_url } className="test-one" />
+                                    <img src={ profile.profile_url } className="img-responsive test-one" />
                                     <span className="prof-title prof-head-tag text-center test-two">{ profile.username }</span>
                                 </Link>
 
@@ -55,7 +57,7 @@ class Subscriptions extends Component {
                 </top>
                 <main-body className="container-fluid">
                     <div className="row">
-                        { this.renderSubscribed() }
+                        { this.props.loginStatus.loggedIn ? this.renderSubscribed() : <p style={{marginLeft: 20}}>You must log in or sign up to access subscriptions.</p> }
                     </div>
                 </main-body>
             </div>

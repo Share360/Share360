@@ -15,7 +15,7 @@ class FeaturedVideos extends Component {
                         <div key={video.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                             <div className="featuredList">
                                 <div className="thumbnail featuredThumbs">
-                                    <a href="#"><img className="img-responsive featuredImg" src={video.thumbnail_url}/></a>
+                                    <a href={"/#/video/" + video.id}><img className="img-responsive featuredImg" src={video.thumbnail_url}/></a>
                                 </div>
                                 <div className="videoContentBox">
                                     <Link to={"/video/" + video.id} className="prof-title prof-head-tag"><h3>{video.title}</h3></Link>
