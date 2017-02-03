@@ -35,5 +35,14 @@ module.exports = {
                 })
             });
         }
+    },
+    subscribe: (uploaderID, userID) => {
+        return function(dispatch) {
+            axios.post('/api/subscribe', { uploaderID, userID }).then((res) => {
+                dispatch({
+                    type: "SUBSCRIBE",
+                });
+            });
+        }
     }
 }

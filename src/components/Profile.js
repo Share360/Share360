@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { toggleEdit, toggleProfile } from '../actions/editModeActions';
-import { getProfileById, getVideoByUser, deleteUserVideo } from '../actions/profileActions';
+import { getProfileById, getVideoByUser, deleteUserVideo, subscribe } from '../actions/profileActions';
 import VideoModal from './VideoModal';
 import Modal from './Modal';
 import { Link } from 'react-router';
@@ -27,6 +27,14 @@ class Profile extends Component {
         this.props.deleteVideo(videoid, uploaderid);
     }
 
+    handleSubscribe() {
+        if (!this.props.loginStatus.loggedIn) {
+            alert('Please log in or sign up to subscribe.')
+        } else {
+            this.props.subscribe(this.props.params.id, this.props.loginStatus.id);
+        }
+    }
+
     confirm(videoid, uploaderid) {
         console.log(videoid + " " + uploaderid);
         alert("are you sure you would like to delete this video?");
@@ -39,7 +47,7 @@ class Profile extends Component {
                     <div key={video.id} className="col-sm-12">
                         <div className="row">
                             <div className="col-sm-4">
-                                <Link to={"/video/" + video.id} className="thumbnail">
+                                <Link to={"/video/" + video.id} className="thumbnail featuredThumbs">
                                     <img src={video.thumbnail_url} className="img-responsive" />
                                 </Link>
                             </div>
@@ -105,7 +113,7 @@ class Profile extends Component {
                                 </div>
                             </div>
                             <div className="panel-body prof-details-container">
-                                <button className="btn btn-default subscribeBtn" id="sub-btn">Subscribe</button>
+                                {this.props.loginStatus.loggedIn && this.props.loginStatus.id !== Number(this.props.params.id) ? <button onClick={this.handleSubscribe.bind(this)} className="btn btn-custom subscribeBtn" id="sub-btn">Subscribe</button> : null }
                                 <p className="prof-head-tag">E-Mail: {this.props.edit.editMode ? <span><a href="#" className="prof-link">{this.props.userProfile.email}</a><span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span></span> : <a href="#" className="prof-link">{this.props.userProfile.email}</a>}</p>
                                 <p className="prof-head-tag">Description: {this.props.edit.editMode ? <span className="glyphicon glyphicon-pencil editable" aria-hidden="true"></span> : ''}</p>
                                 <p className="span">{this.props.userProfile.description}</p>
@@ -141,7 +149,8 @@ function mapDispatchToProps(dispatch) {
             toggleProfile: toggleProfile,
             getProfileById: getProfileById,
             getVideoByUser: getVideoByUser,
-            deleteVideo: deleteUserVideo
+            deleteVideo: deleteUserVideo,
+            subscribe: subscribe
     }, dispatch)
 
 }

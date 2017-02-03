@@ -175,6 +175,15 @@ module.exports = {
                 res.status(200).send(response);
             }
         });
+    },
+    subscribe: (req, res) => {
+        db.subscribe([req.body.userID, req.body.uploaderID], (err, response) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.status(200).send(response);
+            }
+        });
     }
 };
 

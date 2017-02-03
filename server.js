@@ -4,7 +4,6 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const massive = require('massive');
-const CryptoJS = require('crypto-js');
 const aws = require('aws-sdk');
 
 const secrets = require('./server/secrets');
@@ -200,3 +199,5 @@ app.get('/api/getProfile/:id', mainServCtrl.getProfile);
 app.post('/api/addprofileimg', mainServCtrl.addProfileImg);
 
 app.delete('/api/deleteuservideo', mainServCtrl.deleteUserVideo);
+
+app.post('/api/subscribe', mainServCtrl.subscribe);
