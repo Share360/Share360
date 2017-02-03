@@ -141,7 +141,7 @@ class VideoUploader extends Component {
                     </div>
                     <div className="form-group">
                         <label>Select your Thumbnail</label>
-                        <input type="file" name="thumbnail_url" id="videoThumbnail" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" name="thumbnail_url" id="videoThumbnail" value={this.state.value} onChange={this.handleChange} />
                             <p className="help-block">Image size: 300 x 250</p>
                     </div>
                     <select id="cat1select" name="cat1" onChange={this.handleChange} value={this.state.value}>
